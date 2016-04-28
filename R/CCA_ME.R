@@ -1,3 +1,5 @@
+## COUCOU
+
 CCA.test <- function(Y, G1, G2, n.boot = 500){
 
   if (!is.null(dim(Y))) {

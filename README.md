@@ -6,4 +6,4 @@ To install and load the package
  
  install_github("MathieuEmily/GeneGeneInteR")
  
- library(GGItest)
+ library(GeneGeneInteR)

@@ -48,6 +48,8 @@
 #' ## By default, the number of bootstrap replicates is 500
 #' CLD.test(Y, G1, G2)
 
+## toctoc
+
 CLD.test <- function(Y, G1, G2, n.perm = 1000){
 
   if (!is.null(dim(Y))) {

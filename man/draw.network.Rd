@@ -2,7 +2,7 @@
 % Please edit documentation in R/graphicOutputs.R
 \name{draw.network}
 \alias{draw.network}
-\title{Draw a gene interactions network.}
+\title{Draw a gene interaction network.}
 \usage{
 draw.network(gene.interactions, genes = 1:ncol(gene.interactions),
   threshold = 0.05, plot.nointer = T)

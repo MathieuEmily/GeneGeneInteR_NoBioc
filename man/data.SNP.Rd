@@ -3,7 +3,7 @@
 \docType{data}
 \name{data.SNP}
 \alias{data.SNP}
-\title{Diallelic SNPs informations.}
+\title{Multiple genes dataset}
 \format{A list with 3 objects: \describe{
   \item{snpX}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix}
    object with 312 SNPs and 429 individuals.} \item{genes.info}{a data frame where
@@ -14,12 +14,14 @@
 All three objects were taken from NCBI web site and are part of the
   \href{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE39428}{GSE39428
   series}
+  \enumerate{\item
+  Chang X., {\it et al.} Investigating a pathogenic role for TXNDC5 in tumors. Int. J. Oncol.,  43(6): 1871-84, 2013.}
 }
 \usage{
-data.SNP
+data(data.SNP)
 }
 \description{
-A dataset containing datas about 429 individuals and their genotypes.
+A case-cpntrol dataset containing the genotypes of 312 SNPs from 17 genes in a total of 429 patients (266 individuals affected by Rheumatoid Arthritis and 163 Health controls)
 }
 \keyword{datasets}
 

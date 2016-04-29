@@ -1,5 +1,117 @@
 minP.test <- function(Y, G1, G2){
 
+  # Checking if gene splitting is needed
+  if (ncol(G1) * ncol(G2) > 1000){
+    # Finding biggest gene and smallest gene
+    if (ncol(G1) >= ncol(G2)){
+      big   <- G1
+      small <- G2
+    } else {
+      big   <- G2
+      small <- G1
+    }
+
+    # Biggest gene is splitted down first, max cluster size is checked.
+    # Max cluster size is the biggest cluster size that passes the filter
+    # so as to keep the test number to a minimum.
+    max.size <- ncol(big) - which((ncol(big):1 * ncol(small)) <= 1000)[1] + 1
+
+    # If no no value was small enough then the smallest needs to be
+    # splitted too.
+    if (is.na(max.size) | max.size < 10){
+      # Second gene needs to be splitted too.
+      # The best combination is looked for.
+      # Decreasing values of the smalled gene are tested for each of which decreasing
+      # values of the smallest genes are parsed. Thus biggest gene is decreasing faster.
+      max.size <- which(ncol(big):1 %o% ncol(small):1 > 1000, arrr.ind=TRUE)[1, ]
+
+      if (is.na(max.size)){
+        stop("No fitting cluster sizes could be found.")
+      }
+
+      # Converting the matrix coordinates back to cluster size
+      max.size <- c(big = ncol(biggest) - max.size[1] + 1, small = ncol(smallest) - max.size[2] + 1)
+    } else {
+      # Splitting the biggest gene is enough
+      max.size <- c(big = max.size, small = NA)
+    }
+
+    breaks.big <- find.breaks(big, max.size['big'])
+    breaks.small <- find.breaks(small, max.size['small'])
+  } else {
+    # Arbitrarilly affecting genes to variables
+    big <- G1
+    small <- G2
+
+    # Breaks are set up so that genes are parsed as one block
+    breaks.big <- c(0, ncol(big))
+    breaks.small <- c(0, ncol(small))
+  }
+
+  # Genes are splitted if needed
+  # All pairs of sub-matrices are to be tested
+  sub.pairs <- expand.grid(1:(length(breaks.big) - 1), 1:(length(breaks.small) - 1))
+
+  # All pairs are iterated over
+  pairs.p.val <- rep(NA,times=nrow(sub.pairs))
+  pairs.stat <- rep(NA,times=nrow(sub.pairs))
+  for (i in 1:nrow(sub.pairs)){
+    # Cluster boundaries for both genes
+    c.bboundaries <- (breaks.big[sub.pairs[i, 1]] + 1):breaks.big[sub.pairs[i, 1] + 1]
+    c.sboundaries <- (breaks.small[sub.pairs[i, 2]] + 1):breaks.small[sub.pairs[i, 2] + 1]
+    c.test <-minP.test.2pairs(Y, big[, c.bboundaries], small[, c.sboundaries])
+    pairs.p.val[i] <- c.test$p.value
+    pairs.stat[i] <- c.test$statistic
+    
+  }
+
+	tmp <- p.adjust(pairs.p.val, "BH")
+	pval <- min(tmp)[1]
+	stat <- pairs.stat[which.min(tmp)]
+	names(stat)="minP"
+	res <- list(statistic=stat,p.value=pval,method="minP")
+	class(res) <- "GGItest"
+  return(res)
+
+#  pairs.res <- min(p.adjust(pairs.res, "BH"))[1]
+
+#  return(pairs.res)
+}
+
+find.breaks <- function(gene, clust.size){
+  if (is.na(clust.size)){
+    return(c(0, ncol(gene)))
+  }
+
+  # Constructing distance matrix
+  distance <- snpStats::ld(gene, gene, stats='R.squared')
+  distance <- as.dist(1 - distance)
+
+  # Constructing clustering tree
+  clust.tree <- rioja::chclust(distance)
+
+  # Cutting tree
+  k.clust <- cutree(clust.tree, k=ncol(gene):1)
+
+  # Finding biggest clust size corresponding to cirteria
+  for (i in ncol(gene):1){
+    if (max(summary(as.factor(k.clust[, i]))) < clust.size) {
+      break
+    }
+  }
+
+  # At this point, i is affected with the correct value
+  # summary(as.factor(k.clust[, i])) return the count for each cluster
+  # As clustering was done with contiguity constraints, cumsum gives the upper bound of
+  # each class. Each upper bound is the lower bound of next class, except for the first one,
+  # thus 0 is added.
+  breaks <- c(0, cumsum(summary(as.factor(k.clust[, i]))))
+
+  return(breaks)
+}
+
+minP.test.2pairs <- function(Y, G1, G2){
+
   if (!is.null(dim(Y))) {
     Y <- Y[, 1]
   }

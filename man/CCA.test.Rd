@@ -18,7 +18,7 @@ Must have a number of row equal to Y argument's length.}
 Must have a number of row equal to Y argument's length.}
 
 \item{n.boot}{integer strictly superior to 0. This is the number of bootstrap
-replicates for the variances estimation. By default, this is fixed to 500.}
+replicates for estimating variances. By default, this is fixed to 500.}
 }
 \value{
 If the function succeed, it returns the interaction pvalue between G1
@@ -28,40 +28,21 @@ If the function succeed, it returns the interaction pvalue between G1
 }
 \description{
 \code{CCA.test} performs a Gene-Gene Interaction (GGI) analysis based on the
-difference of correlation between case and control.
+difference of canonical correlation between cases and controls.
 }
 \details{
-To calculate the test statistic for the interaction pvalue, \code{CCA.test}
-estimate the variances of each group case-control. A bootstrap method is used
-to compute these variances. With the difference between the maximum of the
-canonical correlations for each group tranformed using an analogy to Fisher's
-transformation, the test statistic is computed and represents the
-co-association between genes.
+	The test statistic is based on the difference between a Fisher's' transformation of the maximum of the
+canonical correlations in cases and controls. To calculate the test statistic for the interaction pvalue, \code{CCA.test} estimates the variance of the Fisher's' transformation of the maximum of the
+canonical correlations in cases and controls using a bootstrap method
 }
 \examples{
-## Dataset is included in the package
-ped <- system.file("extdata/example.ped", package="GGItest")
-info <- system.file("extdata/example.info", package="GGItest")
-posi <- system.file("extdata/example.txt", package="GGItest")
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
-
-dta <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
-
-G1 <- select.snps(dta$snpX, dta$genes.info, "TXNDC5")$snpX
-G2 <- select.snps(dta$snpX, dta$genes.info, "DNAH9")$snpX
-
-resp <- system.file("extdata/response.txt", package="GGItest")
-Y  <- read.csv(resp, header=FALSE)
-
-## By default, the number of bootstrap replicates is 500
-CCA.test(Y, G1, G2)
+	data(gene.pair)
+	CCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
 }
 \references{
 \enumerate{\item Qianqian Peng, Jinghua Zhao, and Fuzhong Xue. A
  gene-based method for detecting gene-gene co-association in a case-control
- study. European Journal of Human Genetics, 18(5) :582-587, May 2010. \item
- R. A. Fisher. On the probable error of a coefficient of correlation deduced
- from a small sample. Metron, 1 :3-32, 1921.}
+ study. European Journal of Human Genetics, 18(5) :582-587, May 2010.}
 }
 \seealso{
 \code{\link{GGI}}, \code{\link{KCCA.test}}

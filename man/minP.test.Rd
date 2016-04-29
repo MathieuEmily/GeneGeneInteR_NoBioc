@@ -1,5 +1,5 @@
-\name{gates.test}
-\alias{gates.test}
+\name{minP.test}
+\alias{minP.test}
 \title{SNP-based GGI analysis with minP test}
 \usage{
 	

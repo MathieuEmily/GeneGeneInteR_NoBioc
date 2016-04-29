@@ -109,6 +109,6 @@ tProd.test(gene.pair$Y, gene.pair$G1, gene.pair$G2, tau = 0.5, n.sim = 500)
  }
 }
 \seealso{
-\code{\link{GGI}}}
+\code{\link{GGI}}
 }
 

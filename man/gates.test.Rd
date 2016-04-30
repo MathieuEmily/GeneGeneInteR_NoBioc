@@ -48,8 +48,8 @@ GGI analysis p-value is returned.
 	In a first step, all methods start by applying a logistic regression model to test all pairs of SNPs between the two genes \code{G1} and \code{G2}. If \code{G1} has \eqn{m1} SNPs and \code{G2} \eqn{m2} SNPs, a total of \eqn{m1 * m2} SNP-SNP tests are performed. In a second step, the \eqn{m1 * m2} SNP-SNP tests are combined according to their covariance matrix \eqn{\Sigma}. \eqn{\Sigma} is computed as described in the method developped in Emily (2016). The covariance \eqn{\Sigma} is used in each method as follows:
 
  \itemize{ 
- 	\item \bf{minP test} - minP test considered the significant of the observed minimum p-value. Significance is computed by integrating the multivariate normal distribution with covariance \eqn{\Sigma} as proposed in Conneelly and Boehnke (2008).
- 	\item \bf{GATES test} - The p-value for GATES is the minimum p-value obtained after a multiple testing correction of the SNP-SNP interaction p-value. Correction for multiple testing is defined as \deqn{me * p[i]/m[i]} where me is the effective number of independant tests, p[i] is the i-th top p-values and m[i] is the effective number of
+ 	\item minP test - minP test considered the significant of the observed minimum p-value. Significance is computed by integrating the multivariate normal distribution with covariance \eqn{\Sigma} as proposed in Conneelly and Boehnke (2008).
+ 	\item GATES test - The p-value for GATES is the minimum p-value obtained after a multiple testing correction of the SNP-SNP interaction p-value. Correction for multiple testing is defined as \deqn{me * p[i]/m[i]} where me is the effective number of independant tests, p[i] is the i-th top p-values and m[i] is the effective number of
  independant test among the top i p-values. Many methods
  exist to estimate \eqn{me} and \eqn{m[i]} terms: 
  \itemize{
@@ -58,13 +58,12 @@ GGI analysis p-value is returned.
  	\item Li & Ji method (Li and Ji, 2005)
  	\item Galwey method (Galwey, 2009)
  } Details of each method can be found in the references. 
- 	\item \bf{tTS test} - tTS test does not consider only the strongest signal but all signals that are inferior to a given threshold \eqn{\tau}. For these
+ 	\item tTS test - tTS test does not consider only the strongest signal but all signals that are inferior to a given threshold \eqn{\tau}. For these
  p-values, the weighted sum of \deqn{tTS=\sum_i (1-p[i]*(m1*m2+1)/i)} is computed and
  represents the test statistic. The p-value is calculated using an empirical distribution of \eqn{tTS} obtained by simulating multivariate normal statistics with a covariance \eqn{\Sigma}. 
- \item \bf{TProd test} - The procedure is similar to \eqn{tTS} with \eqn{tProd} defined as \deqn{tProd=\prod_{i} p[i]}
+ \item TProd test - The procedure is similar to \eqn{tTS} with \eqn{tProd} defined as \deqn{tProd=\prod_{i} p[i]}
 .}
 }
-
 \examples{
 data(gene.pair)
 

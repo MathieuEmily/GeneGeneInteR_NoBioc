@@ -44,6 +44,7 @@ GGI analysis p-value is returned.
  	\item Truncated Tail Strength in \code{tTS.test} function
  	\item Truncated p-value Product in \code{tProd.test} function
 }
+}
 \details{
 	In a first step, all methods start by applying a logistic regression model to test all pairs of SNPs between the two genes \code{G1} and \code{G2}. If \code{G1} has \eqn{m1} SNPs and \code{G2} \eqn{m2} SNPs, a total of \eqn{m1 * m2} SNP-SNP tests are performed. In a second step, the \eqn{m1 * m2} SNP-SNP tests are combined according to their covariance matrix \eqn{\Sigma}. \eqn{\Sigma} is computed as described in the method developped in Emily (2016). The covariance \eqn{\Sigma} is used in each method as follows:
 

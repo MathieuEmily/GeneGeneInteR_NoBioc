@@ -1,6 +1,6 @@
 \name{gates.test}
 \alias{gates.test}
-\title{SNP-based GGI analysis with minP test}
+\title{Gene based Gene-Gene Interaction analysis by combining SNP-SNP interaction tests}
 \usage{
 	
 	
@@ -39,10 +39,8 @@ tProd methods.}
 GGI analysis p-value is returned.
 }
 \description{
-Gene-Gene Interaction analysis is performed based on a SNP-SNP
- Interaction (SSI) analysis as a basis. For each gene pairs, a SSI is
- performed and one of the following method is used to combine those results
- into one GGI p-value: \itemize{ \item Minimum p-value/MinP test \item Gene
+\code{gates.test}, \code{minP.test}, \code{tTS.test} and \code{tProd.test} aim at performing gene-gene interaction analysis based on SNP-SNP interaction tests. The following method is used to combine SNP-SNP interaction tests
+ into a single Gene-Gene Interaction p-value: \itemize{ \item Minimum p-value/MinP test \item Gene
  Association Test with Extended Simes procedure/ GATES test \item Truncated
  Tail Strength/tTS test \item Truncated p-value Product/tProd test}
 }
@@ -91,7 +89,6 @@ A SNP-SNP interaction analysis is first performed between all SNP of
 \examples{
 data(gene.pair)
 
-## All SSI methods are very similar in their use
 minP.test(gene.pair$Y, gene.pair$G1, gene.pair$G2)
 gates.test(gene.pair$Y, gene.pair$G1, gene.pair$G2, me.est = "Keff",alpha=0.05)
 tTS.test(gene.pair$Y, gene.pair$G1, gene.pair$G2, tau = 0.5, n.sim = 500)

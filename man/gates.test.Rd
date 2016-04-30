@@ -2,8 +2,6 @@
 \alias{gates.test}
 \title{Gene-based Gene-Gene Interaction analysis by combining SNP-SNP interaction tests}
 \usage{
-	
-	
 gates.test(Y, G1, G2, alpha = 0.05, me.est = c("ChevNy", "Keff", "LiJi","Galwey"))
 
 minP.test(Y, G1, G2)
@@ -39,33 +37,34 @@ GGI analysis p-value is returned.
 }
 \description{
 \code{gates.test}, \code{minP.test}, \code{tTS.test} and \code{tProd.test} aim at performing gene-gene interaction analysis based on SNP-SNP interaction tests. The following methods are used to combine SNP-SNP interaction tests
- into a single Gene-Gene Interaction p-value: \itemize{ \item Minimum p-value/MinP test \item Gene
- Association Test with Extended Simes procedure/GATES test \item Truncated
- Tail Strength/tTS test \item Truncated p-value Product/tProd test}
+ into a single Gene-Gene Interaction p-value: 
+ \itemize{ 
+ 	\item Minimum p-value in \code{minP.test} function 
+ 	\item Gene Association Test with Extended Simes procedure in \code{gates.test}
+ 	\item Truncated Tail Strength in \code{tTS.test} function
+ 	\item Truncated p-value Product in \code{tProd.test} function
 }
 \details{
-	In a first step, all methods start by applying a logistic regression model to test all pairs of SNPs between the two genes \code{G1} and \code{G2}. If \code{G1} has \eqn{m_1} SNPs and \code{G2} \eqn{m_2} SNPs, a total of \eqn{m_1 \times m_2} SNP-SNP tests are performed. In a second step, the \eqn{m_1 \times m_2} SNP-SNP tests are combined according to their covariance matrix \eqn{\Sigma}. \eqn{\Sigma} is computed according to the method developped in Emily (2016). The covariance \eqn{\Sigma} is used in each method as follows:
+	In a first step, all methods start by applying a logistic regression model to test all pairs of SNPs between the two genes \code{G1} and \code{G2}. If \code{G1} has \eqn{m1} SNPs and \code{G2} \eqn{m2} SNPs, a total of \eqn{m1 * m2} SNP-SNP tests are performed. In a second step, the \eqn{m1 * m2} SNP-SNP tests are combined according to their covariance matrix \eqn{\Sigma}. \eqn{\Sigma} is computed as described in the method developped in Emily (2016). The covariance \eqn{\Sigma} is used in each method as follows:
 
- \itemize{ \item Minimum p-value Test (minP test) - minP test considered the significant of the observed minimum p-value. Significance is computed by integrating the multivariate normal distribution with covariance \eqn{\Sigma} as proposed in Conneelly and Boehnke (2008). \item Gene Association Test using Extended Simes
- procedure (GATES test) - The p-value for GATES is the minimum p-value obtained after a multiple testing correction of the SNP-SNP interaction p-value. Correction for multiple testing is defined as \deqn{me \times p[i]/m[i]} where me is the effective number of independant tests, p[i] is the i-th top p-values and m[i] is the effective number of
+ \itemize{ 
+ 	\item \bf{minP test} - minP test considered the significant of the observed minimum p-value. Significance is computed by integrating the multivariate normal distribution with covariance \eqn{\Sigma} as proposed in Conneelly and Boehnke (2008).
+ 	\item \bf{GATES test} - The p-value for GATES is the minimum p-value obtained after a multiple testing correction of the SNP-SNP interaction p-value. Correction for multiple testing is defined as \deqn{me * p[i]/m[i]} where me is the effective number of independant tests, p[i] is the i-th top p-values and m[i] is the effective number of
  independant test among the top i p-values. Many methods
- exist to estimate \eqn{me} and \eqn{m[i]} terms: \itemize{\item
- Cheverud-Nyholt method (Cheverud, 2001 and Nyholt, 2004) \item Keff method (Moskovina and Schmidt, 2008)\item Li & Ji method (Li and Ji, 2005)\item Galwey method (Galwey, 2009)} Details of each method can be found in the references. \item Truncated Tail
- Strenght Test (tTS test) - tTS test does not consider only the strongest
- signal but all signals that are inferior to a given threshold \eqn{\tau}. For these
- p-values, the weighted sum of \deqn{tTS=\sum 1-p[i]*m1*m2/i} is computed and
- represents the test statistic. The p-value is calculated using an empirical distribution of \eqn{tTS} obtained by simulating multivariate normal statistics with a covariance \eqn{\Sigma}. \item Truncated
- p-value Product Test (TProd test) - The procedure is similar to \eqn{tTS} with \eqn{tProd} defined as \deqn{tProd=\prod p[i]}
+ exist to estimate \eqn{me} and \eqn{m[i]} terms: 
+ \itemize{
+ 	\item Cheverud-Nyholt method (Cheverud, 2001 and Nyholt, 2004)
+ 	\item Keff method (Moskovina and Schmidt, 2008)
+ 	\item Li & Ji method (Li and Ji, 2005)
+ 	\item Galwey method (Galwey, 2009)
+ } Details of each method can be found in the references. 
+ 	\item \bf{tTS test} - tTS test does not consider only the strongest signal but all signals that are inferior to a given threshold \eqn{\tau}. For these
+ p-values, the weighted sum of \deqn{tTS=\sum_i (1-p[i]*(m1*m2+1)/i)} is computed and
+ represents the test statistic. The p-value is calculated using an empirical distribution of \eqn{tTS} obtained by simulating multivariate normal statistics with a covariance \eqn{\Sigma}. 
+ \item \bf{TProd test} - The procedure is similar to \eqn{tTS} with \eqn{tProd} defined as \deqn{tProd=\prod_{i} p[i]}
 .}
 }
-\section{Functions}{
-\itemize{
-\item \code{gates.test}: SNP-based GGI analysis with GATES test
 
-\item \code{tProd.test}: SNP-based GGI analysis with tProd test
-
-\item \code{tTS.test}: SNP-based GGI analysis with tTS test
-}}
 \examples{
 data(gene.pair)
 

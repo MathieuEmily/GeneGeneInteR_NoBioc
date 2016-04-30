@@ -50,9 +50,9 @@ GGI analysis p-value is returned.
 
  \itemize{ 
  	\item minP test - minP test considered the significant of the observed minimum p-value. Significance is computed by integrating the multivariate normal distribution with covariance \eqn{\Sigma} as proposed in Conneelly and Boehnke (2008).
- 	\item GATES test - The p-value for GATES is the minimum p-value obtained after a multiple testing correction of the SNP-SNP interaction p-value. Correction for multiple testing is defined as \deqn{me * p[i]/m[i]} where me is the effective number of independant tests, p[i] is the i-th top p-values and m[i] is the effective number of
+ 	\item GATES test - The p-value for GATES is the minimum p-value obtained after a multiple testing correction of the SNP-SNP interaction p-value. Correction for multiple testing is defined as \deqn{me * p[i]/me[i]} where me is the effective number of independant tests, p[i] is the i-th top p-values and me[i] is the effective number of
  independant test among the top i p-values. Many methods
- exist to estimate \eqn{me} and \eqn{m[i]} terms: 
+ exist to estimate \eqn{me} and \eqn{me[i]} terms: 
  \itemize{
  	\item Cheverud-Nyholt method (Cheverud, 2001 and Nyholt, 2004)
  	\item Keff method (Moskovina and Schmidt, 2008)
@@ -60,9 +60,9 @@ GGI analysis p-value is returned.
  	\item Galwey method (Galwey, 2009)
  } Details of each method can be found in the references. 
  	\item tTS test - tTS test does not consider only the strongest signal but all signals that are inferior to a given threshold \eqn{\tau}. For these
- p-values, the weighted sum of \deqn{tTS=\sum_i (1-p[i]*(m1*m2+1)/i)} is computed and
+ p-values, the weighted sum of \deqn{tTS=\sum (1-p[i]*(m1*m2+1)/i)} is computed and
  represents the test statistic. The p-value is calculated using an empirical distribution of \eqn{tTS} obtained by simulating multivariate normal statistics with a covariance \eqn{\Sigma}. 
- \item TProd test - The procedure is similar to \eqn{tTS} with \eqn{tProd} defined as \deqn{tProd=\prod_{i} p[i]}
+ \item TProd test - The procedure is similar to \eqn{tTS} with \eqn{tProd} defined as \deqn{tProd=\prod p[i]}
 .}
 }
 \examples{
@@ -87,6 +87,6 @@ tProd.test(gene.pair$Y, gene.pair$G1, gene.pair$G2, tau = 0.5, n.sim = 500)
  }
 }
 \seealso{
-\code{\link{GGI}}}
+\code{\link{GGI}}
 }
 

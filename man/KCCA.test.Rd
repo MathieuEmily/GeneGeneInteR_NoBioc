@@ -28,45 +28,19 @@ If the function succeed, it returns the interaction pvalue between G1
 }
 \description{
 \code{KCCA.test} performs a Gene-Gene Interaction (GGI) analysis based on the
-difference of correlations between case and control. It allows detecting non
-linear interaction between 2 genes.
+difference of canonical correlations between cases and controls. The "kernel trick" is applied to the canonical correlation to allow the detection of non-linear co-association.
 }
 \details{
-To calculate the test statistic for the interaction pvalue, \code{KCCA.test}
-estimate the variances of each group case-control. A bootstrap method is used
-to compute these variances. With the maximum of the Kernel version of the
-canonical correlations for each group tranformed using an analogy to Fisher's
-transformation, the test statistic is computed and represents the
-co-association between genes.
-
-Be careful, this function is very long to run. The algorithm is not adapted to
-the long duration of the canonical correlations computation with
-\code{\link[kernlab]{kcca}.}
+	The test statistic is based on the difference between a Fisher's' transformation of the maximum of the kernelized canonical correlations in cases and controls. To calculate the test statistic for the interaction pvalue, \code{CCA.test} estimates the variance of the Fisher's' transformation of the maximum of the kernelized canonical correlations in cases and controls using a bootstrap method.
+	The computation of \code{\link[kernlab]{kcca}.} can be very long.
 }
 \examples{
-## Dataset is included in the package
-ped <- system.file("extdata/example.ped", package="GGItest")
-info <- system.file("extdata/example.info", package="GGItest")
-posi <- system.file("extdata/example.txt", package="GGItest")
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
-
-dta <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
-
-G1 <- select.snps(dta$snpX, dta$genes.info, "TXNDC5")$snpX
-G2 <- select.snps(dta$snpX, dta$genes.info, "DNAH9")$snpX
-
-resp <- system.file("extdata/response.txt", package="GGItest")
-Y  <- read.csv(resp, header=FALSE)
-
-## By default, the number of bootstrap replicates is 500
-KCCA.test(Y, G1, G2)
+	data(gene.pair)
+	KCCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
 }
 \references{
-\enumerate{\item Qianqian Peng, Jinghua Zhao, and Fuzhong Xue. A
- gene-based method for detecting gene-gene co-association in a case-control
- study. European Journal of Human Genetics, 18(5) :582-587, May 2010. \item
- R. A. Fisher. On the probable error of a coefficient of correlation deduced
- from a small sample. Metron, 1 :3-32, 1921.}
+\enumerate{\item Yuan, Z. et al. (2012): Detection for gene-gene co-association via kernel canonical correlation analysis, BMC Genetics, 13, 83.
+	\item Larson, N. B. et al. (2013): A kernel regression approach to gene-gene interaction detection for case-control studies, Genetic Epidemiology, 37, 695–703.
 }
 \seealso{
 \code{\link{GGI}}, \code{\link{CCA.test}}

@@ -29,9 +29,7 @@ If the function succeed, it returns the interaction pvalue between G1
 difference of canonical correlation between cases and controls.
 }
 \details{
-	The test statistic is based on the difference between a Fisher's' transformation of the maximum of the
-canonical correlations in cases and controls. To calculate the test statistic for the interaction pvalue, \code{CCA.test} estimates the variance of the Fisher's' transformation of the maximum of the
-canonical correlations in cases and controls using a bootstrap method.
+	The test statistic is based on the difference between a Fisher's' transformation of the maximum of the canonical correlations in cases and controls. To calculate the test statistic for the interaction pvalue, \code{CCA.test} estimates the variance of the Fisher's' transformation of the maximum of the canonical correlations in cases and controls using a bootstrap method.
 }
 \examples{
 	data(gene.pair)

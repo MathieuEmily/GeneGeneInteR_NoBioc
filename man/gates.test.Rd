@@ -22,8 +22,7 @@ objects. Must have a number of row equal to Y argument's length.}
 Threshold for GATES method when estimating the number of effective tests Me with Keff method.}
 
 \item{me.est}{(optional, \emph{specific to \code{gates.test}}) character
-string for GATES method. \code{me.est} corresponds to the method for estimating the number of effective tests. Must be one of the
-following: "ChevNy", "Keff", "LiJi", "Galwey" (See details)}
+string for GATES method. \code{me.est} corresponds to the method for estimating the number of effective tests. Must be one of the following: "ChevNy", "Keff", "LiJi", "Galwey" (See details).}
 
 \item{tau}{\emph{(optional, specific to \code{tTS.test} and
 \code{tProd.test})} numeric in [0, 1]. See details section for its use.}

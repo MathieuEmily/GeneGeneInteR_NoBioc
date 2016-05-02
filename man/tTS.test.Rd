@@ -34,11 +34,11 @@ tProd methods.}
 }
 \value{
 A list with class \code{"GGItest"} containing the following components:
-\arguments{
+
 	\item{statistic}{The value of the statistic (minimum p-value, tTS or tProd)}
 	\item{p.value}{Tue p-value for the test}
 	\item{method}{The method used to perform the Gene-Gene interaction test}
-}
+
 }
 \description{
 \code{gates.test}, \code{minP.test}, \code{tTS.test} and \code{tProd.test} aim at performing gene-gene interaction analysis based on SNP-SNP interaction tests. The following methods are used to combine SNP-SNP interaction tests
@@ -67,8 +67,8 @@ A list with class \code{"GGItest"} containing the following components:
  	\item tTS test - tTS test does not consider only the strongest signal but all signals that are inferior to a given threshold \eqn{\tau}. For these
  p-values, the weighted sum of \deqn{tTS=\sum (1-p[i]*(m1*m2+1)/i)} is computed and
  represents the test statistic. The p-value is calculated using an empirical distribution of \eqn{tTS} obtained by simulating multivariate normal statistics with a covariance \eqn{\Sigma} as proposed by Jiang et al. (2011). 
- \item TProd test - The procedure is similar to \eqn{tTS} with \eqn{tProd} defined as \deqn{tProd=\prod p[i]}
-. See Zaykin et al. (2002) for details.}
+ \item TProd test - The procedure is similar to \eqn{tTS} with \eqn{tProd} defined as \deqn{tProd=\prod p[i].}
+See Zaykin et al. (2002) for details.}
 }
 \examples{
 data(gene.pair)

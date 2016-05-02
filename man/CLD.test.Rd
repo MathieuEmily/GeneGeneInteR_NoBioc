@@ -32,14 +32,14 @@ difference between the Composite Linkage Disequilibrium measured in cases and co
 }
 \details{
 The test statistic is based on Nagao normalized
-Quadratic Distance (NQD). The pvalue is calculated using permutation tests.
+Quadratic Distance (NQD), as described in Rajapakse et al. (2012). The pvalue is calculated using permutation tests.
 }
 \examples{
 data(gene.pair)
 CLD.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
 }
 \references{
-\itemize{\item Indika Rajapakse, Michael D. Perlman, Paul J.
+\enumerate{\item Indika Rajapakse, Michael D. Perlman, Paul J.
  Martin, John A. Hansen, and Charles Kooperberg. Multivariate detection of
  gene-gene interactions. Genetic Epidemiology, 36(6) :622-630, 2012.}
 }

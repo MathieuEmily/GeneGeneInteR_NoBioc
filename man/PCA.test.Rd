@@ -49,8 +49,9 @@ PCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7,method="St
 PCA.GenFreq(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7,method="GenFreq")
 }
 \references{
-J. Li et al. (2009) Identification of gene-gene interaction using principal components. BMC
+	\enumerate{\item J. Li et al. (2009) Identification of gene-gene interaction using principal components. BMC
  Proceedings, 3 (Suppl. 7): S78
+ }
 }
 \seealso{
 \code{\link{GGI}}

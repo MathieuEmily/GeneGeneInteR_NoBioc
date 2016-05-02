@@ -32,7 +32,7 @@ modelisation of a statistical relations network. The aim is to quantify the
 connections between the latent and the manifest variables.
 }
 \details{
-	The PLSPM-based method, as described in Zhang et al. (2013), aims at comparing the path coefficients \eqn{\beta_D} and \eqn{\beta_C}, where \eqn{\beta_D} is calculated among cases and \eqn{\beta_C} among controls. The co-association between genes \code{G1} and \code{G2} is defined by: \deqn{U=\frac{\beta_D-\beta_C}{\sqrt{Var(\beta_D-\beta_C)}}}.
+	The PLSPM-based method, as described in Zhang et al. (2013), aims at comparing the path coefficients \eqn{\beta_D} and \eqn{\beta_C}, where \eqn{\beta_D} is calculated among cases and \eqn{\beta_C} among controls. The co-association between genes \code{G1} and \code{G2} is defined by: \deqn{U=\frac{\beta_D-\beta_C}{\sqrt{Var(\beta_D-\beta_C)}}.}
 	The \code{\link[plspm]{plspm}} R package is used to estimate \eqn{U}. The significance pvalue is obtained by using a permutation method on the difference between the path coefficients.
 }
 \examples{

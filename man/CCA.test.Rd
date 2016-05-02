@@ -34,8 +34,8 @@ difference of canonical correlation between cases and controls.
 	The test statistic is based on the difference between a Fisher's' transformation of the maximum of the canonical correlations in cases and controls. To calculate the test statistic for the interaction pvalue, \code{CCA.test} estimates the variance of the Fisher's' transformation of the maximum of the canonical correlations in cases and controls using a bootstrap method.
 }
 \examples{
-	data(gene.pair)
-	CCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
+data(gene.pair)
+CCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
 }
 \references{
 \enumerate{\item Qianqian Peng, Jinghua Zhao, and Fuzhong Xue. A

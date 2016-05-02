@@ -1,5 +1,5 @@
-\name{PCA.Std}
-\alias{PCA.Std}
+\name{PCA.GenFreq}
+\alias{PCA.GenFreq}
 \title{PCA-based Gene-Gene Interaction analysis.}
 \usage{
 PCA.Std(Y, G1, G2, threshold = 0.8)

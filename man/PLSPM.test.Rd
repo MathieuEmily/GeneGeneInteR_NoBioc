@@ -32,7 +32,7 @@ connections between the latent and the manifest variables.
 	The \code{\link[plspm]{plspm}} R package is used to estimate \eqn{U}. The significance pvalue is obtained by using a permutation method on the difference between the path coefficients.
 }
 \examples{
-	data(gene.pair)
+data(gene.pair)
 PLSPM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=100)
 }
 \references{

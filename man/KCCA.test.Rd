@@ -35,8 +35,8 @@ difference of canonical correlations between cases and controls. The "kernel tri
 	The computation of \code{\link[kernlab]{kcca}.} can be very long.
 }
 \examples{
-	data(gene.pair)
-	KCCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
+data(gene.pair)
+KCCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
 }
 \references{
 \enumerate{\item Yuan, Z. et al. (2012): Detection for gene-gene co-association via kernel canonical correlation analysis, BMC Genetics, 13, 83.

@@ -1,3 +1,14 @@
+PCA.test <- function(Y,G1,G2,threshold=0.8,method="GenFreq"){
+	if (method=="GenFreq"){
+		return(PCA.GenFreq(Y=Y,G1=G1,G2=G2,threshold=threshold))
+	} else if (method=="Std"){
+		return(PCA.Std(Y=Y,G1=G1,G2=G2,threshold=threshold))
+	} else {
+		stop("method argument should be a character string either GenFreq or Std")
+	}
+}
+
+
 PCA.Std <- function(Y, G1, G2, threshold=0.8) {
 
   if (!is.null(dim(Y))) {
@@ -6,9 +17,9 @@ PCA.Std <- function(Y, G1, G2, threshold=0.8) {
 
   # Arguments checks
   if (class(threshold) != "numeric") {
-    stop("thresold argument should be a numeric.")
-  } else if (threshold < 0 | threshold > 100) {
-    stop("threshold argument shoud be comprised in [0, 1] or [0, 100] interval.")
+    stop("threshold argument should be a numeric.")
+  } else if (threshold < 0 | threshold > 1) {
+    stop("threshold argument shoud be comprised in [0, 1] interval.")
   } else if (nlevels(as.factor(Y)) != 2) {
     stop("response variable should be binary. (2 modes).")
   } else if (class(G1) != "SnpMatrix" | class(G2) != "SnpMatrix") {
@@ -30,11 +41,7 @@ PCA.Std <- function(Y, G1, G2, threshold=0.8) {
   Y <- as.factor(Y)
 
   # Threshold formatting
-  if (threshold < 1) {
-    inertia.thresh <- threshold * 100
-  } else {
-    inertia.thresh <- threshold
-  }
+  inertia.thresh <- threshold * 100
 
   # SnpMatrix coerced into matrix to be compatible with FactoMineR::PCA
   G1.num <- as(G1, "numeric")
@@ -79,8 +86,8 @@ PCA.GenFreq <- function(Y, G1, G2, threshold=0.8) {
   # Arguments checks
   if (class(threshold) != "numeric") {
     stop("thresold argument should be a numeric.")
-  } else if (threshold < 0 | threshold > 100) {
-    stop("threshold argument shoud be comprised in [0, 1] or [0, 100] interval.")
+  } else if (threshold < 0 | threshold > 1) {
+    stop("threshold argument shoud be comprised in [0, 1] interval.")
   } else if (nlevels(as.factor(Y)) != 2) {
     stop("response variable should be binary. (2 modes).")
   } else if (class(G1) != "SnpMatrix" | class(G2) != "SnpMatrix") {
@@ -102,11 +109,7 @@ PCA.GenFreq <- function(Y, G1, G2, threshold=0.8) {
   Y <- as.factor(Y)
 
   # Threshold formatting
-  if (threshold < 1) {
-    inertia.thresh <- threshold * 100
-  } else {
-    inertia.thresh <- threshold
-  }
+  inertia.thresh <- threshold * 100
 
   G1.PCA <- get.PCA.res(G1)
   G2.PCA <- get.PCA.res(G2)

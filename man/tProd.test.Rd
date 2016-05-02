@@ -33,7 +33,12 @@ following: "ChevNy", "Keff", "LiJi", "Galwey" (See details)}
 tProd methods.}
 }
 \value{
-GGI analysis p-value is returned.
+A list with class \code{"GGItest"} containing the following components:
+
+	\item{statistic}{The value of the statistic (minimum p-value, tTS or tProd)}
+	\item{p.value}{Tue p-value for the test}
+	\item{method}{The method used to perform the Gene-Gene interaction test}
+
 }
 \description{
 \code{gates.test}, \code{minP.test}, \code{tTS.test} and \code{tProd.test} aim at performing gene-gene interaction analysis based on SNP-SNP interaction tests. The following methods are used to combine SNP-SNP interaction tests

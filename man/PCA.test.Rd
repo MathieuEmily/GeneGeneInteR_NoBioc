@@ -20,8 +20,13 @@ Must have a number of row equal to Y argument's length.}
 \item{method}{(optional) character string for PCA method. Must be one of the following: "GenFreq", "Std" (See details).}
 }
 \value{
-If the function succeed, the interaction p-value is returned.
+A list with class \code{"GGItest"} containing the following components:
 
+	\item{statistic}{The value of the statistic (minimum p-value, tTS or tProd)}
+	\item{p.value}{Tue p-value for the test}
+	\item{method}{The method used to perform the Gene-Gene interaction test}
+	\item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test}
+	
 }
 \description{
 \code{PCA.test} performs a Gene-Gene Interaction (GGI) analysis by testing the interaction between the principal components of the two genes. With \code{method="Std"} PCA is standardized using variables' standard deviation. With \code{method="GenFreq"}, dataset is standardized using the standard deviation under Hardy-Weinberg equilibrium, as proposed in the \href{http://bioconductor.org/packages/snpStats/}{snpStats} Bioconductor package. 

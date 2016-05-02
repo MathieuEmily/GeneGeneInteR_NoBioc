@@ -47,7 +47,8 @@ CLD.test <- function(Y, G1, G2, n.perm = 1000){
   
   pval <- mean(stat.perm > stat)
   	names(stat)="CLD"
-	res <- list(statistic=stat,p.value=pval,method="Composite Linkage Disequilibrium")
+	list.param<-list(n.perm = n.perm)
+	res <- list(statistic=stat,p.value=pval,method="Composite Linkage Disequilibrium",parameter=list.param)
 	class(res) <- "GGItest"
   return(res)
 }

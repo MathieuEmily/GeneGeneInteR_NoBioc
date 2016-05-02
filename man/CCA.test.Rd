@@ -19,10 +19,12 @@ Must have a number of row equal to Y argument's length.}
 replicates for estimating variances. By default, this is fixed to 500.}
 }
 \value{
-If the function succeed, it returns the interaction pvalue between G1
- and G2. An error message is displayed if the variances used for the test
- statistic calculus could not be estimated. An error message is shown if the
- test statistic could not be computed.
+A list with class \code{"GGItest"} containing the following components:
+
+	\item{statistic}{The value of the statistic (minimum p-value, tTS or tProd)}
+	\item{p.value}{Tue p-value for the test}
+	\item{method}{The method used to perform the Gene-Gene interaction test}
+	\item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test}
 }
 \description{
 \code{CCA.test} performs a Gene-Gene Interaction (GGI) analysis based on the

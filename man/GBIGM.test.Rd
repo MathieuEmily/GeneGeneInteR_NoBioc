@@ -19,7 +19,13 @@ Must have a number of row equal to Y argument's length.}
 of Y are performed to compute the pvalue. By default, this is fixed to 1000.}
 }
 \value{
-The function returns the interaction pvalue between G1 and G2.
+A list with class \code{"GGItest"} containing the following components:
+
+	\item{statistic}{The value of the statistic (minimum p-value, tTS or tProd)}
+	\item{p.value}{Tue p-value for the test}
+	\item{method}{The method used to perform the Gene-Gene interaction test}
+	\item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test}
+
 }
 \description{
 \code{GBIGM.test} performs a Gene-Gene Interaction (GGI) analysis by contrasting the information entropy between cases and controls.

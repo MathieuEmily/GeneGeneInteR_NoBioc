@@ -56,7 +56,8 @@ KCCA.test <- function(Y, G1, G2, kernel=rbfdot(sigma = 0.05),n.boot = 500){
   }
 
 	names(stat)="KCCU"
-	res <- list(statistic=stat,p.value=pval,method="Kernel Canonical Correlation Analysis")
+	list.param <- list(n.boot=n.boot,kernel=kernel)
+	res <- list(statistic=stat,p.value=pval,method="Kernel Canonical Correlation Analysis",paramter=list.param)
 	class(res) <- "GGItest"
   return(res)
 #  return(pval)

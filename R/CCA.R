@@ -45,7 +45,8 @@ CCA.test <- function(Y, G1, G2, n.boot = 500){
 
   }
 	names(stat)="CCU"
-	res <- list(statistic=stat,p.value=pval,method="Canonical Correlation Analysis")
+	list.param<-list(n.boot = n.boot)
+	res <- list(statistic=stat,p.value=pval,method="Canonical Correlation Analysis",parameter=list.param)
 	class(res) <- "GGItest"
   return(res)
 }

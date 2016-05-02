@@ -9,7 +9,7 @@ print.GGItest <- function(x){
 
 
 summary.GGItest <- function(x){
-	cat(x$method,"\n")
+	cat("Gene-Gene Interaction method performed with:\n \t",x$method,"\n")
 	if (is.null(x$df)){
 		cat(names(x$statistic)," = ",x$statistic,", p-value = ",x$p.value,"\n",sep="")
 	} else {

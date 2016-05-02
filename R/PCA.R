@@ -1,8 +1,12 @@
 PCA.test <- function(Y,G1,G2,threshold=0.8,method="GenFreq"){
 	if (method=="GenFreq"){
-		return(PCA.GenFreq(Y=Y,G1=G1,G2=G2,threshold=threshold))
+		tmp <- PCA.GenFreq(Y=Y,G1=G1,G2=G2,threshold=threshold)
+		tmp$parameter <- list(threshold=threshold,method=method)
+		return(tmp)
 	} else if (method=="Std"){
-		return(PCA.Std(Y=Y,G1=G1,G2=G2,threshold=threshold))
+		tmp <- PCA.Std(Y=Y,G1=G1,G2=G2,threshold=threshold)
+		tmp$parameter <- list(threshold=threshold,method=method)
+		return(tmp)
 	} else {
 		stop("method argument should be a character string either GenFreq or Std")
 	}

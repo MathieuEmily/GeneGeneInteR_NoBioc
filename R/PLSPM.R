@@ -89,7 +89,8 @@ PLSPM.test <- function(Y, G1, G2, n.perm=500){
 	  pval <- mean(abs(U.perm) > abs(U))
 	  stat <- U
 	names(stat)="U"
-	res <- list(statistic=stat,p.value=pval,method="Partial Least Squares Path Modeling")
+	list.param <- list(n.perm=n.perm)
+	res <- list(statistic=stat,p.value=pval,method="Partial Least Squares Path Modeling",parameter=list.param)
 	class(res) <- "GGItest"
   return(res)
 #  return(pval)

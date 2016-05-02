@@ -19,9 +19,12 @@ Must have a number of row equal to Y argument's length.}
 Y are performed to compute the pvalue. By default, this is fixed to 1000.}
 }
 \value{
-If the function succeeds, it returns the interaction pvalue between G1
- and G2. If the pvalue cannot be computed, an error message is displayed. An
- other error message is shown if the test statistic can't be computed.
+A list with class \code{"GGItest"} containing the following components:
+
+	\item{statistic}{The value of the statistic (minimum p-value, tTS or tProd)}
+	\item{p.value}{Tue p-value for the test}
+	\item{method}{The method used to perform the Gene-Gene interaction test}
+	\item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test}
 }
 \description{
 \code{CLD.test} performs a Gene-Gene Interaction (GGI) analysis based on the

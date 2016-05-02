@@ -64,7 +64,8 @@ GBIGM.test <- function(Y, G1, G2, n.perm = 1000){
   pval<-sum(Delta1.2>=Delta1.2init)/n.perm
 	 stat <- Delta1.2init
 	names(stat)="DeltaR1,2"
-	res <- list(statistic=stat,p.value=pval,method="Gene-based Information Gain Method")
+	list.param <- list(n.perm=n.perm)
+	res <- list(statistic=stat,p.value=pval,method="Gene-based Information Gain Method",parameter=list.parameter)
 	class(res) <- "GGItest"
   return(res)
 #  return(pval)

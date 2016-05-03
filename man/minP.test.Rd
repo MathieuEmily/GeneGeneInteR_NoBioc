@@ -55,8 +55,7 @@ A list with class \code{"GGItest"} containing the following components:
 
  \itemize{ 
  	\item minP test - minP test considered the significant of the observed minimum p-value. Significance is computed by integrating the multivariate normal distribution with covariance \eqn{\Sigma} as proposed in Conneelly and Boehnke (2008).
- 	\item GATES test - The p-value for GATES is the minimum p-value obtained after a multiple testing correction of the SNP-SNP interaction p-value. Correction for multiple testing is defined as \deqn{me * p[i]/me[i]} where me is the effective number of independant tests, p[i] is the i-th top p-values and me[i] is the effective number of
- independant test among the top i p-values. Many methods
+ 	\item GATES test - The p-value for GATES is the minimum p-value obtained after a multiple testing correction of the SNP-SNP interaction p-value (Li et al., 2011). Correction for multiple testing is defined as \deqn{me * p[i]/me[i]} where me is the effective number of independant tests, p[i] is the i-th top p-values and me[i] is the effective number of independant test among the top i p-values. Many methods
  exist to estimate \eqn{me} and \eqn{me[i]} terms: 
  \itemize{
  	\item Cheverud-Nyholt method (Cheverud, 2001 and Nyholt, 2004)
@@ -65,8 +64,7 @@ A list with class \code{"GGItest"} containing the following components:
  	\item Galwey method (Galwey, 2009)
  } Details of each method can be found in the references. 
  	\item tTS test - tTS test does not consider only the strongest signal but all signals that are inferior to a given threshold \eqn{\tau}. For these
- p-values, the weighted sum of \deqn{tTS=\sum (1-p[i]*(m1*m2+1)/i)} is computed and
- represents the test statistic. The p-value is calculated using an empirical distribution of \eqn{tTS} obtained by simulating multivariate normal statistics with a covariance \eqn{\Sigma} as proposed by Jiang et al. (2011). 
+ p-values, the weighted sum of \deqn{tTS=\sum (1-p[i]*(m1*m2+1)/i)} is computed and represents the test statistic. The p-value is calculated using an empirical distribution of \eqn{tTS} obtained by simulating multivariate normal statistics with a covariance \eqn{\Sigma} as proposed by Jiang et al. (2011). 
  \item TProd test - The procedure is similar to \eqn{tTS} with \eqn{tProd} defined as \deqn{tProd=\prod p[i]}
 . See Zaykin et al. (2002) for details.}
 }
@@ -80,11 +78,12 @@ tProd.test(gene.pair$Y, gene.pair$G1, gene.pair$G2, tau = 0.5, n.sim = 500)
 }
 \references{
 \enumerate{
-	\item M. Emily AGGrEGATOr: A Gene-based GEne-Gene interActTiOn test for case-control association studies, Statistical Application in Genetics and Molecular Biology, 15(2): 151-171, 2016.
-	\item L. Ma, A.G. Clark and A. Keinan Gene-Based Testing Of Interactions in Association Studies of Quantitative Traits. PLoS Genetics 9(2):e1003321, 2013.
-	\item V. Moskvina and K.M. Schmidt On multiple-testing correction in genome-wide association studies. Genetic Epidemiology, 32(6): 567-73, 2008.
-  \item J. Li and L. Ji. Adjusting multiple testing in multilocus analyses using the eigenvalues of a correlation matrix. Heredity 95: 221-227, 2005.
-  \item N.W. Galwey. A new measure of the effective number of tests, a practical tool for comparing families of non-independent significance tests. Genetic Epidemiology 33(7): 559-568, 2009.
+\item M. Emily. AGGrEGATOr: A Gene-based GEne-Gene interActTiOn test for case-control association studies, Statistical Application in Genetics and Molecular Biology, 15(2): 151-171, 2016.
+\item L. Ma, A.G. Clark and A. Keinan Gene-Based Testing Of Interactions in Association Studies of Quantitative Traits. PLoS Genetics 9(2):e1003321, 2013.
+\item M.X. Li et al. GATES: A Rapid and Powerful Gene-Based Association Test Using Extended Simes Procedure, American Journal of Human Genetics, 88(3): 283-293, 2011.
+\item V. Moskvina and K.M. Schmidt On multiple-testing correction in genome-wide association studies. Genetic Epidemiology, 32(6): 567-73, 2008.
+\item J. Li and L. Ji. Adjusting multiple testing in multilocus analyses using the eigenvalues of a correlation matrix. Heredity 95: 221-227, 2005.
+\item N.W. Galwey. A new measure of the effective number of tests, a practical tool for comparing families of non-independent significance tests. Genetic Epidemiology 33(7): 559-568, 2009.
 \item J.M. Cheverud. A simple correction for multiple comparisons in interval mapping genome scans. Heredity. 87(1):52–58, 2001.
 \item D.R. Nyholt. A Simple Correction for Multiple Testing for Single-Nucleotide Polymorphisms in Linkage Disequilibrium with Each Other. American journal of human genetics. 74(4): 765–769, 2004.
 \item K.N. Conneely and M. Boehnke. So many correlated tests, so little time! rapid adjustment of p values for multiple correlated tests. The American Journal of Human Genetics, 81: 1158–1168, 2008

@@ -1,0 +1,118 @@
+ll <- NULL
+print(ll)
+length(ll)
+ll <- NULL#
+for (i in 1:length(ll)){#
+	cat(names(ll)[i])#
+	cat(ll[[i]])#
+	cat("-")#
+}
+ll <- list(a=1,b=3)#
+for (i in 1:length(ll)){#
+	cat(names(ll)[i])#
+	cat(ll[[i]])#
+	cat("-")#
+}
+ll <- list(a=1,b=3)#
+for (i in 1:length(ll)){#
+	cat(names(ll)[i],"=")#
+	cat(ll[[i]])#
+	if (i != length(ll)){#
+		cat(" - ")#
+	}#
+	cat("\")#
+}
+ll <- list(a=1,b=3)#
+for (i in 1:length(ll)){#
+	cat(names(ll)[i],"=")#
+	cat(ll[[i]])#
+	if (i != length(ll)){#
+		cat(" - ")#
+	}#
+	cat("\")#
+}
+ll <- list(a=1,b=3)#
+for (i in 1:length(ll)){#
+	cat(names(ll)[i],"=")#
+	cat(ll[[i]])#
+	if (i != length(ll)){#
+		cat(" - ")#
+	}#
+	cat("\")#
+}
+ll
+ll}
+ll}
+ll)
+)
+}
+)
+)
+)"
+""
+ll <- list(a=1,b=3)#
+for (i in 1:length(ll)){#
+	cat(names(ll)[i],"=")#
+	cat(ll[[i]])#
+	if (i != length(ll)){#
+		cat(" - ")#
+	}#
+	cat("\n")#
+}
+ll <- list(a=1,b=3)#
+for (i in 1:length(ll)){#
+	cat(names(ll)[i],"=")#
+	cat(ll[[i]])#
+	if (i != length(ll)){#
+		cat(" - ")#
+	}#
+}#
+if (length(ll)>0){#
+	cat("\n")#
+}
+summary.GGItest <- function(x){#
+	cat(x$method,"\n")#
+	if (is.null(x$df)){#
+		cat(names(x$statistic)," = ",x$statistic,", p-value = ",x$p.value,"\n",sep="")#
+	} else {#
+		cat(names(x$statistic)," = ",x$statistic,", df = ",x$df,", p-value = ",x$p.value,"\n",sep="")	#
+		}#
+	ll <- x$parameter#
+	for (i in 1:length(ll)){#
+		cat(names(ll)[i],"=")#
+		cat(ll[[i]])#
+	if (i != length(ll)){#
+		cat(" - ")#
+		}#
+	}#
+}
+library(devtools) #
+ install_github("MathieuEmily/GeneGeneInteR")#
+ library(GeneGeneInteR)
+data(gene.pair)
+tmp <- PCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7)
+tmp
+summary(tmp)
+tmp
+names(tmp)
+tmp$parameter
+length(tmp$parameter)
+summary.GGItest <- function(x){#
+	cat(x$method,"\n")#
+	if (is.null(x$df)){#
+		cat(names(x$statistic)," = ",x$statistic,", p-value = ",x$p.value,"\n",sep="")#
+	} else {#
+		cat(names(x$statistic)," = ",x$statistic,", df = ",x$df,", p-value = ",x$p.value,"\n",sep="")	#
+		}#
+	ll <- x$parameter#
+	if (!is.null(x$parameter)){#
+		for (i in 1:length(ll)){#
+			cat(names(ll)[i],"=")#
+			cat(ll[[i]])#
+			if (i != length(ll)){#
+			cat(" - ")#
+			}#
+		}#
+	}#
+}
+summary(tmp)

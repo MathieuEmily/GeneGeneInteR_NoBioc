@@ -17,11 +17,12 @@ summary.GGItest <- function(x){
 		}
 	ll <- x$parameter
 	if (!is.null(x$parameter)){
+		cat("-- ")
+		cat("List of parameter(s):\n--- ")
 		for (i in 1:length(ll)){
-			cat(names(ll)[i],"=")
-			cat(ll[[i]])
+			cat(names(ll)[i],"=",ll[[i]])
 			if (i != length(ll)){
-			cat(" - ")
+			cat(", ")
 			}
 		}
 	}

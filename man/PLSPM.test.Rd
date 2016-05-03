@@ -40,7 +40,7 @@ data(gene.pair)
 PLSPM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=100)
 }
 \references{
-\enumerate{\item X. Zhang et al. (2013) A PLSPM-based test statistic for detecting gene-gene co-association in genome-wide association study with case-control design. PLoS ONE, 8(4) :e62129, April 2013. 
+\enumerate{\item X. Zhang et al. (2013) A PLSPM-based test statistic for detecting gene-gene co-association in genome-wide association study with case-control design. PLoS ONE, 8(4) :e62129. 
 	}
 }
 \seealso{

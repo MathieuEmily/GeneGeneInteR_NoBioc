@@ -1,67 +1,3 @@
-#'@title SNP filtering based on MAF and Hardy-Weinberg Equilibrium
-#'
-#'@description \code{snpMatrixScour} filters SNP of a \code{snpMatrix} object
-#'  based on Minor Allele Frequency criterion and Hardy-Weinberg Equilibrium.
-#'  Filtering criteria can be adjusted by the user.
-#'
-#'@details This function removes SNP that are not conformant with Minor Allele
-#'  Frequency criterion (MAF) or Hardy-Weinberg equilibrium (HWE) criterion.
-#'  \itemize{ \item Every SNP whose MAF is inferior to user-set threshold is
-#'  removed. Default value is 1\%. \item Every SNP that does not verify HWE is
-#'  removed. Deviation to HWE is calculated with a \eqn{\chi ^2} test and SNP is
-#'  removed if resulting p-value is less than user-set threshold. Default value
-#'  is 1\%.}
-#'
-#'  If gene lengths are provided, as a numeric vector or as a data frame, they
-#'  are updated to keep track of SNP removing. Those objects can then be
-#'  directly used with \code{GGI} function.
-#'
-#'  Missing values are rejected and trying to parse an incomplete
-#'  \code{SnpMatrix} object as an argument will result in an error.
-#'
-#'@param snpX \code{snpMatrix} object of which SNP are to be removed
-#'@param genes.length \emph{(optional)} numeric vector. It is the length (in
-#'  columns/SNP) of each gene. Each gene declared is considered contiguous with
-#'  the one before and after it. \code{genes.lengths} can be named (names will
-#'  be kept). If \code{genes.length} is provided an updated version is returned.
-#'@param genes.info \emph{(optional)} a data frame. It must have four columns
-#'  named \code{Genenames}, \code{SNPnames}, \code{Position} and
-#'  \code{Chromosome}. Each row describes a SNP and missing values are not
-#'  allowed. If \code{genes.info} is provided an updated version is returned.
-#'@param min.maf a numeric that is the minimum MAF (Minor Allele Frequency) for
-#'  a SNP. SNP that does not meet that criterion are removed. Default is 1\%.
-#'@param min.eq a numeric that is the maximum acceptable p-value for the
-#'  \eqn{\chi ^2} verifying HWE deviation. SNP that does not meet that criterion
-#'  are removed. Default is 1\%.
-#'@param NA.rate a numeric that is the maximum acceptable frequency of NA values
-#'  . Default is 10\%. High frequencies of missing values (NA) can make
-#'  imputation harder (residual missing values).
-#'
-#'@return A \code{SnpMatrix} object is always returned. If gene lengths were
-#'  provided then an updated object of the same class is also returned, in that
-#'  case both the SnpMatrix and the gene lengths object are returned in a named
-#'  list:\describe{\item{\code{snpX}}{the \code{SnpMatrix} of which
-#'  non-conformant SNP were removed.} \item{\code{genes}}{the object that
-#'  contains gene lengths information. Can be a numeric vector (possibly named)
-#'  or a data frame.}}
-#'
-#'  A warning message is issued when a list is returned.
-#'
-#'@seealso \code{\link{GGI}}
-#'
-#'@export
-#'
-#'@examples
-#' ped <- system.file("extdata/example.ped", package="GGItest")
-#' info <- system.file("extdata/example.info", package="GGItest")
-#' posi <- system.file("extdata/example.txt", package="GGItest")
-#' dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
-#'
-#' ## In this example, genes are loosely scoured but default are much harsher
-#' ## conditions
-#' new.snps <- snpMatrixScour(dta$snpX, genes.info = dta$genes.info,
-#'                            min.maf = 0.2, min.eq=0.05, NA.rate = 0.2)
-
 snpMatrixScour <- function(snpX, genes.length = NULL, genes.info = NULL,
                            min.maf = 0.01, min.eq = 0.01, NA.rate=0.1) {
   if (class(snpX) != "SnpMatrix") {
@@ -86,8 +22,8 @@ snpMatrixScour <- function(snpX, genes.length = NULL, genes.info = NULL,
     stop("gene.info argument's Chromosome column should be of class character.")
   } else if (!is.null(genes.info) && any(is.na(genes.info))) {
     stop("genes.info can't have missing values (NA).")
-  } else if (!is.numeric(min.maf) || min.maf < 0 || min.maf > 1) {
-    stop("min.maf argument should be a numeric between 0 & 1.")
+  } else if (!is.numeric(min.maf) || min.maf < 0 || min.maf > 0.5) {
+    stop("min.maf argument should be a numeric between 0 & 0.5.")
   } else if (!is.numeric(min.eq) || min.eq < 0 || min.eq > 1) {
     stop("min.eq argment should be a numeric between 0 & 1.")
   } else if (!is.numeric(NA.rate) || NA.rate > 1 || NA.rate < 0) {
@@ -98,7 +34,12 @@ snpMatrixScour <- function(snpX, genes.length = NULL, genes.info = NULL,
 
   # If no genes were defined, whole dataset is scoured as is
   if (is.null(genes.length) && is.null(genes.info)) {
-    return(GeneScour(snpX, min.maf, min.eq, NA.rate))
+  	
+    new.snpX <- GeneScour(snpX, min.maf, min.eq, NA.rate)
+  	new.snpX <- as(new.snpX, "SnpMatrix")
+	 return(list(snpX = new.snpX, genes = NULL))
+
+#    return(GeneScour(snpX, min.maf, min.eq, NA.rate))
   # If genes are defined, each genes is scoured individually to
   # keep track of its length variation.
   } else {

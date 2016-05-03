@@ -71,7 +71,7 @@ ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
 dta <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
 resp <- system.file("extdata/response.txt", package="GeneGeneInteR")
 

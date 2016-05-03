@@ -1,29 +1,20 @@
 \name{draw.network}
 \alias{draw.network}
-\title{Draw a gene interaction network.}
+\title{Draw a Gene-Gene Interaction Network}
 \usage{
-draw.network(gene.interactions, genes = 1:ncol(gene.interactions),
-  threshold = 0.05, plot.nointer = T)
+draw.network(GGI, genes = 1:ncol(GGI),
+  threshold = 0.05, plot.nointer = TRUE)
 }
 \arguments{
-\item{gene.interactions}{A matrix of a \code{\link{data.frame}} of pValues containing the results of a GGI
-analysis. The data.frame must be a squared matrix.}
+\item{GGI}{A \code{\link{matrix}} or a \code{\link{data.frame}} of pValues containing the results of a set of genes interaction analysis. \code{GGI} must be a squared matrix of size \eqn{G*G} where \eqn{G} is the number of genes considered. \code{GGI} can be produced as the output of the function \code{\link{GGI}}.}
 
-\item{genes}{Numeric vector allowing a selection of the genes that will be
-included in the relations. Default is set to all genes.}
+\item{genes}{Numeric vector allowing a selection of the genes that will be included in the relations. Default is set to all genes.}
 
 \item{threshold}{Numeric comprised in [0,1], defining the pValues that will be
 considered as respresentative of an interaction. Default is set to 0.05.}
 
 \item{plot.nointer}{A boolean. Set TRUE if the genes with no interaction
 should be plotted.}
-}
-\value{
-The output is a list of three objects : \code{from} and \code{to},
- that are character vectors giving the genes that interact, and \code{pVal},
- a numeric vector giving the pvalues for each interaction. A warning message
- is displayed if the vector \code{from} is empty, which means no interaction
- has been found, according to the threshold given.
 }
 \description{
 \code{\link{draw.network}} plot a graph representing the significative

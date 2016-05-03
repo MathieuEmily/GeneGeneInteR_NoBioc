@@ -17,8 +17,8 @@ and \code{genes.info}. See details for more information.}
 \value{
 A list of two objects : 
 
-\item{snpX}, a \href{http://bioconductor.org/packages/snpStats/}{snpMatrix}
-\item{genes.info} a data frame with 4 columns, and one row per SNP selected with \code{select}. The columns are Chromosome, Genenames, SNPnames and Position.
+\item{snpX}{a \href{http://bioconductor.org/packages/snpStats/}{snpMatrix}}
+\item{genes.info}{ a data frame with 4 columns, and one row per SNP selected with \code{select}. The columns are Chromosome, Genenames, SNPnames and Position.}
 
 An error message is displayed if the genes of snps selected are not found in the either \code{snpX} or \code{genes.info}.
 }

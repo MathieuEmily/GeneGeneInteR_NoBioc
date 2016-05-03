@@ -6,7 +6,7 @@ snpMatrixScour(snpX, genes.length = NULL, genes.info = NULL,
   min.maf = 0.01, min.eq = 0.01, NA.rate = 0.1)
 }
 \arguments{
-\item{snpX}{{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object from which SNPs are to be removed}
+\item{snpX}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object from which SNPs are to be removed}
 
 \item{genes.length}{\emph{(optional)} numeric vector. It is the length (in columns/SNPs) of each gene. Each gene declared is considered contiguous with the one before and after it. \code{genes.lengths} can be named (names will be kept).}
 

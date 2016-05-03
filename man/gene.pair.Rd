@@ -7,6 +7,7 @@
 \item{Y}{A \code{\link[base]{factor}} of disease status with two levels: \code{HealthControl} or \code{RheumatoidArthritis}.}
 \item{G1}{A \href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object with 8 SNPs.}
 \item{G2}{A \href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object with 4 SNPs.}
+}
 \source{
 All three objects were taken from NCBI web site and are part of the  \href{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE39428}{GSE39428 series}
   \enumerate{\item

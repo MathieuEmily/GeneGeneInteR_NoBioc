@@ -10,7 +10,7 @@ snpMatrixScour(snpX, genes.length = NULL, genes.info = NULL,
 
 \item{genes.length}{\emph{(optional)} numeric vector. It is the length (in columns/SNPs) of each gene. Each gene declared is considered contiguous with the one before and after it. \code{genes.lengths} can be named (names will be kept).}
 
-\item{genes.info}{\emph{(optional)} a \code{\link[base{data.frame}]} with four columns named \code{Genenames}, \code{SNPnames}, \code{Position} and \code{Chromosome}. Each row describes a SNP and missing values are not allowed.}
+\item{genes.info}{\emph{(optional)} a \code{\link[base]{data.frame}} with four columns named \code{Genenames}, \code{SNPnames}, \code{Position} and \code{Chromosome}. Each row describes a SNP and missing values are not allowed.}
 
 \item{min.maf}{a single value between O and O.5 that gives the threshold for the MAF (Minor Allele Frequency) of a SNP. SNP with MAF < \code{min.maf} are removed. Default is 0.01.}
 

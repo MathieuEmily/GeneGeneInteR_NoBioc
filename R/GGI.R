@@ -1,5 +1,5 @@
 GGI <- function(Y, snpX, genes.length = NULL, genes.info = NULL,
-            method = c("PCA.Std", "PCA.GenFreq", "CCA", "KCCA","CLD","PLSPM","GBIGM",
+            method = c("PCA", "CCA", "KCCA","CLD","PLSPM","GBIGM",
                        "minP", "GATES", "tTS", "tProd"), ...){
 
   if (!is.null(dim(Y))) {
@@ -100,21 +100,19 @@ GGI <- function(Y, snpX, genes.length = NULL, genes.info = NULL,
 
   #Application of the method on the interactions
   for (i in 1:ncol(interactions)) {
-    print(paste("Interaction between", interactions[1, i], "&", interactions[2, i]))
+    print(paste("Interaction between", interactions[1, i], "&", interactions[2, i], "-",i,"/",ncol(interactions)))
 
     G1 <- snpX[, gene.start[interactions[1, i]]:gene.end[interactions[1, i]]]
     G2 <- snpX[, gene.start[interactions[2, i]]:gene.end[interactions[2, i]]]
 
     if(!method %in% c("minP","GATES","tTS","tProd") || ncol(G1)*ncol(G2)<1000){
-    	print(i)
     genes.interactions[interactions[1, i], interactions[2, i]] <- switch(method,
                                                                          CCA = CCA.test(Y, G1, G2, ...)$p.value,
                                                                          KCCA = KCCA.test(Y, G1, G2, ...)$p.value,
                                                                          CLD = CLD.test(Y, G1, G2, ...)$p.value,
                                                                          PLSPM = PLSPM.test(Y, G1, G2, ...)$p.value,
                                                                          GBIGM = GBIGM.test(Y, G1, G2, ...)$p.value,
-                                                                         PCA.Std = PCA.Std(Y, G1, G2, ...)$p.value,
-                                                                         PCA.GenFreq = PCA.GenFreq(Y, G1, G2, ...)$p.value,
+                                                                         PCA = PCA.test(Y, G1, G2, ...)$p.value,
                                                                          minP = minP.test(Y, G1, G2, ...)$p.value,
                                                                          GATES = gates.test(Y, G1, G2, ...)$p.value,
                                                                          tTS   = tTS.test(Y, G1, G2, ...)$p.value,

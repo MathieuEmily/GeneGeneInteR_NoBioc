@@ -48,8 +48,7 @@ This function is a wrapper for all Gene-Gene Interaction analysis methods and dr
  overall analysis: splitting the dataset in genes matrices and starting
  elementary analysis for each pair of genes.
 
- \emph{SNP from the same gene are assumed to be ordered along the chromosome. See
- \code{\link{select.snps}}}
+ \emph{SNP from the same gene are assumed to be ordered along the chromosome. See \code{\link{select.snps}}}
 
  If \code{genes.lenghts} is provided, it contains the number of SNPs of each gene. For example, if \code{genes.length} is the vector: c(20, 35, 15), then gene 1 will be interpreted as the set of the first 20 columns/SNPs of \code{snpX}, gene 2 will be interpreted as the following 35 columns/SNP, etc.
 
@@ -66,7 +65,7 @@ The following methods are available to perform the interaction test for a single
 \item Gene Association Test using Extended Simes procedure (GATES) \code{\link{GATES.test}} - Given two genes, \code{G1} with \eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP interactions are first tested using a logistic regression model, thus generated a set of \eqn{m1*m2} p-values. P-values are then corrected for multiple testing using an extension of the Simes procedure that take into account the correlation between the tests statistic via the number of effective tests (see Li. et al., 2011). 
 \item Truncated Tail Strength test (tTS) \code{\link{tTS.test}} - Given two genes, \code{G1} with \eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP interactions are first tested using a logistic regression model, thus generated a set of \eqn{m1*m2} p-values. All p-values below a user defined threshold are weighted and summed up to provide the tTS test statistic (see Jiang et al., 2011).
 \item Truncated p-value Product test (tProd) \code{\link{tProd.test}} - Similar to tTS but with a different p-values transformation (see Zaykin, 2002)
-} }
+}
 
 Missing values are rejected and trying to parse an incomplete \code{SnpMatrix} object as an argument will result in an error. Imputation can be performed prior to the analysis with the \code{\link{imputeSnpMatrix}} function.
 }

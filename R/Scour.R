@@ -107,8 +107,8 @@ snpMatrixScour <- function(snpX, genes.length = NULL, genes.info = NULL,
 
   new.snpX <- as(new.snpX, "SnpMatrix")
 
-  print("A list object has been returned with elements: snpX & genes")
-  return(list(snpX = new.snpX, genes = new.genes))
+  print("A list object has been returned with elements: snpX & genes.info")
+  return(list(snpX = new.snpX, genes.info = new.genes))
 }
 
 # Function that checks SNP validity

@@ -22,7 +22,7 @@ snpMatrixScour(snpX, genes.length = NULL, genes.info = NULL,
 A list with two objects:
 \describe{
 \item{\code{snpX}}{the \href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object where non-conform SNPs are removed.}
-\item{\code{genes}}{the object that contains the updated gene lengths information. Can be a numeric vector (possibly named) or a data frame. If \code{genes.length} and \code{genes.info} are not provided by the user as input of the \code{snpMatrixScour} function, the \code{genes} object if \code{NULL}.}
+\item{\code{genes.info}}{the object that contains the updated gene lengths information. Can be a numeric vector (possibly named) or a data frame. If \code{genes.length} and \code{genes.info} are not provided by the user as input of the \code{snpMatrixScour} function, the \code{genes.info} object is \code{NULL}.}
 }
 }
 \description{

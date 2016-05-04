@@ -1,4 +1,4 @@
-draw.network <- function(GGI,genes=1:ncol(GGI),threshold=0.05,plot.nointer=T){
+draw.network <- function(GGI,genes=1:ncol(GGI),threshold=0.05,plot.nointer=TRUE){
 
   if(length(genes)<2 || length(genes)>ncol(GGI)){
     stop("Number of genes selected not valid.")

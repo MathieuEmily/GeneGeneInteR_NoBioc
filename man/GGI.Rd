@@ -2,8 +2,8 @@
 \alias{GGI}
 \title{Gene-Gene Interaction Analysis of a set of genes}
 \usage{
-GGI(Y, snpX, genes.length = NULL, genes.info = NULL, method = c("PCA.Std",
-  "PCA.GenFreq", "CCA", "KCCA", "CLD", "PLSPM", "GBIGM", "minP", "GATES", "tTS",
+GGI(Y, snpX, genes.length = NULL, genes.info = NULL, method = c("PCA",
+  "CCA", "KCCA", "CLD", "PLSPM", "GBIGM", "minP", "GATES", "tTS",
   "tProd"), \dots)
 }
 \arguments{

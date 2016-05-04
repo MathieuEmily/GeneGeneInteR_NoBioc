@@ -23,7 +23,7 @@ minP.test <- function(Y, G1, G2){
       # The best combination is looked for.
       # Decreasing values of the smalled gene are tested for each of which decreasing
       # values of the smallest genes are parsed. Thus biggest gene is decreasing faster.
-      max.size <- which(ncol(big):1 %o% ncol(small):1 > 1000, arrr.ind=TRUE)[1, ]
+      max.size <- which(ncol(big):1 %o% ncol(small):1 > 1000, arr.ind=TRUE)[1, ]
 
       if (is.na(max.size)){
         stop("No fitting cluster sizes could be found.")

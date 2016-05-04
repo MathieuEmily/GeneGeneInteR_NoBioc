@@ -2,7 +2,7 @@
 \alias{KCCA.test}
 \title{KCCA (Kernel Canonical-Correlation Analysis) based GGI analysis.}
 \usage{
-KCCA.test(Y, G1, G2, n.boot = 500)
+KCCA.test(Y, G1, G2, kernel=rbfdot(sigma = 0.05), n.boot = 500)
 }
 \arguments{
 \item{Y}{numeric or factor vector with two values (most often 0, 1). This is
@@ -14,6 +14,8 @@ Must have a number of row equal to Y argument's length.}
 
 \item{G2}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
 Must have a number of row equal to Y argument's length.}
+
+\item{kernel}{A COMPLETER }
 
 \item{n.boot}{integer strictly superior to 0. This is the number of bootstrap
 replicates for the variances estimation. By default, this is fixed to 500.}
@@ -39,10 +41,8 @@ data(gene.pair)
 KCCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
 }
 \references{
-\enumerate{
-\item Yuan, Z. et al. (2012): Detection for gene-gene co-association via kernel canonical correlation analysis, BMC Genetics, 13, 83.
-\item Larson, N. B. et al. (2013): A kernel regression approach to gene-gene interaction detection for case-control studies, Genetic Epidemiology, 37, 695–703.
-}
+Yuan, Z. et al. (2012): Detection for gene-gene co-association via kernel canonical correlation analysis, BMC Genetics, 13, 83.\cr
+Larson, N. B. et al. (2013): A kernel regression approach to gene-gene interaction detection for case-control studies, Genetic Epidemiology, 37, 695-703.\cr
 }
 \seealso{
 \code{\link{GGI}}, \code{\link{CCA.test}}

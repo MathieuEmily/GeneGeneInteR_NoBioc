@@ -3,12 +3,6 @@
 \title{Gene-based Gene-Gene Interaction analysis by combining SNP-SNP interaction tests}
 \usage{
 gates.test(Y, G1, G2, alpha = 0.05, me.est = c("ChevNy", "Keff", "LiJi","Galwey"))
-
-minP.test(Y, G1, G2)
-
-tProd.test(Y, G1, G2, tau = 0.05, n.sim = 1000)
-
-tTS.test(Y, G1, G2, tau = 0.05, n.sim = 1000)
 }
 \arguments{
 \item{Y}{numeric or factor vector with two values (most often 0, 1). This is
@@ -23,31 +17,20 @@ Threshold for GATES method when estimating the number of effective tests Me with
 
 \item{me.est}{(optional, \emph{specific to \code{gates.test}}) character
 string for GATES method. \code{me.est} corresponds to the method for estimating the number of effective tests. Must be one of the following: "ChevNy", "Keff", "LiJi", "Galwey" (See details).}
-
-\item{tau}{\emph{(optional, specific to \code{tTS.test} and
-\code{tProd.test})} numeric in [0, 1]. See details section for its use.}
-
-\item{n.sim}{\emph{(optional, specific to \code{tTS.test} and
-\code{tProd.test})} numeric positive value. \code{n.sim} is the number of multivariate normal distribution simulations used to compute the significant level for tTS and
-tProd methods.}
 }
 \value{
 A list with class \code{"GGItest"} containing the following components:
 
-	\item{statistic}{The value of the statistic (minimum p-value, tTS or tProd)}
 	\item{p.value}{Tue p-value for the test}
 	\item{method}{The method used to perform the Gene-Gene interaction test}
 
 }
 \description{
-\code{gates.test}, \code{minP.test}, \code{tTS.test} and \code{tProd.test} aim at performing gene-gene interaction analysis based on SNP-SNP interaction tests. The following methods are used to combine SNP-SNP interaction tests
+\code{gates.test} aims at performing gene-gene interaction analysis based on SNP-SNP interaction tests. The following methods are used to combine SNP-SNP interaction tests
  into a single Gene-Gene Interaction p-value: 
  \itemize{ 
- 	\item Minimum p-value in \code{minP.test} function 
  	\item Gene Association Test with Extended Simes procedure in \code{gates.test}
- 	\item Truncated Tail Strength in \code{tTS.test} function
- 	\item Truncated p-value Product in \code{tProd.test} function
-}
+ }
 }
 \details{
 	In a first step, all methods start by applying a logistic regression model to test all pairs of SNPs between the two genes \code{G1} and \code{G2}. If \code{G1} has \eqn{m1} SNPs and \code{G2} \eqn{m2} SNPs, a total of \eqn{m1 * m2} SNP-SNP tests are performed. In a second step, the \eqn{m1 * m2} SNP-SNP tests are combined according to their covariance matrix \eqn{\Sigma}. \eqn{\Sigma} is computed as described in the method developped in Emily (2016). The covariance \eqn{\Sigma} is used in each method as follows:
@@ -72,25 +55,20 @@ A list with class \code{"GGItest"} containing the following components:
 \examples{
 data(gene.pair)
 
-minP.test(gene.pair$Y, gene.pair$G1, gene.pair$G2)
 gates.test(gene.pair$Y, gene.pair$G1, gene.pair$G2, me.est = "Keff",alpha=0.05)
-tTS.test(gene.pair$Y, gene.pair$G1, gene.pair$G2, tau = 0.5, n.sim = 500)
-tProd.test(gene.pair$Y, gene.pair$G1, gene.pair$G2, tau = 0.5, n.sim = 500)
 }
 \references{
-\enumerate{
-	\item M. Emily AGGrEGATOr: A Gene-based GEne-Gene interActTiOn test for case-control association studies, Statistical Application in Genetics and Molecular Biology, 15(2): 151-171, 2016.
-	\item L. Ma, A.G. Clark and A. Keinan Gene-Based Testing Of Interactions in Association Studies of Quantitative Traits. PLoS Genetics 9(2):e1003321, 2013.
-	\item V. Moskvina and K.M. Schmidt On multiple-testing correction in genome-wide association studies. Genetic Epidemiology, 32(6): 567-73, 2008.
-  \item J. Li and L. Ji. Adjusting multiple testing in multilocus analyses using the eigenvalues of a correlation matrix. Heredity 95: 221-227, 2005.
-  \item N.W. Galwey. A new measure of the effective number of tests, a practical tool for comparing families of non-independent significance tests. Genetic Epidemiology 33(7): 559-568, 2009.
-\item J.M. Cheverud. A simple correction for multiple comparisons in interval mapping genome scans. Heredity. 87(1):52–58, 2001.
-\item D.R. Nyholt. A Simple Correction for Multiple Testing for Single-Nucleotide Polymorphisms in Linkage Disequilibrium with Each Other. American journal of human genetics. 74(4): 765–769, 2004.
-\item K.N. Conneely and M. Boehnke. So many correlated tests, so little time! rapid adjustment of p values for multiple correlated tests. The American Journal of Human Genetics, 81: 1158–1168, 2008
-\item B. Jiang, X. Zhang, Y. Zuo and G. Kang. A powerful truncated tail strength method for testing multiple null hypotheses in one dataset. Journal of Theoretical Biology 277: 67–73, 2011.
-\item D.V. Zaykin, L.A. Zhivotovsky, P.H. Westfall and B.S. Weir. Truncated product method for combining P-values. Genetic epidemiology 22: 170–185, 2002.
+M. Emily AGGrEGATOr: A Gene-based GEne-Gene interActTiOn test for case-control association studies, Statistical Application in Genetics and Molecular Biology, 15(2): 151-171, 2016.\cr
+L. Ma, A.G. Clark and A. Keinan Gene-Based Testing Of Interactions in Association Studies of Quantitative Traits. PLoS Genetics 9(2):e1003321, 2013.\cr
+V. Moskvina and K.M. Schmidt On multiple-testing correction in genome-wide association studies. Genetic Epidemiology, 32(6): 567-573, 2008.\cr
+J. Li and L. Ji. Adjusting multiple testing in multilocus analyses using the eigenvalues of a correlation matrix. Heredity 95: 221-227, 2005.\cr
+N.W. Galwey. A new measure of the effective number of tests, a practical tool for comparing families of non-independent significance tests. Genetic Epidemiology 33(7): 559-568, 2009.\cr
+J.M. Cheverud. A simple correction for multiple comparisons in interval mapping genome scans. Heredity. 87(1):52-58, 2001.\cr
+D.R. Nyholt. A Simple Correction for Multiple Testing for Single-Nucleotide Polymorphisms in Linkage Disequilibrium with Each Other. American journal of human genetics. 74(4): 765-769, 2004.\cr
+K.N. Conneely and M. Boehnke. So many correlated tests, so little time! rapid adjustment of p values for multiple correlated tests. The American Journal of Human Genetics, 81: 1158-1168, 2008 \cr
+B. Jiang, X. Zhang, Y. Zuo and G. Kang. A powerful truncated tail strength method for testing multiple null hypotheses in one dataset. Journal of Theoretical Biology 277: 67-73, 2011.\cr
+D.V. Zaykin, L.A. Zhivotovsky, P.H. Westfall and B.S. Weir. Truncated product method for combining P-values. Genetic epidemiology 22: 170-185, 2002.\cr
  }
-}
 \seealso{
 \code{\link{GGI}}
 }

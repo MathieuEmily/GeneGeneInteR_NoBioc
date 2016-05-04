@@ -2,11 +2,11 @@
 \alias{print.GGItest}
 \title{Printing objects of class \code{"GGItest"}}
 \usage{
-print.GGItest(x)
+\method{print}{GGItest}(x,\dots)
 }
 \arguments{
 \item{x}{\code{GGItest}. Given as output of \code{\link{CCA.test}}.}
-
+\item{\dots}{further arguments passed to or from other methods} 
 }
 \value{
 the argument x, invisibly, as for all \code{\link{print}} methods.}

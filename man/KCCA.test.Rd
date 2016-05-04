@@ -38,9 +38,9 @@ difference of canonical correlations between cases and controls. The "kernel tri
 }
 \examples{
 \dontrun{
-
 data(gene.pair)
 KCCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
+}
 }
 \references{
 \enumerate{

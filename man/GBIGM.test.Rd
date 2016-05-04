@@ -34,7 +34,7 @@ A list with class \code{"GGItest"} containing the following components:
 First, the conditional entropy and information gain rate is computed for each gene G1 and G2. In a second step, information gain rate for the gene pair (G1,G2) is computed. A p-value is estimated using permutations of Y.
 }
 \examples{
-	data(gene.pair)
+data(gene.pair)
 GBIGM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
 }
 \references{

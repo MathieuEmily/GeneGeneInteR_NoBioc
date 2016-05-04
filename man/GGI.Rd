@@ -4,7 +4,7 @@
 \usage{
 GGI(Y, snpX, genes.length = NULL, genes.info = NULL, method = c("PCA.Std",
   "PCA.GenFreq", "CCA", "KCCA", "CLD", "PLSPM", "GBIGM", "minP", "GATES", "tTS",
-  "tProd"), ...)
+  "tProd"), \dots)
 }
 \arguments{
 \item{Y}{numeric or factor vector with two values (most often 0, 1). This is
@@ -30,7 +30,7 @@ allowed.}
 CCA, KCCA, CLD, PLSPM, GBIGM, minP, GATES, tTS or tProd. Only one method can
 be parsed.}
 
-\item{...}{Other optional arguments to be passed to the functions associated
+\item{\dots}{Other optional arguments to be passed to the functions associated
 with the method chosen. See more in elementary methods help.}
 }
 \value{
@@ -58,7 +58,7 @@ The following methods are available to perform the interaction test for a single
 \item Partial Least Square Path Modeling (PLSPM) \code{\link{PLSPM.test}} - A network of statistical relations between latent and manifest variables is built. The difference between the path coefficients is used to compute the test statistic (see Zhang et al., 2013).
 \item Gene-Based Information Gain Method (GBIGM) \code{\link{GBIGM.test}} - Entropies and Information Gain Ratio are used to compute a measure of the co-association between two genes (see Li et al., 2015).
 \item Minimum p-value test (minP) \code{\link{minP.test}} - Given two genes, \code{G1} with \eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP interactions are first tested using a logistic regression model, thus generated a set of \eqn{m1*m2} p-values. The significance of the minimum p-value is evaluated using multivariate normal distribution that accounts for the covariance between the tests statistics at the SNP level (see Emily, 2016).
-\item Gene Association Test using Extended Simes procedure (GATES) \code{\link{GATES.test}} - Given two genes, \code{G1} with \eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP interactions are first tested using a logistic regression model, thus generated a set of \eqn{m1*m2} p-values. P-values are then corrected for multiple testing using an extension of the Simes procedure that take into account the correlation between the tests statistic via the number of effective tests (see Li. et al., 2011). 
+\item Gene Association Test using Extended Simes procedure (GATES) \code{\link{gates.test}} - Given two genes, \code{G1} with \eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP interactions are first tested using a logistic regression model, thus generated a set of \eqn{m1*m2} p-values. P-values are then corrected for multiple testing using an extension of the Simes procedure that take into account the correlation between the tests statistic via the number of effective tests (see Li. et al., 2011). 
 \item Truncated Tail Strength test (tTS) \code{\link{tTS.test}} - Given two genes, \code{G1} with \eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP interactions are first tested using a logistic regression model, thus generated a set of \eqn{m1*m2} p-values. All p-values below a user defined threshold are weighted and summed up to provide the tTS test statistic (see Jiang et al., 2011).
 \item Truncated p-value Product test (tProd) \code{\link{tProd.test}} - Similar to tTS but with a different p-values transformation (see Zaykin, 2002)
 }
@@ -83,21 +83,19 @@ Y  <- read.csv(resp, header=FALSE)
 GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info)
 }
 \references{
-\enumerate{
-\item J. Li et al. Identification of gene-gene interaction using principal components. BMC Proceedings, 3 (Suppl. 7): S78, 2009.
- \item Qianqian Peng, Jinghua Zhao, and Fuzhong Xue. A gene-based method for detecting gene-gene co-association in a case-control study. European Journal of Human Genetics, 18(5) :582-587, 2010.
-\item Yuan, Z. et al. (2012): Detection for gene-gene co-association via kernel canonical correlation analysis, BMC Genetics, 13, 83.
-\item Larson, N. B. et al. (2013): A kernel regression approach to gene-gene interaction detection for case-control studies, Genetic Epidemiology, 37, 695–703.
-\item Indika Rajapakse, Michael D. Perlman, Paul J. Martin, John A. Hansen, and Charles Kooperberg. Multivariate detection of gene-gene interactions. Genetic Epidemiology, 36(6) :622-630, 2012.
-\item X. Zhang et al. A PLSPM-based test statistic for detecting gene-gene co-association in genome-wide association study with case-control design. PLoS ONE, 8(4) :e62129, 2013.
-\item J. Li, et al.. A gene-based information gain method for detecting gene-gene interactions in case-control studies. European Journal of Human Genetics, 23 :1566-1572, 2015.
-\item M. Emily. AGGrEGATOr: A Gene-based GEne-Gene interActTiOn test for case-control association studies, Statistical Application in Genetics and Molecular Biology, 15(2): 151-171, 2016.
-\item M.X. Li et al. GATES: A Rapid and Powerful Gene-Based Association Test Using Extended Simes Procedure, American Journal of Human Genetics, 88(3): 283-293, 2011.
-\item B. Jiang, X. Zhang, Y. Zuo and G. Kang. A powerful truncated tail strength method for testing multiple null hypotheses in one dataset. Journal of Theoretical Biology 277: 67–73, 2011.
-\item D.V. Zaykin, L.A. Zhivotovsky, P.H. Westfall and B.S. Weir. Truncated product method for combining P-values. Genetic epidemiology 22: 170–185, 2002.
-
- }
+J. Li et al. Identification of gene-gene interaction using principal components. BMC Proceedings, 3 (Suppl. 7): S78, 2009.\cr
+Qianqian Peng, Jinghua Zhao, and Fuzhong Xue. A gene-based method for detecting gene-gene co-association in a case-control study. European Journal of Human Genetics, 18(5) :582-587, 2010.\cr
+Yuan, Z. et al. (2012): Detection for gene-gene co-association via kernel canonical correlation analysis, BMC Genetics, 13, 83.\cr
+Larson, N. B. et al. (2013): A kernel regression approach to gene-gene interaction detection for case-control studies, Genetic Epidemiology, 37, 695-703.\cr
+Indika Rajapakse, Michael D. Perlman, Paul J. Martin, John A. Hansen, and Charles Kooperberg. Multivariate detection of gene-gene interactions. Genetic Epidemiology, 36(6):622-630, 2012.\cr
+X. Zhang et al. A PLSPM-based test statistic for detecting gene-gene co-association in genome-wide association study with case-control design. PLoS ONE, 8(4):e62129, 2013.\cr
+J. Li, et al.. A gene-based information gain method for detecting gene-gene interactions in case-control studies. European Journal of Human Genetics, 23 :1566-1572, 2015.\cr
+M. Emily. AGGrEGATOr: A Gene-based GEne-Gene interActTiOn test for case-control association studies, Statistical Application in Genetics and Molecular Biology, 15(2): 151-171, 2016.\cr
+M.X. Li et al. GATES: A Rapid and Powerful Gene-Based Association Test Using Extended Simes Procedure, American Journal of Human Genetics, 88(3): 283-293, 2011.\cr
+B. Jiang, X. Zhang, Y. Zuo and G. Kang. A powerful truncated tail strength method for testing multiple null hypotheses in one dataset. Journal of Theoretical Biology 277: 67-73, 2011.\cr
+D.V. Zaykin, L.A. Zhivotovsky, P.H. Westfall and B.S. Weir. Truncated product method for combining P-values. Genetic epidemiology 22: 170-185, 2002.\cr
 }
+
 
 \seealso{
 \code{\link{PCA.test}},

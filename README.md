@@ -1,9 +1,11 @@
 # GeneGeneInteR
 
-To install and load the package
+To install and load the package in R
 
- library(devtools)
+```ruby
+library(devtools)
+install_github("MathieuEmily/GeneGeneInteR")
+library(GeneGeneInteR)
+```
+
  
- install_github("MathieuEmily/GeneGeneInteR")
- 
- library(GeneGeneInteR)

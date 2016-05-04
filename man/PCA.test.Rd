@@ -46,7 +46,7 @@ In a first step, \code{PCA.test} performs a Principal Components Analysis on bot
 \examples{
 data(gene.pair)
 PCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7,method="Std")
-PCA.GenFreq(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7,method="GenFreq")
+PCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7,method="GenFreq")
 }
 \references{
 	\enumerate{\item J. Li et al. (2009) Identification of gene-gene interaction using principal components. BMC

@@ -1,9 +1,8 @@
 # GeneGeneInteR
 
-To install and load the package
+To install and load the package in R
 
 ```ruby
-# install "plspm"
 library(devtools)
 install_github("MathieuEmily/GeneGeneInteR")
 library(GeneGeneInteR)

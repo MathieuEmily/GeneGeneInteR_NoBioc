@@ -30,7 +30,7 @@ minP.test <- function(Y, G1, G2){
       }
 
       # Converting the matrix coordinates back to cluster size
-      max.size <- c(big = ncol(biggest) - max.size[1] + 1, small = ncol(smallest) - max.size[2] + 1)
+      max.size <- c(big = ncol(big) - max.size[1] + 1, small = ncol(small) - max.size[2] + 1)
     } else {
       # Splitting the biggest gene is enough
       max.size <- c(big = max.size, small = NA)

@@ -37,7 +37,7 @@ snpMatrixScour <- function(snpX, genes.length = NULL, genes.info = NULL,
   	
     new.snpX <- GeneScour(snpX, min.maf, min.eq, NA.rate)
   	new.snpX <- as(new.snpX, "SnpMatrix")
-	 return(list(snpX = new.snpX, genes = NULL))
+	 return(list(snpX = new.snpX, genes.info = NULL))
 
 #    return(GeneScour(snpX, min.maf, min.eq, NA.rate))
   # If genes are defined, each genes is scoured individually to

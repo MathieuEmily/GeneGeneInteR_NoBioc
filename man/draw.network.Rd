@@ -46,7 +46,7 @@ resp <- system.file("extdata/response.txt", package="GeneGeneInteR")
 Y  <- read.csv(resp, header=FALSE)
 
 ## Network estimation of 17 genes with the CLD method -- can take a few minutes
-dontrun{
+\dontrun{
 GGI.test <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="CLD")
 draw.network(pVal,threshold=0.05)
 }

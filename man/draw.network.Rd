@@ -47,20 +47,20 @@ Y  <- read.csv(resp, header=FALSE)
 
 ## Network estimation of 17 genes with the CLD method -- can take a few minutes
 \dontrun{
-GGI.test <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="CLD")
-draw.network(pVal,threshold=0.05)
+GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="CLD")
+draw.network(GGI.res,threshold=0.05)
 }
 
 ## Network estimation of 12 among the 17 genes with the default PCA method 
 ## Selection of 12 genes among 17
 dta <- select.snps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4","PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
-GGI.test <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info)
+GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info)
 
 ## Example of network with default threshold 0.05
-draw.network(GGI.test)
+draw.network(GGI.res)
 
 ## Example of network with threshold 0.01 where genes with no interaction are not plotted (plot.nointer=FALSE)
-draw.network(GGI.test,threshold=0.1,plot.nointer=FALSE)
+draw.network(GGI.res,threshold=0.1,plot.nointer=FALSE)
 
 }
 \seealso{

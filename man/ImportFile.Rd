@@ -69,9 +69,11 @@ dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
 
 #########
 ## VCF file from GGtools package.
+\dontrun{
 vref <- system.file("vcf/CEU.exon.2010_09.genotypes.vcf.gz", package="GGtools")
 irange <- IRanges::IRanges(10e6,20e6)
 gg = GenomicRanges::GRanges(seqnames="1", ranges=irange)
 dta <- ImportFile(file=vref, gr=gg, nmetacol=9L)
+}
 }
 

@@ -54,9 +54,15 @@ info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
 
-## In this example, genes are loosely scoured but default are much harsher
-## conditions
-imputed.snps <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
+## Example 1 without SNPs filtering
+## In this example, 9 SNPs were removed due to remaining missing values.
+imputed.snps.1 <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
+
+## Example 2 with SNPs filtering priori to the imputation
+## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. No filtering is applied regarding missing data (NA.rate=1).
+dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,NA.rate=1)
+## Imputation of the missing genotypes
+imputed.snps.2 <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
 }
 \seealso{
 \code{\link{GGI}} \code{\link{snpMatrixScour}}

@@ -54,7 +54,7 @@ A list with class \code{"GGItest"} containing the following components:
 }
 \examples{
 data(gene.pair)
-
+## Estimation of the interaction between a pair of gene by using the Keff method with alpha=0.05.
 gates.test(gene.pair$Y, gene.pair$G1, gene.pair$G2, me.est = "Keff",alpha=0.05)
 }
 \references{

@@ -18,11 +18,8 @@ the argument x, invisibly, as for all \code{\link{print}} methods.}
 }
 \examples{
 
-## Not run:
 data(gene.pair)
 print(PCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7,method="Std"))
-
-## End (Not run)
 
 }
 

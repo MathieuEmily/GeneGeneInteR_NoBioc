@@ -40,7 +40,7 @@ for \code{genes.info}) of each snp selected.
 }
 \examples{
 
-## Dataset is included in the package
+## Importation of the dataset
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")

@@ -1,6 +1,6 @@
 # GeneGeneInteR
 
-# To install and load the package in R
+To install and load the package in R
 
 ```ruby
 library(devtools)
@@ -36,7 +36,9 @@ dta <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
 dta <- select.snps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4","PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
 ```
 
-Gene-based gene-gene interaction analysis can be performed by testing each pair of genes in the datatset (function GGI). 10 methods are implemented in the GeneGeneInteR package to test a pair of genes: 6 Gene-Gene multidimensional methods (Principal Components Analysis - PCA,  Canonical Correlation Analysis - CCA, Kernel Canonical Correlation Analysis - KCCA, Composite Linkage Disequilibrium - CLD,  Partial Least Square Path Modeling - PLSPM and Gene-Based Information Gain Method - GBIGM) and 4 Gene-Gene interaction methods based on SNP-SNP interaction testing (Minimum p-value test - minP, Gene Association Test using Extended Simes procedure - GATES, Truncated Tail Strength test - tTS and Truncated p-value Product test - tProd).
+Gene-based gene-gene interaction analysis can be performed by testing each pair of genes in the datatset (function GGI). 10 methods are implemented in the GeneGeneInteR package to test a pair of genes: 
+- 6 Gene-Gene multidimensional methods
+	- Principal Components Analysis - *PCA*,  Canonical Correlation Analysis - CCA, Kernel Canonical Correlation Analysis - KCCA, Composite Linkage Disequilibrium - CLD,  Partial Least Square Path Modeling - PLSPM and Gene-Based Information Gain Method - GBIGM) and 4 Gene-Gene interaction methods based on SNP-SNP interaction testing (Minimum p-value test - minP, Gene Association Test using Extended Simes procedure - GATES, Truncated Tail Strength test - tTS and Truncated p-value Product test - tProd).
 
 ```ruby
 ## Testing for all pair of genes with the CLD method

@@ -39,7 +39,6 @@ for \code{genes.info}) of each snp selected.
 \item a character vector which elements are position bounds of genes. Each element of the vector is either of the form "begin:end", or "chr:begin:end" if you have to precise the chromosome of the gene.}
 }
 \examples{
-
 ## Importation of the dataset
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
@@ -49,7 +48,7 @@ dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
 ## Selection of the genes DNAH9 and TXNDC5
 selec <- select.snps(dta$snpX, dta$genes.info, c("DNAH9","TXNDC5"))
 
-#' ## Selection of the snps from position 101342000 to 101490000 on chromosome 15
+## Selection of the snps from position 101342000 to 101490000 on chromosome 15
 selec <- select.snps(dta$snpX, dta$genes.info, c("15:101342000:101490000"))
 }
 

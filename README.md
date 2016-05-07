@@ -48,7 +48,7 @@ Gene-based gene-gene interaction analysis can be performed by testing each pair 
 	- Minimum p-value test - **minP**
 	- Gene Association Test using Extended Simes procedure - **GATES**
 	- Truncated Tail Strength test - **tTS** 
-	-- Truncated p-value Product test - **tProd**
+	- Truncated p-value Product test - **tProd**
 .
 
 ```ruby

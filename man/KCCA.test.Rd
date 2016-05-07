@@ -15,7 +15,7 @@ Must have a number of row equal to Y argument's length.}
 \item{G2}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
 Must have a number of row equal to Y argument's length.}
 
-\item{kernel}{A COMPLETER }
+\item{kernel}{A kernel function \code{\link[kernlab]{dots} object. Default is a Gaussian RBF kernel}
 
 \item{n.boot}{integer strictly superior to 0. This is the number of bootstrap
 replicates for the variances estimation. By default, this is fixed to 500.}

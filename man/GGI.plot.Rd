@@ -74,18 +74,34 @@ ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 
+## Importation of the genotypes
 dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
+## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. No filtering is applied regarding missing data (NA.rate=1).
+dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,NA.rate=1)
+## Imputation of the missing genotypes
 dta <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
-resp <- system.file("extdata/response.txt", package="GeneGeneInteR")
 
-# If a data frame is provided to GGI or one of the *.test function, only the
-# column is checked and used.
+## Importation of the phenotype
+resp <- system.file("extdata/response.txt", package="GeneGeneInteR")
 Y  <- read.csv(resp, header=FALSE)
 
-## By default the PCA-based method is used.
+## plot of the interaction between the 17 genes with the CLD method -- can take a few minutes
+\dontrun{
+GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="CLD")
+GGI.plot(GGI.res,threshold=0.05)
+}
+
+## plot of the interaction between 12 among the 17 genes with the default PCA method 
+## Selection of 12 genes among 17
+dta <- select.snps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4","PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
 GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info)
 
-GGI.plot(GGI.res, hclust.order=TRUE, threshold=0.05)
+## Plot of the results with default values
+GGI.plot(GGI.res)
+
+## Plot of the results with a threshold and an ordering of the genes.
+GGI.plot(GGI.res,threshold=0.1,hclust.order=TRUE)
+
 }
 \seealso{
 \code{\link{GGI}}

@@ -28,7 +28,6 @@ a character vector giving genes' name or a numeric vector giving their column
 number.
 }
 \examples{
-
 ## Dataset is included in the package
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")

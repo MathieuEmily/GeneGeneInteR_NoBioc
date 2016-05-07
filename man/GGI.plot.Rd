@@ -25,7 +25,7 @@ is generated.}
 \item{hclust.order}{A boolean. Should a hierachical clustering procedure be
 performed on \code{GGI} to order the matrix ?}
 
-\item{use.log}{FALSE by default}
+\item{use.log}{A boolean. Should the p-values be reported in -log10? FALSE by default.}
 
 \item{threshold}{A numeric between 0 and 1. All p-value strictly greater than
 that \code{threshold} are distinctly colored (See \code{NA.col}).}

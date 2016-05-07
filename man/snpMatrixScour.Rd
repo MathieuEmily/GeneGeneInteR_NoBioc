@@ -31,9 +31,9 @@ A list with two objects:
 \details{
 This function removes SNPs that does not meet all following criteria:
 \itemize{
-	\item \eqn{MAF > \code{min.maf}},
-	\item \eqn{HWE > \code{min.eq}}, where HWE is the p-value of the \eqn{\chi ^2} test of deviation to Hardy-Weinberg Equilibrium,
-	\item \eqn{NA > \code{NA.rate}}, where NA is the proportion of missing values.
+	\item \eqn{MAF < }\code{min.maf},
+	\item \eqn{HWE < }\code{min.eq}, where HWE is the p-value of the \eqn{\chi ^2} test of deviation to Hardy-Weinberg Equilibrium,
+	\item \eqn{NA > }\code{NA.rate}, where NA is the proportion of missing values.
 }
 
 If \code{genes.length} and \code{genes.info} are provided by the user, an updated version is returned by \code{snpMatrixScour}. The returned object can be directly used as inputs of the \code{\link{GGI}} function.
@@ -44,10 +44,10 @@ info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
 
-## In this example, genes are loosely scoured but default are much harsher
-## conditions
+## In this example, SNPs are with MAF lower than 0.2 or p-value for HWE testing lower than 0.05 or a proportion of missing value higher than 0.2 are removed
 new.snps <- snpMatrixScour(dta$snpX, genes.info = dta$genes.info,
                            min.maf = 0.2, min.eq=0.05, NA.rate = 0.2)
+## Two genes have been completely removed from the resulting dataset.
 }
 \seealso{
 \code{\link{GGI}}

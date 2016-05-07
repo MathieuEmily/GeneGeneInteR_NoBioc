@@ -51,7 +51,6 @@ A list with class \code{"GGItest"} containing the following components:
 }
 \examples{
 data(gene.pair)
-
 minP.test(gene.pair$Y, gene.pair$G1, gene.pair$G2)
 
 }

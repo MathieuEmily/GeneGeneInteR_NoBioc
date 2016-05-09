@@ -5,7 +5,7 @@
 \title{Imports SNPs information from pedfile, PLINK, VCF (4.0) file, or genotypes
 imputed by IMPUTE2.}
 \usage{
-ImportFile(file, pos, pos.sep = "\\t", ...)
+ImportFile(file, pos, pos.sep = "\t", ...)
 }
 \arguments{
 \item{file}{String containing the path of the file to import.}
@@ -15,7 +15,7 @@ containing informations for each SNP about chromosome, gene names, snp names
 and positions.}
 
 \item{pos.sep}{(optional) String to be passed to \code{read.csv} function as
-\code{sep} argument. Default is tab (\\t).}
+\code{sep} argument. Default is tab (\t).}
 
 \item{...}{Additionnal arguments to be passed to the reading file function.}
 }
@@ -65,7 +65,7 @@ info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 
 ## Importation
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
+dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 
 #########
 ## VCF file from GGtools package.

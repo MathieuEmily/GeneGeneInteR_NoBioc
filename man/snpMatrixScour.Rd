@@ -44,7 +44,8 @@ info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
 
-## In this example, SNPs are with MAF lower than 0.2 or p-value for HWE testing lower than 0.05 or a proportion of missing value higher than 0.2 are removed
+## In this example, SNPs are with MAF lower than 0.2 or p-value for HWE testing lower than 0.05 or
+# a proportion of missing value higher than 0.2 are removed
 new.snps <- snpMatrixScour(dta$snpX, genes.info = dta$genes.info,
                            min.maf = 0.2, min.eq=0.05, NA.rate = 0.2)
 ## Two genes have been completely removed from the resulting dataset.

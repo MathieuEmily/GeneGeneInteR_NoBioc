@@ -2,7 +2,7 @@
 \alias{print.GGItest}
 \title{Printing objects of class \code{"GGItest"}}
 \usage{
-\method{print}{GGItest}(x,\dots)
+\method{print}{GGItest}(x, \dots)
 }
 \arguments{
 \item{x}{\code{GGItest}. Given as output of \code{\link{CCA.test}}.}

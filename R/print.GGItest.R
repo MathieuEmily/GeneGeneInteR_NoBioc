@@ -1,4 +1,4 @@
-print.GGItest <- function(x,...){
+print.GGItest <- function(x, ...){
 	cat("Gene-Gene Interaction method performed with:\n \t",x$method,"\n")
 	if (is.null(x$df)){
 		cat(names(x$statistic)," = ",x$statistic,", p-value = ",x$p.value,"\n",sep="")

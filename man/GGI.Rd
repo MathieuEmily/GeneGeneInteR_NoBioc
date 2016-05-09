@@ -34,36 +34,75 @@ be parsed.}
 with the method chosen. See more in elementary methods help.}
 }
 \value{
-\code{GGI} returns a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the p-value of the interaction between the two genes.
+\code{GGI} returns a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number 
+of genes studied. The general term of the matrix is the p-value of the interaction between the 
+two genes.
 }
 \description{
-\code{GGI} allows the search for Gene-Gene Interactions by testing all possible pairs of genes in a set of genes.
+\code{GGI} allows the search for Gene-Gene Interactions by testing all possible pairs of genes 
+in a set of genes.
 }
 \details{
 This function is a wrapper for all Gene-Gene Interaction analysis methods and drive the
  overall analysis: splitting the dataset in genes matrices and starting
  elementary analysis for each pair of genes.
 
- \emph{SNP from the same gene are assumed to be ordered along the chromosome. See \code{\link{select.snps}}}
+ \emph{SNP from the same gene are assumed to be ordered along the chromosome. 
+ See \code{\link{select.snps}}}
 
- If \code{genes.lenghts} is provided, it contains the number of SNPs of each gene. For example, if \code{genes.length} is the vector: c(20, 35, 15), then gene 1 will be interpreted as the set of the first 20 columns/SNPs of \code{snpX}, gene 2 will be interpreted as the following 35 columns/SNP, etc.
+ If \code{genes.lenghts} is provided, it contains the number of SNPs of each gene. For example, 
+ if \code{genes.length} is the vector: c(20, 35, 15), then gene 1 will be interpreted as the set 
+ of the first 20 columns/SNPs of \code{snpX}, gene 2 will be interpreted as the following 
+ 35 columns/SNP, etc.
 
 The following methods are available to perform the interaction test for a single pair of genes:
 
 \itemize{ 
-\item Principal Components Analysis method (PCA) \code{\link{PCA.test}} - PCA is performed on both genes and resulting principal components are used to fit a logistic regression model with interaction between and a second logistic regression model without interaction term. The interaction between the two genes is then tested using a likelihood ratoi test between the two logistic regression models (see Li et al. 2009).
-\item Canonical Correlation Analysis (CCA) \code{\link{CCA.test}} - The maximum of canonical correlation between the two genes is computed for each group (cases and controls). The difference between the two transformed values (Fisher transformation) is used to test genes' interaction (see Peng et al. 2010). 
-\item Kernel Canonical Correlation Analysis (KCCA) \code{\link{KCCA.test}} - This method is the same as CCA but the canonical correlations are computed using Kernel method (see Yuan et al., 2012 and Larson et al., 2013). 
-\item Composite Linkage Disequilibrium (CLD) \code{\link{CLD.test}} - CLD is  based on the difference of the covariance matrices between the two genes computed for cases and controls. The covariance is estimated via the Composite Linkage Disequilibrium and a method based on Nagao normalized Quadratic Distance is used to compute the test statistic (see Rajapakse et al., 2012). 
-\item Partial Least Square Path Modeling (PLSPM) \code{\link{PLSPM.test}} - A network of statistical relations between latent and manifest variables is built. The difference between the path coefficients is used to compute the test statistic (see Zhang et al., 2013).
-\item Gene-Based Information Gain Method (GBIGM) \code{\link{GBIGM.test}} - Entropies and Information Gain Ratio are used to compute a measure of the co-association between two genes (see Li et al., 2015).
-\item Minimum p-value test (minP) \code{\link{minP.test}} - Given two genes, \code{G1} with \eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP interactions are first tested using a logistic regression model, thus generated a set of \eqn{m1*m2} p-values. The significance of the minimum p-value is evaluated using multivariate normal distribution that accounts for the covariance between the tests statistics at the SNP level (see Emily, 2016).
-\item Gene Association Test using Extended Simes procedure (GATES) \code{\link{gates.test}} - Given two genes, \code{G1} with \eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP interactions are first tested using a logistic regression model, thus generated a set of \eqn{m1*m2} p-values. P-values are then corrected for multiple testing using an extension of the Simes procedure that take into account the correlation between the tests statistic via the number of effective tests (see Li. et al., 2011). 
-\item Truncated Tail Strength test (tTS) \code{\link{tTS.test}} - Given two genes, \code{G1} with \eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP interactions are first tested using a logistic regression model, thus generated a set of \eqn{m1*m2} p-values. All p-values below a user defined threshold are weighted and summed up to provide the tTS test statistic (see Jiang et al., 2011).
-\item Truncated p-value Product test (tProd) \code{\link{tProd.test}} - Similar to tTS but with a different p-values transformation (see Zaykin, 2002)
+\item Principal Components Analysis method (PCA) \code{\link{PCA.test}} - PCA is performed on both 
+genes and resulting principal components are used to fit a logistic regression model with 
+interaction between and a second logistic regression model without interaction term. 
+The interaction between the two genes is then tested using a likelihood ratio test between the two 
+logistic regression models (see Li et al. 2009).
+\item Canonical Correlation Analysis (CCA) \code{\link{CCA.test}} - The maximum of canonical 
+correlation between the two genes is computed for each group (cases and controls). The difference
+ between the two transformed values (Fisher transformation) is used to test genes' interaction 
+ (see Peng et al. 2010). 
+\item Kernel Canonical Correlation Analysis (KCCA) \code{\link{KCCA.test}} - This method is the 
+same as CCA but the canonical correlations are computed using Kernel method (see Yuan et al., 2012
+ and Larson et al., 2013). 
+\item Composite Linkage Disequilibrium (CLD) \code{\link{CLD.test}} - CLD is  based on the 
+difference of the covariance matrices between the two genes computed for cases and controls. 
+The covariance is estimated via the Composite Linkage Disequilibrium and a method based on Nagao
+ normalized Quadratic Distance is used to compute the test statistic (see Rajapakse et al., 2012). 
+\item Partial Least Square Path Modeling (PLSPM) \code{\link{PLSPM.test}} - A network of 
+statistical relations between latent and manifest variables is built. The difference between the
+ path coefficients is used to compute the test statistic (see Zhang et al., 2013).
+\item Gene-Based Information Gain Method (GBIGM) \code{\link{GBIGM.test}} - Entropies and 
+Information Gain Ratio are used to compute a measure of the co-association between two genes
+ (see Li et al., 2015).
+\item Minimum p-value test (minP) \code{\link{minP.test}} - Given two genes, \code{G1} with 
+\eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP interactions are first tested using 
+a logistic regression model, thus generated a set of \eqn{m1*m2} p-values. The significance of the
+ minimum p-value is evaluated using multivariate normal distribution that accounts for the 
+ covariance between the tests statistics at the SNP level (see Emily, 2016).
+\item Gene Association Test using Extended Simes procedure (GATES) \code{\link{gates.test}} 
+- Given two genes, \code{G1} with \eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP 
+interactions are first tested using a logistic regression model, thus generated a set of
+ \eqn{m1*m2} p-values. P-values are then corrected for multiple testing using an extension of the
+ Simes procedure that take into account the correlation between the tests statistic via the number
+ of effective tests (see Li. et al., 2011). 
+\item Truncated Tail Strength test (tTS) \code{\link{tTS.test}} - Given two genes, \code{G1} with
+ \eqn{m1} SNPs and \code{G2} with \eqn{m2} SNPs, all SNP-SNP interactions are first tested using 
+ a logistic regression model, thus generated a set of \eqn{m1*m2} p-values. All p-values below a 
+ user defined threshold are weighted and summed up to provide the tTS test statistic 
+ (see Jiang et al., 2011).
+\item Truncated p-value Product test (tProd) \code{\link{tProd.test}} - Similar to tTS but with 
+a different p-values transformation (see Zaykin, 2002)
 }
 
-Missing values are rejected and trying to parse an incomplete \code{SnpMatrix} object as an argument will result in an error. Imputation can be performed prior to the analysis with the \code{\link{imputeSnpMatrix}} function.
+Missing values are rejected and trying to parse an incomplete \code{SnpMatrix} object as an 
+argument will result in an error. Imputation can be performed prior to the analysis with the
+ \code{\link{imputeSnpMatrix}} function.
 }
 \examples{
 ## Dataset is included in the package
@@ -73,7 +112,8 @@ posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 
 ## Importation of the genotypes
 dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
-## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. No filtering is applied regarding missing data (NA.rate=1).
+## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. 
+# No filtering is applied regarding missing data (NA.rate=1).
 dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,NA.rate=1)
 ## Imputation of the missing genotypes
 dta <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
@@ -89,7 +129,8 @@ GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="CLD")
 
 ## estimation of the interaction between 12 among the 17 genes with the default PCA method 
 ## Selection of 12 genes among 17
-dta <- select.snps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4","PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
+dta <- select.snps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4",
+      "PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
 GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info)
 
 }

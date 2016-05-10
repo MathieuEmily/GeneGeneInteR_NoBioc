@@ -15,7 +15,7 @@ containing informations for each SNP about chromosome, gene names, snp names
 and positions.}
 
 \item{pos.sep}{(optional) String to be passed to \code{read.csv} function as
-\code{sep} argument. Default is tab (\t).}
+\code{sep} argument. Default is tab (\\t).}
 
 \item{...}{Additionnal arguments to be passed to the reading file function.}
 }

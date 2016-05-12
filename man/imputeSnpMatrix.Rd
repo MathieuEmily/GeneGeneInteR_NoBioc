@@ -52,7 +52,7 @@ Removing all SNP is often more parsimonious than removing individuals and allows
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
+dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 
 ## Example 1 without SNPs filtering
 ## In this example, 9 SNPs were removed due to remaining missing values.

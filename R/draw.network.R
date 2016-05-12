@@ -55,5 +55,4 @@ draw.network <- function(GGI,genes=1:ncol(GGI),threshold=0.05,plot.nointer=TRUE)
   g <- igraph::graph_from_data_frame(relations, directed=F, vertices=actors)
   plot(g, vertex.size=10)
 
-  return(NULL)
 }

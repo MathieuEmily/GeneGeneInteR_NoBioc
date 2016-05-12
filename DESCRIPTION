@@ -16,4 +16,4 @@ License: GPL (>= 2)
 LazyData: TRUE
 Depends: R (>= 2.10)
 Imports: snpStats, mvtnorm, GGtools, Rsamtools, igraph, kernlab, FactoMineR, plspm, IRanges, GenomicRanges,
-    data.table,grDevices,rioja 
+    data.table,rioja,grDevices, graphics,stats,utils

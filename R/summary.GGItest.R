@@ -11,10 +11,9 @@ summary.GGItest <- function(object, ...){
 		cat("-- ")
 		cat("List of parameter(s):\n--- ")
 		for (i in 1:length(ll)){
-			cat(names(ll)[i],"=",ll[[i]])
-			if (i != length(ll)){
-			cat(", ")
-			}
+			 cat(names(ll)[i], "=", ll[[i]])
+            if (i != length(ll)) cat(", ")
+            if (i == length(ll)) cat("\n ")
 		}
 	}
 }

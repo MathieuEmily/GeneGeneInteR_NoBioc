@@ -43,7 +43,7 @@ for \code{genes.info}) of each snp selected.
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
+dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 
 ## Selection of the genes DNAH9 and TXNDC5
 selec <- select.snps(dta$snpX, dta$genes.info, c("DNAH9","TXNDC5"))

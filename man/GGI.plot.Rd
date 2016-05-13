@@ -43,7 +43,7 @@ the size of \code{GGI} exceeds \eqn{15*15}.}
 \item{interact}{A boolean. Should the plot be clickable ? (See Details for
 more information). Disabled when open R session is not interactive.}
 
-\item{method.adjust}{correction method as proposed in the \code{\link[base]{p.adjust}} function.}
+\item{method.adjust}{correction method as proposed in the \code{\link[stats]{p.adjust}} function.}
 }
 \description{
 \code{GGI.plot} is a graphical function that allow the heatmap-like visualization of a Gene-Gene Interaction study based on a set of genes.

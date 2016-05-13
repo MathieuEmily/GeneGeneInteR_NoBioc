@@ -35,14 +35,8 @@ GGI.plot <- function(GGI, col=c("#D6604D", "#104E8B"), colbar.width=0.15,
 
 	method.adjust <- match.arg(method.adjust)
 	
-	print(method.adjust)
-	print(GGI[lower.tri(GGI)])
-	print(p.adjust(GGI[lower.tri(GGI)],method=method.adjust))
-	
-
 	GGI[lower.tri(GGI)] <- p.adjust(GGI[lower.tri(GGI)],method=method.adjust)
 	GGI[upper.tri(GGI)] <- p.adjust(GGI[upper.tri(GGI)],method=method.adjust)
-#	print(GGI.res)
 
   R.thresh <- c(0.001, 0.01, 0.05, 0.1)
 

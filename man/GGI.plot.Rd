@@ -5,7 +5,8 @@
 GGI.plot(GGI, col = c("#D6604D", "#104E8B"), colbar.width = 0.15,
   title = NULL, hclust.order = FALSE, use.log = FALSE, threshold = NULL,
   NA.col = "#D3D3D3", draw.pvals = (ncol(GGI) <= 15),
-  draw.names = (ncol(GGI) <= 25), interact = !(draw.pvals && draw.names))
+  draw.names = (ncol(GGI) <= 25), interact = !(draw.pvals && draw.names),
+  method.adjust=c("none","holm","hochberg","hommel","bonferroni","BH","BY","fdr"))
 }
 \arguments{
 \item{GGI}{A \code{\link{matrix}} or a \code{\link{data.frame}} of pValues containing the results of a set of genes interaction analysis. \code{GGI} must be a squared matrix of size \eqn{G*G} where \eqn{G} is the number of genes considered. \code{GGI} can be produced as the output of the function \code{\link{GGI}}. Matrix' dimensions may be named, if not generic names will be generated. \eqn{G} must be at least 3.}
@@ -41,6 +42,8 @@ the size of \code{GGI} exceeds \eqn{15*15}.}
 
 \item{interact}{A boolean. Should the plot be clickable ? (See Details for
 more information). Disabled when open R session is not interactive.}
+
+\item{method.adjust}{correction method as proposed in the \code{\link[base]{p.adjust}} function.}
 }
 \description{
 \code{GGI.plot} is a graphical function that allow the heatmap-like visualization of a Gene-Gene Interaction study based on a set of genes.
@@ -75,7 +78,7 @@ info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 
 ## Importation of the genotypes
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
 ## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. 
 # No filtering is applied regarding missing data (NA.rate=1).
 dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,NA.rate=1)

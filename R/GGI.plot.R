@@ -2,7 +2,7 @@ GGI.plot <- function(GGI, col=c("#D6604D", "#104E8B"), colbar.width=0.15,
                      title=NULL, hclust.order=FALSE, use.log=FALSE,
                      threshold=NULL, NA.col="#D3D3D3",
                      draw.pvals=(ncol(GGI) <= 15), draw.names=(ncol(GGI) <= 25),
-                     interact=!(draw.pvals && draw.names)) {
+                     interact=!(draw.pvals && draw.names),method.adjust=c("none","holm","hochberg","hommel","bonferroni","BH","BY","fdr")) {
 
   if(!is.matrix(GGI) && !is.numeric(GGI[1, 1])) {
     stop("GGI argument should be a numeric matrix.")
@@ -31,6 +31,18 @@ GGI.plot <- function(GGI, col=c("#D6604D", "#104E8B"), colbar.width=0.15,
   } else if (!is.character(NA.col)) {
     stop("NA.col argument should be a character.")
   }
+
+
+	method.adjust <- match.arg(method.adjust)
+	
+	print(method.adjust)
+	print(GGI[lower.tri(GGI)])
+	print(p.adjust(GGI[lower.tri(GGI)],method=method.adjust))
+	
+
+	GGI[lower.tri(GGI)] <- p.adjust(GGI[lower.tri(GGI)],method=method.adjust)
+	GGI[upper.tri(GGI)] <- p.adjust(GGI[upper.tri(GGI)],method=method.adjust)
+#	print(GGI.res)
 
   R.thresh <- c(0.001, 0.01, 0.05, 0.1)
 

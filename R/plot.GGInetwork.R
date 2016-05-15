@@ -46,7 +46,6 @@ GGI.plot <- function(GGI,genes=1:ncol(GGI),col=c("#D6604D", "#104E8B"), colbar.w
 
   GGI <- GGI[genes,genes]
 
-
 	method.adjust <- match.arg(method.adjust)
 	
 	GGI[lower.tri(GGI)] <- p.adjust(GGI[lower.tri(GGI)],method=method.adjust)
@@ -495,7 +494,7 @@ clear.tooltip <- function(inter.tip, prime.plot) {
 }
 
 
-draw.network <- function(GGI,genes=1:ncol(GGI),threshold=0.05,plot.nointer=TRUE){
+draw.network <- function(GGI,genes=1:ncol(GGI),threshold=0.05,plot.nointer=TRUE,method.adjust=c("none","holm","hochberg","hommel","bonferroni","BH","BY","fdr")){
 	print(class(GGI))
 	print(GGI)
   if(length(genes)<2 || length(genes)>ncol(GGI)){
@@ -519,6 +518,12 @@ draw.network <- function(GGI,genes=1:ncol(GGI),threshold=0.05,plot.nointer=TRUE)
   }
 
   GGI <- GGI[genes,genes]
+  
+  method.adjust <- match.arg(method.adjust)
+  
+  GGI[lower.tri(GGI)] <- p.adjust(GGI[lower.tri(GGI)],method=method.adjust)
+  GGI[upper.tri(GGI)] <- p.adjust(GGI[upper.tri(GGI)],method=method.adjust)
+
   dim <- ncol(GGI)
   pVal.raw <- GGI[lower.tri(GGI)]
   if(any(is.na(pVal.raw))){

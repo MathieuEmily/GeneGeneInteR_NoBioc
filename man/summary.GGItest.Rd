@@ -10,10 +10,10 @@
 \item{\dots}{further arguments passed to or from other methods}
 }
 \description{
-	Printing objects of class \code{"GGItest"}
+	Printing summaries for objects of class \code{"GGItest"}
 }
 \details{
-\code{print.GGItest} provides a customized summary of a \code{GGItest} object.
+\code{summary.GGItest} provides a customized summary of a \code{GGItest} object.
 }
 \examples{
 

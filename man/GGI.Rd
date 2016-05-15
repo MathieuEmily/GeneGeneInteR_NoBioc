@@ -34,9 +34,13 @@ be parsed.}
 with the method chosen. See more in elementary methods help.}
 }
 \value{
-\code{GGI} returns a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number 
-of genes studied. The general term of the matrix is the p-value of the interaction between the 
-two genes.
+A list with class \code{"GGInetwork"} containing the following components:
+
+\item{statistic}{a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the statistic of the interaction between the two genes.}
+\item{p.value}{a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the statistic of the interaction between the two genes.}
+\item{df}{\emph{Only for \code{method="PCA"}} a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the degrees of freedom of the interaction test.}
+\item{method}{The method used to perform the Gene-Gene interaction test.}
+\item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test.}
 }
 \description{
 \code{GGI} allows the search for Gene-Gene Interactions by testing all possible pairs of genes 
@@ -111,7 +115,7 @@ info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 
 ## Importation of the genotypes
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
 ## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. 
 # No filtering is applied regarding missing data (NA.rate=1).
 dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,NA.rate=1)

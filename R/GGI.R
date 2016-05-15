@@ -150,9 +150,9 @@ GGI <- function(Y, snpX, genes.length = NULL, genes.info = NULL,
   stat.matrix[lower.tri(stat.matrix)] <- t(stat.matrix)[lower.tri(stat.matrix)]
   if (method=="PCA"){
   	df.matrix[lower.tri(df.matrix)] <- t(df.matrix)[lower.tri(df.matrix)]
-  	res <- list(p.value=pval.matrix,statistic=stat.matrix,df=df.matrix,method=res.method,parameter=res.parameter)
+  	res <- list(statistic=stat.matrix,p.value=pval.matrix,df=df.matrix,method=res.method,parameter=res.parameter)
   	} else {
-  		res <- list(p.value=pval.matrix,statistic=stat.matrix,method=res.method,parameter=res.parameter)
+  		res <- list(statistic=stat.matrix,p.value=pval.matrix,method=res.method,parameter=res.parameter)
   	}
   	class(res) <- "GGInetwork"
 

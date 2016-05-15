@@ -1,6 +1,6 @@
 GGI <- function(Y, snpX, genes.length = NULL, genes.info = NULL,
-            method = c("PCA", "CCA", "KCCA","CLD","PLSPM","GBIGM",
-                       "minP", "GATES", "tTS", "tProd"), ...){
+            method = c("minP","PCA", "CCA", "KCCA","CLD","PLSPM","GBIGM",
+                       "GATES", "tTS", "tProd"), ...){
 
   if (!is.null(dim(Y))) {
     Y <- Y[, 1]
@@ -94,9 +94,22 @@ GGI <- function(Y, snpX, genes.length = NULL, genes.info = NULL,
   names(gene.end)   <- genes.names
 
   #Setup of the return object
-  genes.interactions <- diag(0, length(genes.names))
-  colnames(genes.interactions) <- genes.names
-  rownames(genes.interactions) <- genes.names
+  pval.matrix <- diag(0, length(genes.names))
+  colnames(pval.matrix) <- genes.names
+  rownames(pval.matrix) <- genes.names
+
+  stat.matrix <- diag(0, length(genes.names))
+  colnames(stat.matrix) <- genes.names
+  rownames(stat.matrix) <- genes.names
+
+	if (method=="PCA"){
+		df.matrix <- diag(0, length(genes.names))
+		colnames(df.matrix) <- genes.names
+		rownames(df.matrix) <- genes.names
+	}
+
+	res.method <- NULL
+	res.parameter <- NULL
 
   #Application of the method on the interactions
   for (i in 1:ncol(interactions)) {
@@ -106,31 +119,51 @@ GGI <- function(Y, snpX, genes.length = NULL, genes.info = NULL,
     G2 <- snpX[, gene.start[interactions[2, i]]:gene.end[interactions[2, i]]]
 
     if(!method %in% c("minP","GATES","tTS","tProd") || ncol(G1)*ncol(G2)<1000){
-    genes.interactions[interactions[1, i], interactions[2, i]] <- switch(method,
-                                                                         CCA = CCA.test(Y, G1, G2, ...)$p.value,
-                                                                         KCCA = KCCA.test(Y, G1, G2, ...)$p.value,
-                                                                         CLD = CLD.test(Y, G1, G2, ...)$p.value,
-                                                                         PLSPM = PLSPM.test(Y, G1, G2, ...)$p.value,
-                                                                         GBIGM = GBIGM.test(Y, G1, G2, ...)$p.value,
-                                                                         PCA = PCA.test(Y, G1, G2, ...)$p.value,
-                                                                         minP = minP.test(Y, G1, G2, ...)$p.value,
-                                                                         GATES = gates.test(Y, G1, G2, ...)$p.value,
-                                                                         tTS   = tTS.test(Y, G1, G2, ...)$p.value,
-                                                                         tProd = tProd.test(Y, G1, G2, ...)$p.value)
-    } else {
+    	tmp <- switch(method,
+                                                                         CCA = CCA.test(Y, G1, G2, ...),
+                                                                         KCCA = KCCA.test(Y, G1, G2, ...),
+                                                                         CLD = CLD.test(Y, G1, G2, ...),
+                                                                         PLSPM = PLSPM.test(Y, G1, G2, ...),
+                                                                         GBIGM = GBIGM.test(Y, G1, G2, ...),
+                                                                         PCA = PCA.test(Y, G1, G2, ...),
+                                                                         minP = minP.test(Y, G1, G2, ...),
+                                                                         GATES = gates.test(Y, G1, G2, ...),
+                                                                         tTS   = tTS.test(Y, G1, G2, ...),
+                                                                         tProd = tProd.test(Y, G1, G2, ...))
+    pval.matrix[interactions[1, i], interactions[2, i]] <- tmp$p.value
+    stat.matrix[interactions[1, i], interactions[2, i]] <- tmp$statistic
+    if (method=="PCA"){
+    	df.matrix[interactions[1, i], interactions[2, i]] <- tmp$df    	
+    }
+    if (is.null(res.method)){res.method <- tmp$method}
+    if (is.null(res.parameter)){res.parameter <- tmp$parameter}
+
+} else {
       warning("Too much interactions to test for SSI method (>1000). NA returned")
-      genes.interactions[interactions[1, i], interactions[2, i]] <- NA
+      pval.matrix[interactions[1, i], interactions[2, i]] <- NA
+      stat.matrix[interactions[1, i], interactions[2, i]] <- NA
     }
   }
 
-  genes.interactions[lower.tri(genes.interactions)] <- t(genes.interactions)[lower.tri(genes.interactions)]
-  return(genes.interactions)
+#  genes.interactions[lower.tri(genes.interactions)] <- t(genes.interactions)[lower.tri(genes.interactions)]
+  pval.matrix[lower.tri(pval.matrix)] <- t(pval.matrix)[lower.tri(pval.matrix)]
+  stat.matrix[lower.tri(stat.matrix)] <- t(stat.matrix)[lower.tri(stat.matrix)]
+  if (method=="PCA"){
+  	df.matrix[lower.tri(df.matrix)] <- t(df.matrix)[lower.tri(df.matrix)]
+  	res <- list(p.value=pval.matrix,statistic=stat.matrix,df=df.matrix,method=res.method,parameter=res.parameter)
+  	} else {
+  		res <- list(p.value=pval.matrix,statistic=stat.matrix,method=res.method,parameter=res.parameter)
+  	}
+  	class(res) <- "GGInetwork"
+
+  	return(res)
 }
 
 # Function that order genes.info and SnpMatrix so that all SNP of a genes are contiguous
 order.snpMatrix <- function(snpX, genes.info) {
   genes.info <- genes.info[order(genes.info$Genenames, genes.info$SNPnames), ]
   snpX <- snpX[, as.character(genes.info$SNPnames)]
+
 
   return(list(snpX = snpX, genes.info = genes.info))
 }

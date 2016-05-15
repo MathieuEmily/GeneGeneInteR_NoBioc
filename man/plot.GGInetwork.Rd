@@ -7,7 +7,7 @@ GGI.plot(x,method=c("heatmap","network"),threshold=NULL,method.adjust=c("none","
 \arguments{
 \item{x}{\code{GGInetwork}. Given as output of \code{\link{GGI}}.}
 
-\item{method}{Output graph ("heatmap" for heatmap-like, "network" for network-like)}
+\item{method}{Output graph ("heatmap" for heatmap-like, "network" for network-like). Default is \code{heatmap}}
 
 \item{threshold}{A numeric between 0 and 1. All p-value strictly greater than
 that \code{threshold} are distinctly colored (See \code{NA.col}). Default is \code{NULL} corresponding to no threshold for applied for an heatmap graph and a 0.05 threshold applied for the network representation.}
@@ -100,10 +100,17 @@ dta <- select.snps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1"
 GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info)
 
 ## Plot of the results with default values
-GGI.plot(GGI.res)
+plot(GGI.res)
 
-## Plot of the results with a threshold and an ordering of the genes.
-GGI.plot(GGI.res,threshold=0.1,hclust.order=TRUE)
+## Plot of the results with a threshold and an ordering of the genes. Default method is an heatmap-like representation
+plot(GGI.res,threshold=0.1,hclust.order=TRUE)
+
+## Example of network with default threshold 0.05
+plot(GGI.res,method="network")
+
+## Example of network with threshold 0.01 where genes with no interaction are not plotted 
+# (plot.nointer=FALSE)
+plot(GGI.res,method="network",threshold=0.1,plot.nointer=FALSE)
 
 }
 \seealso{

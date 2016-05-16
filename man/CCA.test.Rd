@@ -15,7 +15,7 @@ Must have a number of row equal to Y argument's length.}
 \item{G2}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
 Must have a number of row equal to Y argument's length.}
 
-\item{n.boot}{integer strictly superior to 0. This is the number of bootstrap
+\item{n.boot}{positive integer. This is the number of bootstrap
 replicates for estimating variances. By default, this is fixed to 500.}
 }
 \value{

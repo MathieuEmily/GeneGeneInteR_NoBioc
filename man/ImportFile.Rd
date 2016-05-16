@@ -20,10 +20,9 @@ and positions.}
 \item{...}{Additionnal arguments to be passed to the reading file function.}
 }
 \value{
-The output is a list of two objects : \code{snpX}, a
- \href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} and \code{genes.info}
- a data frame with 4 columns, and one row per SNP. The columns are
- Chromosome, Genenames, SNPnames and position.
+A list of two objects : 
+\item{\code{snpX}}{a \href{http://bioconductor.org/packages/snpStats/}{SnpMatrix}}
+\item{\code{genes.info}}{a data frame with 4 columns, and one row per SNP. The columns are Chromosome, Genenames, SNPnames and position.}
 }
 \description{
 \code{ImportFile} generates a

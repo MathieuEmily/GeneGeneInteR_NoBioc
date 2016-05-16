@@ -21,8 +21,8 @@ Y are performed to compute the pvalue. By default, this is fixed to 500.}
 \value{
 A list with class \code{"GGItest"} containing the following components:
 
-	\item{statistic}{The value of the statistic (minimum p-value, tTS or tProd)}
-	\item{p.value}{Tue p-value for the test}
+	\item{statistic}{The value of the statistic U}
+	\item{p.value}{The p-value for the test}
 	\item{method}{The method used to perform the Gene-Gene interaction test}
 	\item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test}
 }
@@ -40,8 +40,7 @@ data(gene.pair)
 PLSPM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=100)
 }
 \references{
-\enumerate{\item X. Zhang et al. (2013) A PLSPM-based test statistic for detecting gene-gene co-association in genome-wide association study with case-control design. PLoS ONE, 8(4) :e62129. 
-	}
+X. Zhang et al. (2013) A PLSPM-based test statistic for detecting gene-gene co-association in genome-wide association study with case-control design. PLoS ONE, 8(4) :e62129.\cr
 }
 \seealso{
 \code{\link{GGI}}

@@ -10,9 +10,8 @@ A list with 3 objects:
 \source{
 All three objects were taken from NCBI web site and are part of the
   \href{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE39428}{GSE39428
-  series}
-  \enumerate{\item
-  Chang X., et al. Investigating a pathogenic role for TXNDC5 in tumors. Int. J. Oncol.,  43(6): 1871-84, 2013.}
+  series}\cr
+Chang X., et al. Investigating a pathogenic role for TXNDC5 in tumors. Int. J. Oncol.,  43(6): 1871-84, 2013.\cr
 }
 \usage{
 data(data.SNP)

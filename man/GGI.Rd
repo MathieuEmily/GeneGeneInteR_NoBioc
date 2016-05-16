@@ -2,19 +2,17 @@
 \alias{GGI}
 \title{Gene-Gene Interaction Analysis of a set of genes}
 \usage{
-GGI(Y, snpX, genes.length = NULL, genes.info = NULL, method = c("PCA",
-  "CCA", "KCCA", "CLD", "PLSPM", "GBIGM", "minP", "GATES", "tTS",
-  "tProd"), \dots)
+GGI(Y, snpX, genes.length = NULL, genes.info = NULL, method = c("minP","PCA", "CCA", "KCCA","CLD","PLSPM","GBIGM","GATES", "tTS", "tProd"), \dots)
 }
 \arguments{
 \item{Y}{numeric or factor vector with two values (most often 0, 1). This is
 the response variable and should be of length equal to the number of rows of
-\code{G1} and \code{G2} (number of individuals).}
+\code{snpX} (number of individuals).}
 
 \item{snpX}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix}
 object. Must have a number of rows equal to Y argument's length.}
 
-\item{genes.length}{\emph{(optional)}a numeric vector. It is the length (in columns/SNP) of each
+\item{genes.length}{\emph{(optional)} a numeric vector. It is the length (in columns/SNP) of each
 gene. Each gene declared is considered contiguous with the one before and
 after it. \code{genes.length} can be named if you want the returned matrix
 to have dimensions named after those. If no names are given then generic
@@ -26,9 +24,7 @@ named \code{Genenames}, \code{SNPnames}, \code{Position} and
 \code{Chromosome}. Each row describes a SNP and missing values are not
 allowed.}
 
-\item{method}{a string matching one of the following: PCA, PCA,
-CCA, KCCA, CLD, PLSPM, GBIGM, minP, GATES, tTS or tProd. Only one method can
-be parsed.}
+\item{method}{a string matching one of the following: PCA, CCA, KCCA, CLD, PLSPM, GBIGM, minP, GATES, tTS or tProd. Only one method can be parsed.}
 
 \item{\dots}{Other optional arguments to be passed to the functions associated
 with the method chosen. See more in elementary methods help.}
@@ -38,7 +34,7 @@ A list with class \code{"GGInetwork"} containing the following components:
 
 \item{statistic}{a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the statistic of the interaction between the two genes.}
 \item{p.value}{a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the statistic of the interaction between the two genes.}
-\item{df}{\emph{Only for \code{method="PCA"}} a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the degrees of freedom of the interaction test.}
+\item{df}{\emph{(Only for \code{method="PCA"}).} a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the degrees of freedom of the interaction test.}
 \item{method}{The method used to perform the Gene-Gene interaction test.}
 \item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test.}
 }
@@ -51,10 +47,10 @@ This function is a wrapper for all Gene-Gene Interaction analysis methods and dr
  overall analysis: splitting the dataset in genes matrices and starting
  elementary analysis for each pair of genes.
 
- \emph{SNP from the same gene are assumed to be ordered along the chromosome. 
- See \code{\link{select.snps}}}
+ \emph{SNPs from the same gene are assumed to be ordered along the chromosome. 
+ See \code{\link{select.snps}}.}
 
- If \code{genes.lenghts} is provided, it contains the number of SNPs of each gene. For example, 
+ If \code{genes.lenght} is provided, it contains the number of SNPs of each gene. For example, 
  if \code{genes.length} is the vector: c(20, 35, 15), then gene 1 will be interpreted as the set 
  of the first 20 columns/SNPs of \code{snpX}, gene 2 will be interpreted as the following 
  35 columns/SNP, etc.

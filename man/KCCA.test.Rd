@@ -17,14 +17,13 @@ Must have a number of row equal to Y argument's length.}
 
 \item{kernel}{A kernel function \code{\link[kernlab]{dots}} object. Default is a Gaussian RBF kernel}
 
-\item{n.boot}{integer strictly superior to 0. This is the number of bootstrap
-replicates for the variances estimation. By default, this is fixed to 500.}
+\item{n.boot}{positive integer. This is the number of bootstrap replicates for the variances estimation. By default, this is fixed to 500.}
 }
 \value{
 A list with class \code{"GGItest"} containing the following components:
 
-	\item{statistic}{The value of the statistic (minimum p-value, tTS or tProd)}
-	\item{p.value}{Tue p-value for the test}
+	\item{statistic}{The value of the statistic KCCU}
+	\item{p.value}{The p-value for the test}
 	\item{method}{The method used to perform the Gene-Gene interaction test}
 	\item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test}
 }
@@ -43,10 +42,8 @@ KCCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
 }
 }
 \references{
-\enumerate{
-\item Yuan, Z. et al. (2012): Detection for gene-gene co-association via kernel canonical correlation analysis, BMC Genetics, 13, 83.
-\item Larson, N. B. et al. (2013): A kernel regression approach to gene-gene interaction detection for case-control studies, Genetic Epidemiology, 37, 695-703.
-}
+Yuan, Z. et al. (2012): Detection for gene-gene co-association via kernel canonical correlation analysis, BMC Genetics, 13, 83. \cr
+Larson, N. B. et al. (2013): A kernel regression approach to gene-gene interaction detection for case-control studies, Genetic Epidemiology, 37, 695-703. \cr
 }
 \seealso{
 \code{\link{GGI}}, \code{\link{CCA.test}}

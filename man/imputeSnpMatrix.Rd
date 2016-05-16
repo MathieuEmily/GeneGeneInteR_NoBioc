@@ -20,10 +20,10 @@ remaining missing values. \emph{See details}}
 should be displayed.}
 }
 \value{
-a list object with two named elements:\describe{ \item{\code{snpX}}{a
- \code{SnpMatrix} object corresponding to input matrix with imputed values.}
- \item{\code{genes.info}}{a data frame object corresponding to an updated
- version of input \code{genes.info} in case SNP had to be removed.}}
+a list object with two named elements:
+\item{\code{snpX}}{a \code{SnpMatrix} object corresponding to input matrix with imputed values.}
+\item{\code{genes.info}}{a data frame object corresponding to an updated
+ version of input \code{genes.info} in case SNP had to be removed.}
 
  A warning is printed when SNPs or individuals are removed.
 }

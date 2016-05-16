@@ -22,8 +22,8 @@ Must have a number of row equal to Y argument's length.}
 \value{
 A list with class \code{"GGItest"} containing the following components:
 
-	\item{statistic}{The value of the statistic (minimum p-value, tTS or tProd)}
-	\item{p.value}{Tue p-value for the test}
+	\item{statistic}{The value of the statistic: the deviance of the anova test}
+	\item{p.value}{The p-value for the test}
 	\item{method}{The method used to perform the Gene-Gene interaction test}
 	\item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test}
 	
@@ -49,9 +49,7 @@ PCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7,method="St
 PCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7,method="GenFreq")
 }
 \references{
-	\enumerate{\item J. Li et al. (2009) Identification of gene-gene interaction using principal components. BMC
- Proceedings, 3 (Suppl. 7): S78
- }
+J. Li et al. (2009) Identification of gene-gene interaction using principal components. BMC Proceedings, 3 (Suppl. 7): S78\cr
 }
 \seealso{
 \code{\link{GGI}}

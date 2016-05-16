@@ -38,9 +38,7 @@ data(gene.pair)
 CCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
 }
 \references{
-\enumerate{\item Qianqian Peng, Jinghua Zhao, and Fuzhong Xue. A
- gene-based method for detecting gene-gene co-association in a case-control
- study. European Journal of Human Genetics, 18(5) :582-587, May 2010.}
+Qianqian Peng, Jinghua Zhao, and Fuzhong Xue. A gene-based method for detecting gene-gene co-association in a case-control study. European Journal of Human Genetics, 18(5) :582-587, May 2010.\cr
 }
 \seealso{
 \code{\link{GGI}}, \code{\link{KCCA.test}}

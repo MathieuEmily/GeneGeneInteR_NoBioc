@@ -20,17 +20,20 @@ string for GATES method. \code{me.est} corresponds to the method for estimating 
 }
 \value{
 A list with class \code{"GGItest"} containing the following components:
-
+	\item{statistic}{The value of the statistic: the p-value kept as the minimum after GATES correction)}
 	\item{p.value}{Tue p-value for the test}
 	\item{method}{The method used to perform the Gene-Gene interaction test}
-
+	\item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test}
 }
 \description{
-\code{gates.test} aims at performing gene-gene interaction analysis based on SNP-SNP interaction tests. The following methods are used to combine SNP-SNP interaction tests
+\code{gates.test}, \code{minP.test}, \code{tTS.test} and \code{tProd.test} aim at performing gene-gene interaction analysis based on SNP-SNP interaction tests. The following methods are used to combine SNP-SNP interaction tests
  into a single Gene-Gene Interaction p-value: 
  \itemize{ 
+ 	\item Minimum p-value in \code{minP.test} function 
  	\item Gene Association Test with Extended Simes procedure in \code{gates.test}
- }
+ 	\item Truncated Tail Strength in \code{tTS.test} function
+ 	\item Truncated p-value Product in \code{tProd.test} function
+}
 }
 \details{
 	In a first step, all methods start by applying a logistic regression model to test all pairs of SNPs between the two genes \code{G1} and \code{G2}. If \code{G1} has \eqn{m1} SNPs and \code{G2} \eqn{m2} SNPs, a total of \eqn{m1 * m2} SNP-SNP tests are performed. In a second step, the \eqn{m1 * m2} SNP-SNP tests are combined according to their covariance matrix \eqn{\Sigma}. \eqn{\Sigma} is computed as described in the method developped in Emily (2016). The covariance \eqn{\Sigma} is used in each method as follows:

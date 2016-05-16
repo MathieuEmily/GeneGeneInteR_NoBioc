@@ -16,10 +16,10 @@ objects. Must have a number of row equal to Y argument's length.}
 \value{
 A list with class \code{"GGItest"} containing the following components:
 
-	\item{statistic}{The value of the statistic (minimum p-value, tTS or tProd)}
-	\item{p.value}{Tue p-value for the test}
+	\item{statistic}{The value of the statistic: the minimum p-value}
+	\item{p.value}{The p-value for the test}
 	\item{method}{The method used to perform the Gene-Gene interaction test}
-
+	\item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test}
 }
 \description{
 \code{gates.test}, \code{minP.test}, \code{tTS.test} and \code{tProd.test} aim at performing gene-gene interaction analysis based on SNP-SNP interaction tests. The following methods are used to combine SNP-SNP interaction tests

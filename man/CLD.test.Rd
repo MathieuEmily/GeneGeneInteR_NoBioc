@@ -39,7 +39,7 @@ data(gene.pair)
 CLD.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
 }
 \references{
-\enumerate{\item Indika Rajapakse, Michael D. Perlman, Paul J. Martin, John A. Hansen, and Charles Kooperberg. Multivariate detection of gene-gene interactions. Genetic Epidemiology, 36(6) :622-630, 2012.}
+Indika Rajapakse, Michael D. Perlman, Paul J. Martin, John A. Hansen, and Charles Kooperberg. Multivariate detection of gene-gene interactions. Genetic Epidemiology, 36(6) :622-630, 2012.\cr
 }
 \seealso{
 \code{\link{GGI}}

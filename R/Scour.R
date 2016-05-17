@@ -114,10 +114,11 @@ snpMatrixScour <- function(snpX, genes.length = NULL, genes.info = NULL,
 # A SNP is considered valid if it meets following criteria:
 #     - MAF is superior to min.maf arguments
 #     - Hardy-Weinberg equilibrium is verified using min.eq threshold
-GeneScour <- function(gene, min.maf = 0.01, min.eq = 0.01, call.rate=0.1){
+GeneScour <- function(gene, min.maf = 0.01, min.eq = 0.01, call.rate=0.9){
   # NA filter
-  SNP.CallRate <- colSums(!is.na(gene))/nrow(gene)
-
+#  SNP.CallRate <- colSums(!is.na(gene))/nrow(gene)
+	SNP.CallRate <- snpStats::col.summary(gene)$Call.rate
+	
   # MAF filtering
   SNP.MAF <- snpStats::col.summary(gene)$MAF
 
@@ -142,7 +143,7 @@ GeneScour <- function(gene, min.maf = 0.01, min.eq = 0.01, call.rate=0.1){
 
   # Filtering
   if (any(SNP.MAF >= min.maf & p.X >= min.eq & SNP.CallRate >= call.rate)) {
-    return(gene[, (SNP.MAF >= min.maf & p.X >= min.eq & SNP.CallRate <= call.rate)])
+    return(gene[, (SNP.MAF >= min.maf & p.X >= min.eq & SNP.CallRate >= call.rate)])
   } else {
     stop("No SNP with sufficient MAF and verifying Hardy-Weinberg equilibrium")
   }

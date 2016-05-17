@@ -13,7 +13,7 @@ select.snps <- function(snpX, genes.info, select){
     if(any(c(select<1, select>ncol(snpX)))){
       stop("The selection of snps is out of bounds.")
     } else {
-      res[["gentoypes"]] <- snpX[,select]
+      res[["snpX"]] <- snpX[,select]
       res[["genes.info"]] <- genes.info[select,]
     }
 

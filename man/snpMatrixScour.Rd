@@ -3,7 +3,7 @@
 \title{SNP filtering based on MAF and Hardy-Weinberg Equilibrium}
 \usage{
 snpMatrixScour(snpX, genes.length = NULL, genes.info = NULL,
-  min.maf = 0.01, min.eq = 0.01, call.rate = 0.1)
+  min.maf = 0.01, min.eq = 0.01, call.rate = 0.9)
 }
 \arguments{
 \item{snpX}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object from which SNPs are to be removed}

@@ -25,5 +25,5 @@ importFrom(plspm,plspm)
 S3method(print, GGItest)
 S3method(summary, GGItest)
 S3method(summary, GGInetwork)
-S3method(summary, GGInetwork)
+S3method(plot, GGInetwork)
 

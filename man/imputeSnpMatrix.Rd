@@ -56,7 +56,8 @@ dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 
 ## Example 1 without SNPs filtering
 ## In this example, 9 SNPs were removed due to remaining missing values.
-imputed.snps.1 <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
+\dontrun{imputed.snps.1 <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
+}
 
 ## Example 2 with SNPs filtering priori to the imputation
 ## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. 

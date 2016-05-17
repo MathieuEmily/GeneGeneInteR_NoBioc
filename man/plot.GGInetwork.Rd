@@ -90,7 +90,7 @@ Y  <- read.csv(resp, header=FALSE)
 ## plot of the interaction between the 17 genes with the CLD method -- can take a few minutes
 \dontrun{
 GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="CLD")
-GGI.plot(GGI.res,threshold=0.05)
+plot(GGI.res,threshold=0.05)
 }
 
 ## plot of the interaction between 12 among the 17 genes with the default PCA method 

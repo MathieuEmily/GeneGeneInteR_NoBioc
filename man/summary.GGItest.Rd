@@ -17,7 +17,6 @@
 }
 \examples{
 
-## Not run:
 ## Dataset is included in the package
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
@@ -50,6 +49,5 @@ GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info)
 ## Summary of the results with default values
 summary(GGI.res)
 
-## End (Not run)
 }
 

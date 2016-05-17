@@ -22,31 +22,11 @@ for (i in 1:length(ll)){#
 	}#
 	cat("\")#
 }
-ll <- list(a=1,b=3)#
-for (i in 1:length(ll)){#
-	cat(names(ll)[i],"=")#
-	cat(ll[[i]])#
-	if (i != length(ll)){#
-		cat(" - ")#
-	}#
-	cat("\")#
-}
-ll <- list(a=1,b=3)#
-for (i in 1:length(ll)){#
-	cat(names(ll)[i],"=")#
-	cat(ll[[i]])#
-	if (i != length(ll)){#
-		cat(" - ")#
-	}#
-	cat("\")#
-}
 ll
-ll}
 ll}
 ll)
 )
 }
-)
 )
 )"
 ""
@@ -116,3 +96,62 @@ summary.GGItest <- function(x){#
 	}#
 }
 summary(tmp)
+require(GeneGeneInteR)
+data(gene.pair)#
+CCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
+data(gene.pair)#
+gene.pair$Y
+head(gene.pair$Y)
+?PCA.test
+PCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7,method="GenFreq")
+PCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7,method="Std")
+set.seed(1234)#
+CCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.boot=500)
+?dots
+?kcca
+set.seed(1234)#
+PLSPM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=1000)
+set.seed(1234)#
+CLD.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=2000)
+set.seed(1234)#
+GBIGM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=2000)
+KCCA.test
+set.seed(1234)#
+minP.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
+set.seed(1234)#
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,alpha=0.05,me.est=c("ChevNy"))
+set.seed(1234)#
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,me.est=c("ChevNy"))
+set.seed(1234)
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,me.est=c("ChevNy"))
+set.seed(1234)#
+minP.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,alpha=0.05,me.est=c("Keff"))
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,alpha=0.05,me.est=c("LiJi"))
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,alpha=0.05,me.est=c("Galwey"))
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,me.est=c("ChevNy,Keff"))
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,me.est="ChevNy")
+set.seed(1234)#
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,me.est="ChevNy")#
+set.seed(1234)#
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,alpha=0.05,me.est="Keff")#
+set.seed(1234)#
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,me.est="LiJi")#
+set.seed(1234)#
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,me.est="Galwey")
+library(devtools)
+install_github("MathieuEmily/GeneGeneInteR")
+install_github("MathieuEmily/GeneGeneInteR")
+install_github("MathieuEmily/GeneGeneInteR")
+set.seed(1234)#
+tTS.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,tau=0.5,n.sim=500)
+set.seed(1234)#
+tTS.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,tau=0.5,n.sim=2000)
+set.seed(1234)#
+tTS.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,tau=0.5,n.sim=2000)
+set.seed(1234)#
+tTS.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,tau=0.5,n.sim=10000)
+set.seed(1234)#
+tProd.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,tau=0.5,n.sim=1000)
+install_github("MathieuEmily/GeneGeneInteR")
+?ImportFile

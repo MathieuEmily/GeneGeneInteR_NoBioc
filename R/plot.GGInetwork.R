@@ -1,8 +1,11 @@
-plot.GGInetwork <- function(x,method=c("heatmap","network"),threshold=NULL,col=c("#D6604D", "#104E8B"), colbar.width=0.15,title=NULL, hclust.order=FALSE, use.log=FALSE,NA.col="#D3D3D3",draw.pvals=(ncol(x$p.value) <= 15), draw.names=(ncol(x$p.value) <= 25),interact=!(draw.pvals && draw.names),method.adjust=c("none","holm","hochberg","hommel","bonferroni","BH","BY","fdr"),genes=1:ncol(x$p.value),plot.nointer=TRUE,...){
+plot.GGInetwork <- function(x,method=c("heatmap","network"), threshold=NULL, col=c("#D6604D", "#104E8B"), colbar.width=0.15, title=NULL,  hclust.order=FALSE, use.log=FALSE, NA.col="#D3D3D3", draw.pvals=(ncol(x$p.value) <= 15), draw.names=(ncol(x$p.value) <= 25), interact=!(draw.pvals && draw.names), method.adjust=c("none","holm","hochberg","hommel","bonferroni","BH","BY","fdr"), genes=1:ncol(x$p.value), plot.nointer=TRUE, ...){
+	if(class(x)!="GGInetwork") {
+	    stop("x should be an object of class GGInetwork.")
+	}
 	method <- match.arg(method)
 	switch(method,
-			heatmap=GGI.plot(GGI=x$p.value,genes=genes,col=col,colbar.width=colbar.width,title=title,hclust.order=hclust.order,use.log=use.log,threshold=threshold,NA.col=NA.col,draw.pvals=draw.pvals,interact=interact,method.adjust=method.adjust),
-			network=draw.network(GGI=x$p.value,genes=genes,threshold=threshold,plot.nointer=plot.nointer))
+			heatmap=GGI.plot(GGI=x$p.value, genes=genes, col=col, colbar.width=colbar.width, title=title, hclust.order=hclust.order, use.log=use.log, threshold=threshold, NA.col=NA.col, draw.pvals=draw.pvals, interact=interact, method.adjust=method.adjust),
+			network=draw.network(GGI=x$p.value, genes=genes, threshold=threshold, plot.nointer=plot.nointer))
 }
 
 
@@ -495,8 +498,6 @@ clear.tooltip <- function(inter.tip, prime.plot) {
 
 
 draw.network <- function(GGI,genes=1:ncol(GGI),threshold=0.05,plot.nointer=TRUE,method.adjust=c("none","holm","hochberg","hommel","bonferroni","BH","BY","fdr")){
-	print(class(GGI))
-	print(GGI)
   if(length(genes)<2 || length(genes)>ncol(GGI)){
     stop("Number of genes selected not valid.")
   } else if(!class(GGI)%in%c("data.frame","matrix")){

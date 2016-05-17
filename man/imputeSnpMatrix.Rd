@@ -49,22 +49,28 @@ Although, such a process allows the imputation of a large number of missing SNPs
 Removing all SNP is often more parsimonious than removing individuals and allows to get a dataset without any missing values with minimum information-loss.
 }
 \examples{
+\dontrun{
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
-dta <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+data.imported <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 
 ## Example 1 without SNPs filtering
 ## In this example, 9 SNPs were removed due to remaining missing values.
-\dontrun{imputed.snps.1 <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
-}
+imputed.snps.1 <- imputeSnpMatrix(data.imported$snpX, genes.info = data.imported$genes.info)
+
 
 ## Example 2 with SNPs filtering priori to the imputation
-## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. 
-# No filtering is applied regarding missing data (call.rate=0).
-dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,call.rate=0)
+## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 or SNPs with call.rate < 0.9 are removed. 
+data.scour <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,call.rate=0)
+
+}
+
+## Equivalent loading of data for example 2
 ## Imputation of the missing genotypes
-imputed.snps.2 <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
+load(system.file("extdata/dataScour.Rdata", package="GeneGeneInteR"))
+
+data.imputed <- imputeSnpMatrix(data.scour$snpX, genes.info = data.scour$genes.info)
 }
 \seealso{
 \code{\link{GGI}} \code{\link{snpMatrixScour}}

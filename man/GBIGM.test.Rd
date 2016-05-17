@@ -35,7 +35,7 @@ First, the conditional entropy and information gain rate are computed for each g
 }
 \examples{
 data(gene.pair)
-GBIGM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
+GBIGM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=500)
 }
 \references{
 J. Li, et al.. A gene-based information gain method for detecting gene-gene interactions in case-control studies. European Journal of Human Genetics, 23 :1566-1572, 2015.\cr

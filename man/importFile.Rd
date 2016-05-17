@@ -62,7 +62,7 @@ info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 
 ## Importation
-dta <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+data.imported <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 
 #########
 ## VCF file from GGtools package.

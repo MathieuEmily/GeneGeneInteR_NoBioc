@@ -39,15 +39,18 @@ This function removes SNPs that does not meet all following criteria:
 If \code{genes.length} and \code{genes.info} are provided by the user, an updated version is returned by \code{snpMatrixScour}. The returned object can be directly used as inputs of the \code{\link{GGI}} function.
 }
 \examples{
+\dontrun{
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
-dta <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+data.imported <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+}
+### Equivalent loading of the imported data
+load(system.file("extdata/dataImported.Rdata", package="GeneGeneInteR"))
 
 ## In this example, SNPs are with MAF lower than 0.2 or p-value for HWE testing lower than 0.05 or
 # a proportion of missing value higher than 0.2 are removed
-new.snps <- snpMatrixScour(dta$snpX, genes.info = dta$genes.info,
-                           min.maf = 0.2, min.eq=0.05, call.rate = 0.8)
+data.scour1 <- snpMatrixScour(data.imported$snpX, genes.info = data.imported$genes.info,min.maf = 0.2, min.eq=0.05, call.rate = 0.8)
 ## Two genes have been completely removed from the resulting dataset.
 }
 \seealso{

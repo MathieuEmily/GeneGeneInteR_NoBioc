@@ -106,18 +106,21 @@ argument will result in an error. Imputation can be performed prior to the analy
  \code{\link{imputeSnpMatrix}} function.
 }
 \examples{
+\dontrun{
 ## Dataset is included in the package
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 
 ## Importation of the genotypes
-dta <- importFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
-## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. 
-# No filtering is applied regarding missing data (call.rate=0).
-dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,call.rate=0)
+data.imported <- importFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
+## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 or SNPs with call.rate < 0.9 are removed. 
+data.scour <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,call.rate=0.9)
 ## Imputation of the missing genotypes
-dta <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
+data.imputed <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
+}
+## Equivalent loading of the genotypes
+load(system.file("extdata/dataImputed.Rdata", package="GeneGeneInteR"))
 
 ## Importation of the phenotype
 resp <- system.file("extdata/response.txt", package="GeneGeneInteR")
@@ -130,7 +133,7 @@ GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="CLD")
 
 ## estimation of the interaction between 12 among the 17 genes with the default PCA method 
 ## Selection of 12 genes among 17
-dta <- selectSnps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4",
+dta <- selectSnps(data.imputed$snpX, data.imputed$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4",
       "PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
 GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="PCA")
 

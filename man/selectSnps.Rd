@@ -39,15 +39,19 @@ for \code{genes.info}) of each snp selected.
 }
 \examples{
 ## Importation of the dataset
+\dontrun{
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
-dta <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+data.imported <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+}
+### Equivalent loading of the imported data
+load(system.file("extdata/dataImported.Rdata", package="GeneGeneInteR"))
 
 ## Selection of the genes DNAH9 and TXNDC5
-selec <- selectSnps(dta$snpX, dta$genes.info, c("DNAH9","TXNDC5"))
+selec <- selectSnps(data.imported$snpX, data.imported$genes.info, c("DNAH9","TXNDC5"))
 
 ## Selection of the snps from position 101342000 to 101490000 on chromosome 15
-selec <- selectSnps(dta$snpX, dta$genes.info, c("15:101342000:101490000"))
+selec <- selectSnps(data.imported$snpX, data.imported$genes.info, c("15:101342000:101490000"))
 }
 

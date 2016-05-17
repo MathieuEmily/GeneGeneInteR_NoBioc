@@ -12,9 +12,11 @@ ImportFile <- function (file, pos, pos.sep="\t", ...) {
 
   if (ext==".ped") {
     imp <- snpStats::read.pedfile(file = file, ...)
+	res[["status"]]	<- as.factor(imp$fam$affected)
 
   } else if (extgz==".ped.gz") {
     imp <- snpStats::read.pedfile(file = file, ...)
+	res[["status"]]	<- as.factor(imp$fam$affected)
 
   } else if (ext == ".bed") {
     imp <- snpStats::read.plink(bed = file, ...)

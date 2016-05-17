@@ -1,4 +1,4 @@
-KCCA.test <- function(Y, G1, G2, kernel=rbfdot(sigma = 0.05),n.boot = 500){
+KCCA.test <- function(Y, G1, G2, kernel=c("rbfdot","polydot","tanhdot","vanilladot","laplcadedot","besseldot","anovadot","splinedot"),n.boot = 500,sigma=0.05,degree=1,scale=1,offset=1,order=1){
 
   if (!is.null(dim(Y))) {
     Y <- Y[, 1]
@@ -24,17 +24,21 @@ KCCA.test <- function(Y, G1, G2, kernel=rbfdot(sigma = 0.05),n.boot = 500){
     stop("The snpMatrix must be complete. No NAs are allowed.")
   } else if (sum(is.na(Y))!=0) {
     stop("The response variable must be complete. No NAs are allowed.")
-  } else if (class(kernel)!="rbfkernel" & 
-	  	class(kernel)!="polykernel" & 
-	  	class(kernel)!="tanhkernel" & 
-	  	class(kernel)!="vanillakernel" &
-	  	class(kernel)!="laplacekernel" & 
-	  	class(kernel)!="besselkernel" & 
-	  	class(kernel)!="anovakernel" &
-	  	class(kernel)!="splinekernel"
-  ) {
-    stop("The kernel is uncorrectly specified. See the kernel functions in the kernlab package.")
   }
+
+  kernel <- match.arg(kernel)
+  kernel <- switch(kernel,
+		rbfdot = kernlab::rbfdot(sigma=sigma),
+		polydot = kernlab::polydot(degree=degree,scale=scale,offset=offset),
+		tanhdot = kernlab::tanhdot(scale=scale,offset=offset)
+		vanilladot = kernlab::vanilladot(),
+		laplcadedot = kernlab::laplcadedot(sigma=sigma),
+		besseldot = kernlab::besseldot(sigma=sigma,order=order,degree=degree),
+		anovadot = kernlab::anovadot(sigma=sigma,degree=degree),
+		splinedot = kernlab::splinedot()
+		)
+                                                                         
+
 
   X1 <- as(G1, "numeric")
   X2 <- as(G2, "numeric")

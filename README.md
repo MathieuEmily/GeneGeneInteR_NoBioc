@@ -59,14 +59,14 @@ Visualization of the results can be performed through either a matrix display (G
 
 ```ruby
 ## Plot of the results with default values
-GGI.plot(GGI.res)
+plot(GGI.res)
 ## Plot of the results with a threshold and an ordering of the genes.
-GGI.plot(GGI.res,threshold=0.1,hclust.order=TRUE)
+plot(GGI.res,threshold=0.1,hclust.order=TRUE)
 
 ## Example of network with default threshold 0.05
-draw.network(GGI.res)
+plot(GGI.res,method="network")
 ## Example of network with threshold 0.01 where genes with no interaction are not plotted (plot.nointer=FALSE)
-draw.network(GGI.res,threshold=0.1,plot.nointer=FALSE)
+plot(GGI.res,threshold=0.1,plot.nointer=FALSE,method="network")
 ```
 
 

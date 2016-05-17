@@ -14,7 +14,7 @@ summary.GGInetwork <- function(object, ...){
 	bonferroni=p.adjust(pval.none,method="bonferroni"),
 	BH=p.adjust(pval.none,method="BH")
 	)
-
+	
 	w <- which(pval$None < 0.05)
 	if (length(w)){
 		tmp.df <- pval[w,c(1,2,3)]
@@ -29,7 +29,7 @@ summary.GGInetwork <- function(object, ...){
 	w <- which(pval$bonferroni < 0.05)
 	if (length(w) > 0){
 		tmp.df <- pval[w,c(1,2,4)]
-		tmp.df <- tmp.df[order(tmp.df[,4]),]
+		tmp.df <- tmp.df[order(tmp.df[,3]),]
 		row.names(tmp.df) <- NULL
 		names(tmp.df) <- c("Gene1","Gene2","bonferroni p-value")
 		cat("\nSignificant interaction with a bonferroni correction at the level of 0.05 \n\n")
@@ -40,7 +40,7 @@ summary.GGInetwork <- function(object, ...){
 	w <- which(pval$BH < 0.05)
 	if (length(w) > 0){
 		tmp.df <- pval[w,c(1,2,5)]
-		tmp.df <- tmp.df[order(tmp.df[,5]),]
+		tmp.df <- tmp.df[order(tmp.df[,3]),]
 		row.names(tmp.df) <- NULL
 		names(tmp.df) <- c("Gene1","Gene2","BH p-value")
 		cat("\nSignificant interaction with a Benjamini & Hochberg correction at the level of 0.05 \n\n")

@@ -1,4 +1,4 @@
-export(CCA.test,CLD.test,GBIGM.test,GGI,ImportFile,KCCA.test,PCA.test,PLSPM.test,gates.test,imputeSnpMatrix)
+export(CCA.test,CLD.test,GBIGM.test,GGI,importFile,KCCA.test,PCA.test,PLSPM.test,gates.test,imputeSnpMatrix)
 export(minP.test,select.snps,snpMatrixScour,tProd.test,tTS.test,print.GGItest,summary.GGItest,summary.GGInetwork,plot.GGInetwork)
 
 

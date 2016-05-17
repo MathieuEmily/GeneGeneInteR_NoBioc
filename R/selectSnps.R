@@ -1,4 +1,4 @@
-select.snps <- function(snpX, genes.info, select){
+selectSnps <- function(snpX, genes.info, select){
   if(class(snpX)!="SnpMatrix"){
     stop("snpX must be a snpMatrix object.")
   } else if(class(genes.info)!="data.frame"){

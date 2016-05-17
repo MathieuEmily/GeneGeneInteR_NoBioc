@@ -123,23 +123,26 @@ GeneScour <- function(gene, min.maf = 0.01, min.eq = 0.01, call.rate=0.9){
   SNP.MAF <- snpStats::col.summary(gene)$MAF
 
   # Hardy-Weinberg Equilibrium check
-  AA <- colSums(as(gene, "numeric") == 2, na.rm=TRUE)
-  Aa <- colSums(as(gene, "numeric") == 1, na.rm=TRUE)
-  aa <- colSums(as(gene, "numeric") == 0, na.rm=TRUE)
+  # AA <- colSums(as(gene, "numeric") == 2, na.rm=TRUE)
+  # Aa <- colSums(as(gene, "numeric") == 1, na.rm=TRUE)
+  # aa <- colSums(as(gene, "numeric") == 0, na.rm=TRUE)
 
-  p <- (2*AA + Aa)/(2*(AA + Aa + aa))
-  q <- 1 - p
+  # p <- (2*AA + Aa)/(2*(AA + Aa + aa))
+  # q <- 1 - p
 
-  E.AA <- p^2 * nrow(gene)
-  E.Aa <- 2 * p * q * nrow(gene)
-  E.aa <- q^2 * nrow(gene)
+  # E.AA <- p^2 * nrow(gene)
+  # E.Aa <- 2 * p * q * nrow(gene)
+  # E.aa <- q^2 * nrow(gene)
 
-  # Chi-Square test
-  X.AA <- ((AA - E.AA)^2)/E.AA
-  X.Aa <- ((Aa - E.Aa)^2)/E.Aa
-  X.aa <- ((aa - E.aa)^2)/E.aa
-  X <- X.AA + X.Aa + X.aa
-  p.X <- pchisq(X, 1, lower.tail=FALSE)
+  # # Chi-Square test
+  # X.AA <- ((AA - E.AA)^2)/E.AA
+  # X.Aa <- ((Aa - E.Aa)^2)/E.Aa
+  # X.aa <- ((aa - E.aa)^2)/E.aa
+  # X <- X.AA + X.Aa + X.aa
+  # p.X <- pchisq(X, 1, lower.tail=FALSE)
+	
+	p.X <- 2*(1-pnorm(abs(snpStats::col.summary(gene)$z.HWE)))
+
 
   # Filtering
   if (any(SNP.MAF >= min.maf & p.X >= min.eq & SNP.CallRate >= call.rate)) {

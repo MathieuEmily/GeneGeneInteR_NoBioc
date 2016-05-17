@@ -2,7 +2,12 @@
 \alias{plot.GGInetwork}
 \title{Plot a Gene-Gene Interaction Study with an heatmap-like visualization}
 \usage{
-GGI.plot(x,method=c("heatmap","network"),threshold=NULL,method.adjust=c("none","holm","hochberg","hommel","bonferroni","BH","BY","fdr"),genes=1:ncol(x$p.value),col=c("#D6604D", "#104E8B"), colbar.width=0.15,title=NULL, hclust.order=FALSE, use.log=FALSE,NA.col="#D3D3D3",draw.pvals=(ncol(x$p.value) <= 15), draw.names=(ncol(x$p.value) <= 25),interact=!(draw.pvals && draw.names),plot.nointer=TRUE,...)
+\method{plot}{GGInetwork}(x,method=c("heatmap","network"),threshold=NULL, 
+col=c("#D6604D","#104E8B"),colbar.width=0.15, title=NULL,hclust.order=FALSE, 
+use.log=FALSE,NA.col="#D3D3D3",draw.pvals=(ncol(x$p.value) <= 15), 
+draw.names=(ncol(x$p.value)<= 25),interact=!(draw.pvals && draw.names), 
+method.adjust=c("none","holm","hochberg","hommel","bonferroni","BH","BY","fdr"), 
+genes=1:ncol(x$p.value), plot.nointer=TRUE, \dots)
 }
 \arguments{
 \item{x}{\code{GGInetwork}. Given as output of \code{\link{GGI}}.}
@@ -97,12 +102,13 @@ plot(GGI.res,threshold=0.05)
 ## Selection of 12 genes among 17
 dta <- select.snps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4",
                    "PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
-GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info)
+GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="PCA")
 
 ## Plot of the results with default values
 plot(GGI.res)
 
-## Plot of the results with a threshold and an ordering of the genes. Default method is an heatmap-like representation
+## Plot of the results with a threshold and an ordering of the genes. 
+## Default method is an heatmap-like representation
 plot(GGI.res,threshold=0.1,hclust.order=TRUE)
 
 ## Example of network with default threshold 0.05

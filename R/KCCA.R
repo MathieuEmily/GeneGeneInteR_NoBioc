@@ -1,4 +1,4 @@
-KCCA.test <- function(Y, G1, G2, kernel=c("rbfdot","polydot","tanhdot","vanilladot","laplcadedot","besseldot","anovadot","splinedot"),n.boot = 500,sigma=0.05,degree=1,scale=1,offset=1,order=1){
+KCCA.test <- function(Y, G1, G2, kernel=c("rbfdot","polydot","tanhdot","vanilladot","laplacedot","besseldot","anovadot","splinedot"),n.boot = 500,sigma=0.05,degree=1,scale=1,offset=1,order=1){
 
   if (!is.null(dim(Y))) {
     Y <- Y[, 1]
@@ -32,7 +32,7 @@ KCCA.test <- function(Y, G1, G2, kernel=c("rbfdot","polydot","tanhdot","vanillad
 		polydot = kernlab::polydot(degree=degree,scale=scale,offset=offset),
 		tanhdot = kernlab::tanhdot(scale=scale,offset=offset),
 		vanilladot = kernlab::vanilladot(),
-		laplcadedot = kernlab::laplcadedot(sigma=sigma),
+		laplacedot = kernlab::laplacedot(sigma=sigma),
 		besseldot = kernlab::besseldot(sigma=sigma,order=order,degree=degree),
 		anovadot = kernlab::anovadot(sigma=sigma,degree=degree),
 		splinedot = kernlab::splinedot()

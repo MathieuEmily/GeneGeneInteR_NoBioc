@@ -44,7 +44,7 @@ GGI.plot(GGI.res,threshold=0.05)
 ## Selection of 12 genes among 17
 dta <- select.snps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4",
                    "PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
-GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info)
+GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="PCA")
 
 ## Summary of the results with default values
 summary(GGI.res)

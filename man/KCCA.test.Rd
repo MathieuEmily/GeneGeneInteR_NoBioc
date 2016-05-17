@@ -2,7 +2,9 @@
 \alias{KCCA.test}
 \title{KCCA (Kernel Canonical-Correlation Analysis) based GGI analysis.}
 \usage{
-KCCA.test(Y, G1, G2, =c("rbfdot","polydot","tanhdot","vanilladot","laplcadedot","besseldot","anovadot","splinedot"),n.boot = 500,sigma=0.05,degree=1,scale=1,offset=1,order=1)
+KCCA.test(Y, G1, G2,kernel=c("rbfdot","polydot","tanhdot","vanilladot","laplacedot",
+"besseldot","anovadot","splinedot"),n.boot = 500,sigma=0.05,degree=1,scale=1,offset=1,
+order=1)
 }
 \arguments{
 \item{Y}{numeric or factor vector with two values (most often 0, 1). This is
@@ -15,7 +17,7 @@ Must have a number of row equal to Y argument's length.}
 \item{G2}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
 Must have a number of row equal to Y argument's length.}
 
-\item{kernel}{A character string matching one of the kernel name in : "rbfdot","polydot","tanhdot","vanilladot","laplcadedot","besseldot","anovadot","splinedot". For more details regarding kernel function see \code{\link[kernlab]{dots}} object. Default is a Gaussian RBF kernel}
+\item{kernel}{A character string matching one of the kernel name in : "rbfdot","polydot","tanhdot","vanilladot","laplacedot","besseldot","anovadot","splinedot". For more details regarding kernel function see \code{\link[kernlab]{dots}} object. Default is a Gaussian RBF kernel}
 
 \item{n.boot}{positive integer. This is the number of bootstrap replicates for the variances estimation. By default, this is fixed to 500.}
 

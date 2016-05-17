@@ -2,7 +2,8 @@
 \alias{GGI}
 \title{Gene-Gene Interaction Analysis of a set of genes}
 \usage{
-GGI(Y, snpX, genes.length = NULL, genes.info = NULL, method = c("minP","PCA", "CCA", "KCCA","CLD","PLSPM","GBIGM","GATES", "tTS", "tProd"), \dots)
+GGI(Y, snpX, genes.length = NULL, genes.info = NULL, method = c("minP","PCA", "CCA",
+ "KCCA","CLD","PLSPM","GBIGM","GATES", "tTS", "tProd"), \dots)
 }
 \arguments{
 \item{Y}{numeric or factor vector with two values (most often 0, 1). This is

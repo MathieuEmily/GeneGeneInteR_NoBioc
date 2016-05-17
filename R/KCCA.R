@@ -30,7 +30,7 @@ KCCA.test <- function(Y, G1, G2, kernel=c("rbfdot","polydot","tanhdot","vanillad
   kernel <- switch(kernel,
 		rbfdot = kernlab::rbfdot(sigma=sigma),
 		polydot = kernlab::polydot(degree=degree,scale=scale,offset=offset),
-		tanhdot = kernlab::tanhdot(scale=scale,offset=offset)
+		tanhdot = kernlab::tanhdot(scale=scale,offset=offset),
 		vanilladot = kernlab::vanilladot(),
 		laplcadedot = kernlab::laplcadedot(sigma=sigma),
 		besseldot = kernlab::besseldot(sigma=sigma,order=order,degree=degree),

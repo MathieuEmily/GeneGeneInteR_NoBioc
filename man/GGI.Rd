@@ -49,7 +49,7 @@ This function is a wrapper for all Gene-Gene Interaction analysis methods and dr
  elementary analysis for each pair of genes.
 
  \emph{SNPs from the same gene are assumed to be ordered along the chromosome. 
- See \code{\link{select.snps}}.}
+ See \code{\link{selectSnps}}.}
 
  If \code{genes.lenght} is provided, it contains the number of SNPs of each gene. For example, 
  if \code{genes.length} is the vector: c(20, 35, 15), then gene 1 will be interpreted as the set 
@@ -112,7 +112,7 @@ info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 
 ## Importation of the genotypes
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
+dta <- importFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
 ## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. 
 # No filtering is applied regarding missing data (call.rate=0).
 dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,call.rate=0)
@@ -130,7 +130,7 @@ GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="CLD")
 
 ## estimation of the interaction between 12 among the 17 genes with the default PCA method 
 ## Selection of 12 genes among 17
-dta <- select.snps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4",
+dta <- selectSnps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4",
       "PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
 GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="PCA")
 

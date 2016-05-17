@@ -1,15 +1,14 @@
-\name{select.snps}
-\alias{select.snps}
-\title{Selects SNPs in snpMatrix and associated info data.frame, outputs of
-ImportFile.}
+\name{selectSnps}
+\alias{selectSnps}
+\title{Selects SNPs in snpMatrix and associated info data.frame, outputs of importFile.}
 \usage{
-select.snps(snpX, genes.info, select)
+selectSnps(snpX, genes.info, select)
 }
 \arguments{
-\item{snpX}{\href{http://bioconductor.org/packages/snpStats/}{snpMatrix} object. Given as output of \code{\link{ImportFile}}.}
+\item{snpX}{\href{http://bioconductor.org/packages/snpStats/}{snpMatrix} object. Given as output of \code{\link{importFile}}.}
 
 \item{genes.info}{Data.frame containing informations about snps. For more
-details, refer to \code{\link{ImportFile}} help file.}
+details, refer to \code{\link{importFile}} help file.}
 
 \item{select}{Numeric or character vector for selecting snps in \code{snpX}
 and \code{genes.info}. See details for more information.}
@@ -23,13 +22,13 @@ A list of two objects :
 An error message is displayed if the genes of snps selected are not found in the either \code{snpX} or \code{genes.info}.
 }
 \description{
-\code{select.snps} allows the user to select snps from an object output of
-\code{\link{ImportFile}}. It generates the same object, with the columns of
+\code{selectSnps} allows the user to select snps from an object output of
+\code{\link{importFile}}. It generates the same object, with the columns of
 the \href{http://bioconductor.org/packages/snpStats/}{snpMatrix} and the rows
 of the data.frame corresponding to the selected snps.
 }
 \details{
-The column names of the \code{genes.info} data.frame should correspond to the output \code{genes.info} object returned by \code{\link{ImportFile}} function.
+The column names of the \code{genes.info} data.frame should correspond to the output \code{genes.info} object returned by \code{\link{importFile}} function.
 
 The \code{select} argument should one of the following: 
 \itemize{
@@ -43,12 +42,12 @@ for \code{genes.info}) of each snp selected.
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+dta <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 
 ## Selection of the genes DNAH9 and TXNDC5
-selec <- select.snps(dta$snpX, dta$genes.info, c("DNAH9","TXNDC5"))
+selec <- selectSnps(dta$snpX, dta$genes.info, c("DNAH9","TXNDC5"))
 
 ## Selection of the snps from position 101342000 to 101490000 on chromosome 15
-selec <- select.snps(dta$snpX, dta$genes.info, c("15:101342000:101490000"))
+selec <- selectSnps(dta$snpX, dta$genes.info, c("15:101342000:101490000"))
 }
 

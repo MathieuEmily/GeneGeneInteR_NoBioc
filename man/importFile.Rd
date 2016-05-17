@@ -1,9 +1,9 @@
-\name{ImportFile}
-\alias{ImportFile}
+\name{importFile}
+\alias{importFile}
 \title{Imports SNPs information from pedfile, PLINK, VCF (4.0) file, or genotypes
 imputed by IMPUTE2.}
 \usage{
-ImportFile(file, pos, pos.sep = "\t", ...)
+importFile(file, pos, pos.sep = "\t", ...)
 }
 \arguments{
 \item{file}{String containing the path of the file to import.}
@@ -23,17 +23,17 @@ A list of two objects :
 \item{\code{genes.info}}{a data frame with 4 columns, and one row per SNP. The columns are Chromosome, Genenames, SNPnames and position.}
 }
 \description{
-\code{ImportFile} generates a
+\code{importFile} generates a
 \href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object on the
 basis of diallelic object contained in a file, and creates also a data frame
 containing information about positions of the SNPs on the genome.
 }
 \details{
-As input information, \code{ImportFile} takes the full paths of the files to be imported. Files are then read with
+As input information, \code{importFile} takes the full paths of the files to be imported. Files are then read with
 \code{\link[snpStats]{read.pedfile}}, \code{\link[snpStats]{read.plink}},
 \code{\link[GGtools]{vcf2sm}}, or \code{\link[snpStats]{read.impute}},
 depending on the file extension (pedfile, plink, vcf or impute2). For a
-pedfile, \code{ImportFile} also reads the ".info" file associated (this must
+pedfile, \code{importFile} also reads the ".info" file associated (this must
 be in the same directory as the ".ped". Similarly, for a PLINK, there must be
 3 files with extensions ".bed" (passed as argument \code{file}), ".bim" and
 ".fam". A VCF file must be with the associated ".tbi" file.
@@ -62,7 +62,7 @@ info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 
 ## Importation
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+dta <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 
 #########
 ## VCF file from GGtools package.
@@ -70,7 +70,7 @@ dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 vref <- system.file("vcf/CEU.exon.2010_09.genotypes.vcf.gz", package="GGtools")
 irange <- IRanges::IRanges(10e6,20e6)
 gg = GenomicRanges::GRanges(seqnames="1", ranges=irange)
-dta <- ImportFile(file=vref, gr=gg, nmetacol=9L)
+dta <- importFile(file=vref, gr=gg, nmetacol=9L)
 }
 }
 

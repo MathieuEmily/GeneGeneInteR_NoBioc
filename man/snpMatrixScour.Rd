@@ -42,7 +42,7 @@ If \code{genes.length} and \code{genes.info} are provided by the user, an update
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+dta <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 
 ## In this example, SNPs are with MAF lower than 0.2 or p-value for HWE testing lower than 0.05 or
 # a proportion of missing value higher than 0.2 are removed

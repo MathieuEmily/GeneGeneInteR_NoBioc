@@ -3,7 +3,7 @@
 \title{SNP filtering based on MAF and Hardy-Weinberg Equilibrium}
 \usage{
 snpMatrixScour(snpX, genes.length = NULL, genes.info = NULL,
-  min.maf = 0.01, min.eq = 0.01, NA.rate = 0.1)
+  min.maf = 0.01, min.eq = 0.01, call.rate = 0.1)
 }
 \arguments{
 \item{snpX}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object from which SNPs are to be removed}
@@ -16,7 +16,7 @@ snpMatrixScour(snpX, genes.length = NULL, genes.info = NULL,
 
 \item{min.eq}{a single value between 0 and 1 that gives the maximum acceptable p-value for the \eqn{\chi ^2} verifying HWE deviation. SNP that does not meet that criterion are removed. Default is 0.01.}
 
-\item{NA.rate}{a single value between 0 and 1 that gives the maximum acceptable proportion of missing values. Default is 0.1. High frequencies of missing values (NA) can make imputation harder (residual missing values).}
+\item{call.rate}{a single value between 0 and 1 that gives the minimum acceptable call rate for a SNP. Default is 0.9. Low values for SNPs call rate can make imputation harder (residual missing values).}
 }
 \value{
 A list with two objects:
@@ -33,7 +33,7 @@ This function removes SNPs that does not meet all following criteria:
 \itemize{
 	\item \eqn{MAF < }\code{min.maf},
 	\item \eqn{HWE < }\code{min.eq}, where HWE is the p-value of the \eqn{\chi ^2} test of deviation to Hardy-Weinberg Equilibrium,
-	\item \eqn{NA > }\code{NA.rate}, where NA is the proportion of missing values.
+	\item \eqn{call rate > }\code{call.rate}.
 }
 
 If \code{genes.length} and \code{genes.info} are provided by the user, an updated version is returned by \code{snpMatrixScour}. The returned object can be directly used as inputs of the \code{\link{GGI}} function.
@@ -47,7 +47,7 @@ dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 ## In this example, SNPs are with MAF lower than 0.2 or p-value for HWE testing lower than 0.05 or
 # a proportion of missing value higher than 0.2 are removed
 new.snps <- snpMatrixScour(dta$snpX, genes.info = dta$genes.info,
-                           min.maf = 0.2, min.eq=0.05, NA.rate = 0.2)
+                           min.maf = 0.2, min.eq=0.05, call.rate = 0.8)
 ## Two genes have been completely removed from the resulting dataset.
 }
 \seealso{

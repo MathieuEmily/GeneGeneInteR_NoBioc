@@ -153,7 +153,7 @@ D.V. Zaykin, L.A. Zhivotovsky, P.H. Westfall and B.S. Weir. Truncated product me
 \seealso{
 \code{\link{PCA.test}},
  \code{\link{CCA.test}}, \code{\link{KCCA.test}}, \code{\link{CLD.test}},
- \code{\link{PLSPM.test}}, \code{\link{GBIGM.test}}, \code{\link{GGI.plot}},
+ \code{\link{PLSPM.test}}, \code{\link{GBIGM.test}}, \code{\link{plot.GGInetwork}},
  \code{\link{minP.test}}, \code{\link{gates.test}}, \code{\link{tTS.test}},
  \code{\link{tProd.test}}, \code{\link{imputeSnpMatrix}}
 }

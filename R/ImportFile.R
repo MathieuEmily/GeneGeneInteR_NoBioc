@@ -1,4 +1,4 @@
-ImportFile <- function (file, pos, pos.sep="\t", ...) {
+importFile <- function (file, pos, pos.sep="\t", ...) {
 
   if(class(file)!="character"){
     stop("Please, enter a valid path file for genotype data.")

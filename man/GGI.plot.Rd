@@ -80,8 +80,8 @@ posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 ## Importation of the genotypes
 dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
 ## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. 
-# No filtering is applied regarding missing data (NA.rate=1).
-dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,NA.rate=1)
+# No filtering is applied regarding missing data (call.rate=0).
+dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,call.rate=0)
 ## Imputation of the missing genotypes
 dta <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
 

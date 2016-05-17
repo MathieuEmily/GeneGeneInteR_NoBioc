@@ -60,8 +60,8 @@ imputed.snps.1 <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
 
 ## Example 2 with SNPs filtering priori to the imputation
 ## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. 
-# No filtering is applied regarding missing data (NA.rate=1).
-dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,NA.rate=1)
+# No filtering is applied regarding missing data (call.rate=0).
+dta <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,call.rate=0)
 ## Imputation of the missing genotypes
 imputed.snps.2 <- imputeSnpMatrix(dta$snpX, genes.info = dta$genes.info)
 }

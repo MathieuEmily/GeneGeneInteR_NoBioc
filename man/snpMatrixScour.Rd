@@ -26,7 +26,7 @@ A list with two objects:
 }
 }
 \description{
-\code{snpMatrixScour} aims at filtering out SNPs of a \href{http://bioconductor.org/packages/snpStats/}{snpMatrix} object based on Minor Allele Frequency criterion and deviation to Hardy-Weinberg Equilibrium.
+\code{snpMatrixScour} aims at filtering out SNPs of a \href{http://bioconductor.org/packages/snpStats/}{snpMatrix} object based on Minor Allele Frequency criterion, deviation to Hardy-Weinberg Equilibrium and SNPs call rate.
 }
 \details{
 This function removes SNPs that does not meet all following criteria:

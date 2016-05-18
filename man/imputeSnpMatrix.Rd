@@ -61,8 +61,10 @@ imputed.snps.1 <- imputeSnpMatrix(data.imported$snpX, genes.info = data.imported
 
 
 ## Example 2 with SNPs filtering priori to the imputation
-## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 or SNPs with call.rate < 0.9 are removed. 
-data.scour <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,min.eq=1e-3,call.rate=0)
+## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 or SNPs with
+## call.rate < 0.9 are removed. 
+data.scour <- snpMatrixScour(snpX=dta$snpX,genes.info=dta$genes.info,min.maf=0.05,
+                              min.eq=1e-3,call.rate=0)
 
 }
 

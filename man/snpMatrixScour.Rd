@@ -50,7 +50,8 @@ load(system.file("extdata/dataImported.Rdata", package="GeneGeneInteR"))
 
 ## In this example, SNPs are with MAF lower than 0.2 or p-value for HWE testing lower than 0.05 or
 # a proportion of missing value higher than 0.2 are removed
-data.scour1 <- snpMatrixScour(data.imported$snpX, genes.info = data.imported$genes.info,min.maf = 0.2, min.eq=0.05, call.rate = 0.8)
+data.scour1 <- snpMatrixScour(data.imported$snpX, genes.info = data.imported$genes.info,
+                               min.maf = 0.2, min.eq=0.05, call.rate = 0.8)
 ## Two genes have been completely removed from the resulting dataset.
 }
 \seealso{

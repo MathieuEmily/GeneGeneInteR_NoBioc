@@ -83,8 +83,10 @@ posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
 
 ## Importation of the genotypes
 data.imported <- importFile(file=ped, snps=info, pos=posi, pos.sep="\\t")
-## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 or call rate < 0.9 are removed. 
-data.scour <- snpMatrixScour(snpX=data.imported$snpX,genes.info=data.imported$genes.info,min.maf=0.05,min.eq=1e-3,call.rate=0.9)
+## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 or 
+## call rate < 0.9 are removed. 
+data.scour <- snpMatrixScour(snpX=data.imported$snpX,genes.info=data.imported$genes.info,
+                              min.maf=0.05,min.eq=1e-3,call.rate=0.9)
 ## Imputation of the missing genotypes
 data.imputed <- imputeSnpMatrix(data.scour$snpX, genes.info = data.scour$genes.info)
 
@@ -97,8 +99,8 @@ GGI.res <- GGI(Y=Y, snpX=dta$snpX, genes.info=dta$genes.info,method="CLD")
 plot(GGI.res,threshold=0.05)
 
 ## Selection of 12 genes among 17
-data.select <- selectSnps(data.imputed$snpX, data.imputed$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4",
-                   "PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
+data.select <- selectSnps(data.imputed$snpX, data.imputed$genes.info, c("bub3","CDSN","Gc","GLRX",
+                          "PADI1","PADI2","PADI4","PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
 GGI.res <- GGI(Y=Y, snpX=data.select$snpX, genes.info=data.select$genes.info,method="PCA")
 }
 ## Equivalent importation of the GGI.res object

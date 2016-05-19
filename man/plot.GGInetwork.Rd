@@ -12,7 +12,7 @@ genes=1:ncol(x$p.value), plot.nointer=TRUE, \dots)
 \arguments{
 \item{x}{\code{GGInetwork}. Given as output of \code{\link{GGI}}.}
 
-\item{method}{Output graph ("heatmap" for heatmap-like, "network" for network-like). Default is \code{heatmap}}
+\item{method}{Output graph ("heatmap" for heatmap-like, "network" for network-like). Default is \code{heatmap}.}
 
 \item{threshold}{A numeric between 0 and 1. All p-value strictly greater than
 that \code{threshold} are distinctly colored (See \code{NA.col}). Default is \code{NULL} corresponding to no threshold for applied for an heatmap graph and a 0.05 threshold applied for the network representation.}
@@ -21,40 +21,39 @@ that \code{threshold} are distinctly colored (See \code{NA.col}). Default is \co
 
 \item{genes}{Numeric vector allowing a selection of the genes that will be included in the relations. Default is set to all genes.}
 
-\item{col}{\emph{Only for \code{method=heatmap}} String vector. Marker colors to be used for the gradient. The first
+\item{col}{(\emph{Only for \code{method=heatmap}}.) String vector. Marker colors to be used for the gradient. The first
 element of the vector is the value for 0 and the last is for 1. If only one
 value is parsed, that color is used for 0 and white is automatically used
 for 1. Any value compatible with \code{\link{colorRampPalette}} function.}
 
-\item{colbar.width}{\emph{Only for \code{method=heatmap}} A positive number describing the gradient bar width ratio.
+\item{colbar.width}{(\emph{Only for \code{method=heatmap}}.) A positive number describing the gradient bar width ratio.
 That number is used to keep the gradient bar's width steady as the size of
 \code{GGI} increases.}
 
-\item{title}{\emph{Only for \code{method=heatmap}} A string used as the plot title. If left as NULL, a generic name
+\item{title}{(\emph{Only for \code{method=heatmap}}.) A string used as the plot title. If left as NULL, a generic name
 is generated.}
 
-\item{hclust.order}{\emph{Only for \code{method=heatmap}} A boolean. Should a hierachical clustering procedure be performed on \code{GGI} to order the matrix ?}
+\item{hclust.order}{(\emph{Only for \code{method=heatmap}}.) A boolean. Should a hierachical clustering procedure be performed on \code{GGI} to order the matrix ?}
 
-\item{use.log}{\emph{Only for \code{method=heatmap}} A boolean. Should the p-values be reported in -log10? FALSE by default.}
+\item{use.log}{(\emph{Only for \code{method=heatmap}}.) A boolean. Should the p-values be reported in -log10? FALSE by default.}
 
-\item{NA.col}{\emph{Only for \code{method=heatmap}} A string. The color used when a p-value is strictly greater than \code{threshold}.}
+\item{NA.col}{(\emph{Only for \code{method=heatmap}}.) A string. The color used when a p-value is strictly greater than \code{threshold}.}
 
-\item{draw.pvals}{\emph{Only for \code{method=heatmap}} A boolean. Should p-values be plotted ? Disabled when the size of \code{GGI} exceeds \eqn{15*15}.}
+\item{draw.pvals}{(\emph{Only for \code{method=heatmap}}.) A boolean. Should p-values be plotted ? Disabled when the size of \code{GGI} exceeds \eqn{15*15}.}
 
-\item{draw.names}{\emph{Only for \code{method=heatmap}} A boolean. Should genes' names be plotted on matrix margins? Disabled when the size of \code{GGI} exceeds \eqn{25*25}.}
+\item{draw.names}{(\emph{Only for \code{method=heatmap}}.) A boolean. Should genes' names be plotted on matrix margins? Disabled when the size of \code{GGI} exceeds \eqn{25*25}.}
 
-\item{interact}{\emph{Only for \code{method=heatmap}} A boolean. Should the plot be clickable ? (See Details for more information). Disabled when open R session is not interactive.}
+\item{interact}{(\emph{Only for \code{method=heatmap}}.) A boolean. Should the plot be clickable ? (See Details for more information). Disabled when open R session is not interactive.}
 
-\item{plot.nointer}{\emph{Only for \code{method=network}} A boolean. Set TRUE if the genes with no interaction should be plotted.}
+\item{plot.nointer}{(\emph{Only for \code{method=network}}.) A boolean. Set TRUE if the genes with no interaction should be plotted.}
 
 \item{\dots}{further arguments passed to or from other methods.}
 }
 \description{
-\code{GGI.plot} is a graphical function that allow the heatmap-like visualization of a Gene-Gene Interaction study based on a set of genes.
- The plot possess an interactive functionality when p-values or genes names couldn't be drawn.
+\code{GGI.plot} is a graphical function that allow a heatmap-like or a network-like visualization of a Gene-Gene Interaction study based on a set of genes.
 }
 \details{
-	If \code{method=heatmap}, this function draw the upper half of a Gene-Gene Interaction results matrix without its diagonal (as it holds no meaning). A gradient is created from 0 to 1 (by default from crimson to white) and the matrix cells are colored according to the corresponding p-value.
+	If \code{method=heatmap}, this function draw the upper half of a Gene-Gene Interaction results matrix without its diagonal. A gradient is created from 0 to 1 (by default from crimson to white) and the matrix cells are colored according to the corresponding p-value.
 
  By  default, p-values and names are drawn to make matrix reading easier, but
  in case parameter \code{GGI} is large, p-values (and eventually gene names as

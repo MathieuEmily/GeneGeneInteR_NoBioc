@@ -27,7 +27,7 @@ A list with class \code{"GGItest"} containing the following components:
 }
 \description{
 \code{PLSPM.test} performs a Gene-Gene Interaction (GGI) analysis based on the
-modelisation of a statistical relations network. The aim is to quantify the
+modelisation of a netwrok of statistical relations. The aim is to quantify the
 connections between the latent and the manifest variables.
 }
 \details{

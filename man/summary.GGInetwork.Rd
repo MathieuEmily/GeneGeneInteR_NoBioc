@@ -2,7 +2,6 @@
 \alias{summary.GGInetwork}
 \title{Printing summaries class \code{"GGInetwork"} objects}
 \usage{
-	## S3 method for class 'GGInetwork'
 \method{summary}{GGInetwork}(object, \dots)
 }
 \arguments{

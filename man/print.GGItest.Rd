@@ -5,7 +5,7 @@
 \method{print}{GGItest}(x, \dots)
 }
 \arguments{
-\item{x}{\code{GGItest}. Given as output of \code{\link{CCA.test}}.}
+\item{x}{\code{GGItest}. Given as output of \code{\link{CCA.test}} for example.}
 \item{\dots}{further arguments passed to or from other methods} 
 }
 \value{

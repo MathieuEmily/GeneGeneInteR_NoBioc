@@ -29,20 +29,10 @@ A list with class \code{"GGItest"} containing the following components:
 	
 }
 \description{
-\code{PCA.test} performs a Gene-Gene Interaction (GGI) analysis by testing the interaction between the principal components of the two genes. With \code{method="Std"} PCA is standardized using variables' standard deviation. With \code{method="GenFreq"}, dataset is standardized using the standard deviation under Hardy-Weinberg equilibrium, as proposed in the \href{http://bioconductor.org/packages/snpStats/}{snpStats} Bioconductor package. 
+\code{PCA.test} performs a Gene-Gene Interaction (GGI) analysis by testing the interaction between the principal components of the two genes. With \code{method="Std"} PCA is standardized using standard deviation for each variable. With \code{method="GenFreq"}, dataset is standardized using the standard deviation under Hardy-Weinberg equilibrium, as proposed in the \href{http://bioconductor.org/packages/snpStats/}{snpStats} Bioconductor package. 
 }
 \details{
-In a first step, \code{PCA.test} performs a Principal Components Analysis on both \code{G1} and \code{G2} genes that are interpreted as matrices of allele counts. With the \code{method="Std"}, the dataset is standardized using variables' standard deviation,  while dataset is standardized using standard deviation under Hardy-Weinberg equilibrium for \code{method="GenFreq"}. 
-
- Principal components are retrieved to describe each dataset with user-set
- inertia percentage (parameter \code{threshold}).
-
- Principal components are then used in a logit model fitting process in which
- interaction is tested. If model fitting fails then a PC is removed from the
- pool and a new attempt to fitting is made. The process loops until either
- the model is fitted or there are only two PC for each genes remaining.
- Principal components are removed according to lowest inertia percentage.
-}
+In a first step, \code{PCA.test} performs a Principal Components Analysis on both \code{G1} and \code{G2} genes that are interpreted as matrices of allele counts. With the \code{method="Std"}, the dataset is standardized using variables standard deviation,  while dataset is standardized using standard deviation under Hardy-Weinberg equilibrium for \code{method="GenFreq"}.  Principal components are then retrieved to describe each dataset with user-defined inertia percentage (parameter \code{threshold}) and used in a logistic regression model. The consists is testing the significance of the interaction terms using a Likelihood Ratio Test (see Li et al. (2009)).}
 \examples{
 data(gene.pair)
 PCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,threshold=0.7,method="Std")

@@ -1,6 +1,6 @@
 \name{snpMatrixScour}
 \alias{snpMatrixScour}
-\title{SNP filtering based on MAF and Hardy-Weinberg Equilibrium}
+\title{SNP filtering based on Minor Allele Frequency, Hardy-Weinberg Equilibrium and call rate}
 \usage{
 snpMatrixScour(snpX, genes.length = NULL, genes.info = NULL,
   min.maf = 0.01, min.eq = 0.01, call.rate = 0.9)
@@ -12,7 +12,7 @@ snpMatrixScour(snpX, genes.length = NULL, genes.info = NULL,
 
 \item{genes.info}{\emph{(optional)} a \code{\link[base]{data.frame}} with four columns named \code{Genenames}, \code{SNPnames}, \code{Position} and \code{Chromosome}. Each row describes a SNP and missing values are not allowed.}
 
-\item{min.maf}{a single value between O and O.5 that gives the threshold for the MAF (Minor Allele Frequency) of a SNP. SNP with MAF < \code{min.maf} are removed. Default is 0.01.}
+\item{min.maf}{a single value between 0 and 0.5 that gives the threshold for the MAF (Minor Allele Frequency) of a SNP. SNP with MAF < \code{min.maf} are removed. Default is 0.01.}
 
 \item{min.eq}{a single value between 0 and 1 that gives the maximum acceptable p-value for the \eqn{\chi ^2} verifying HWE deviation. SNP that does not meet that criterion are removed. Default is 0.01.}
 
@@ -33,7 +33,7 @@ This function removes SNPs that does not meet all following criteria:
 \itemize{
 	\item \eqn{MAF < }\code{min.maf},
 	\item \eqn{HWE < }\code{min.eq}, where HWE is the p-value of the \eqn{\chi ^2} test of deviation to Hardy-Weinberg Equilibrium,
-	\item \eqn{call rate > }\code{call.rate}.
+	\item Call rate \eqn{> }\code{call.rate}.
 }
 
 If \code{genes.length} and \code{genes.info} are provided by the user, an updated version is returned by \code{snpMatrixScour}. The returned object can be directly used as inputs of the \code{\link{GGI}} function.

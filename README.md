@@ -17,7 +17,7 @@ Supported format are pedfile, PLINK, VCF (4.0) file, or genotypes imputed by IMP
 ped <- system.file("extdata/example.ped", package="GeneGeneInteR")
 info <- system.file("extdata/example.info", package="GeneGeneInteR")
 posi <- system.file("extdata/example.txt", package="GeneGeneInteR")
-dta <- ImportFile(file=ped, snps=info, pos=posi, pos.sep="\t")
+dta <- importFile(file=ped, snps=info, pos=posi, pos.sep="\t")
 
 ## Importation of the phenotype
 resp <- system.file("extdata/response.txt", package="GeneGeneInteR")

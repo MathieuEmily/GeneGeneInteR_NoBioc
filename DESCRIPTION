@@ -7,8 +7,7 @@ Authors@R: c(
     person("Hou\'ee-Bigot", "Magalie", email = "magalie.houee@agrocampus-ouest.fr", role = "aut"),
     person("Kroell", "Florian", email = "fkroell@agrocampus-ouest.fr", role = "aut"),
     person("Sounac", "Nicolas", email = "nsounac@agrocampus-ouest.fr", role = "aut"))
-Description: The aim of this package is to propose several methods for testing
-    gene-gene interaction in case-control association studies. Such a test can be done by aggregating SNP-SNP interaction tests performed at the SNP level (SSI) or by using ene-gene multidimensionnal methods (GGI) methods. The package also proposes tools for a graphic display of the results.
+Description: The aim of this package is to propose several methods for testing gene-gene interaction in case-control association studies. Such a test can be done by aggregating SNP-SNP interaction tests performed at the SNP level (SSI) or by using gene-gene multidimensionnal methods (GGI) methods. The package also proposes tools for a graphic display of the results.
 License: GPL (>= 2)
 LazyData: TRUE
 Depends: R (>= 2.10)

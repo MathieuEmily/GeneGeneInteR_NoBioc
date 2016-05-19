@@ -47,8 +47,8 @@ difference of canonical correlations between cases and controls. The "kernel tri
 	The test statistic is based on the difference between a Fisher's transformation of the maximum of the kernelized canonical correlations in cases and controls. To calculate the test statistic for the interaction pvalue, \code{KCCA.test} estimates the variance of the Fisher's transformation of the maximum of the kernelized canonical correlations in cases and controls using a bootstrap method. The computation of \code{\link[kernlab]{kcca}.} can be very long.
 }
 \examples{
-\dontrun{
 data(gene.pair)
+\dontrun{
 KCCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
 }
 }

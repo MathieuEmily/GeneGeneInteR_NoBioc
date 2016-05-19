@@ -7,19 +7,19 @@ KCCA.test(Y, G1, G2,kernel=c("rbfdot","polydot","tanhdot","vanilladot","laplaced
 order=1)
 }
 \arguments{
-\item{Y}{numeric or factor vector with two values (most often 0, 1). This is
-the response variable and should be of length equal to the number of row of
-G1 and G2 arguments (number of individuals).}
+\item{Y}{numeric or factor vector with exactly two different values. \code{Y} is
+the response variable and should be of length equal to the number of rows of
+\code{G1} and \code{G2} arguments (number of individuals).}
 
 \item{G1}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
-Must have a number of row equal to Y argument's length.}
+Must have a number of rows equal to the length of \code{Y}.}
 
 \item{G2}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
-Must have a number of row equal to Y argument's length.}
+Must have a number of rows equal to the length of \code{Y}.}
 
 \item{kernel}{A character string matching one of the kernel name in : "rbfdot","polydot","tanhdot","vanilladot","laplacedot","besseldot","anovadot","splinedot". For more details regarding kernel function see \code{\link[kernlab]{dots}} object. Default is a Gaussian RBF kernel}
 
-\item{n.boot}{positive integer. This is the number of bootstrap replicates for the variances estimation. By default, this is fixed to 500.}
+\item{n.boot}{positive integer. \code{n.boot} is the number of bootstrap replicates for estimating variances. By default, this is fixed to 500.}
 
 \item{sigma}{The inverse kernel width used by the Gaussian the Laplacian (\code{kernel="rbfdot"}), the Bessel (\code{kernel="besseldot"}) and the ANOVA  (\code{kernel="anovadot"}) kernel. Default is \code{sigma=0.05}.}
 
@@ -44,8 +44,7 @@ A list with class \code{"GGItest"} containing the following components:
 difference of canonical correlations between cases and controls. The "kernel trick" is applied to the canonical correlation to allow the detection of non-linear co-association.
 }
 \details{
-	The test statistic is based on the difference between a Fisher's' transformation of the maximum of the kernelized canonical correlations in cases and controls. To calculate the test statistic for the interaction pvalue, \code{CCA.test} estimates the variance of the Fisher's' transformation of the maximum of the kernelized canonical correlations in cases and controls using a bootstrap method.
-	The computation of \code{\link[kernlab]{kcca}.} can be very long.
+	The test statistic is based on the difference between a Fisher's transformation of the maximum of the kernelized canonical correlations in cases and controls. To calculate the test statistic for the interaction pvalue, \code{KCCA.test} estimates the variance of the Fisher's transformation of the maximum of the kernelized canonical correlations in cases and controls using a bootstrap method. The computation of \code{\link[kernlab]{kcca}.} can be very long.
 }
 \examples{
 \dontrun{

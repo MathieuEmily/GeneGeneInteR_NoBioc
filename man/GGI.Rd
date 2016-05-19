@@ -6,21 +6,16 @@ GGI(Y, snpX, genes.length = NULL, genes.info = NULL, method = c("minP","PCA", "C
  "KCCA","CLD","PLSPM","GBIGM","GATES", "tTS", "tProd"), \dots)
 }
 \arguments{
-\item{Y}{numeric or factor vector with two values (most often 0, 1). This is
+\item{Y}{numeric or factor vector with exactly two different values. \code{Y} is
 the response variable and should be of length equal to the number of rows of
 \code{snpX} (number of individuals).}
 
-\item{snpX}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix}
-object. Must have a number of rows equal to Y argument's length.}
+\item{snpX}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object. Must have a number of rows equal to the length of \code{Y}. See details.}
 
-\item{genes.length}{\emph{(optional)} a numeric vector. It is the length (in columns/SNP) of each
-gene. Each gene declared is considered contiguous with the one before and
-after it. \code{genes.length} can be named if you want the returned matrix
-to have dimensions named after those. If no names are given then generic
-names are generated following the pattern Gene.n (n being the gene's index)
-.}
+\item{genes.length}{\emph{(optional)} a numeric vector. \code{gene.length} is the length (in columns/SNP) of each
+gene.}
 
-\item{genes.info}{\emph{(optional)} a data frame. It must have four columns
+\item{genes.info}{\emph{(optional)} a data frame. \code{genes.info} must have four columns
 named \code{Genenames}, \code{SNPnames}, \code{Position} and
 \code{Chromosome}. Each row describes a SNP and missing values are not
 allowed.}
@@ -45,7 +40,7 @@ in a set of genes.
 }
 \details{
 This function is a wrapper for all Gene-Gene Interaction analysis methods and drive the
- overall analysis: splitting the dataset in genes matrices and starting
+ overall analysis: splitting the dataset in gene matrices and starting
  elementary analysis for each pair of genes.
 
  \emph{SNPs from the same gene are assumed to be ordered along the chromosome. 
@@ -54,7 +49,11 @@ This function is a wrapper for all Gene-Gene Interaction analysis methods and dr
  If \code{genes.lenght} is provided, it contains the number of SNPs of each gene. For example, 
  if \code{genes.length} is the vector: c(20, 35, 15), then gene 1 will be interpreted as the set 
  of the first 20 columns/SNPs of \code{snpX}, gene 2 will be interpreted as the following 
- 35 columns/SNP, etc.
+ 35 columns/SNP, etc. Each gene declared is considered contiguous with the one before and
+after it. \code{genes.length} can be named if you want the returned matrix
+to have dimensions named after those. If no names are given then generic
+names are generated following the pattern Gene.n (n being the gene's index)
+.
 
 The following methods are available to perform the interaction test for a single pair of genes:
 
@@ -66,10 +65,9 @@ The interaction between the two genes is then tested using a likelihood ratio te
 logistic regression models (see Li et al. 2009).
 \item Canonical Correlation Analysis (CCA) \code{\link{CCA.test}} - The maximum of canonical 
 correlation between the two genes is computed for each group (cases and controls). The difference
- between the two transformed values (Fisher transformation) is used to test genes' interaction 
+ between the two transformed values (Fisher transformation) is used to test for interaction between genes
  (see Peng et al. 2010). 
-\item Kernel Canonical Correlation Analysis (KCCA) \code{\link{KCCA.test}} - This method is the 
-same as CCA but the canonical correlations are computed using Kernel method (see Yuan et al., 2012
+\item Kernel Canonical Correlation Analysis (KCCA) \code{\link{KCCA.test}} - This method is similar to the CCA method where the canonical correlations are computed using Kernel method (see Yuan et al., 2012
  and Larson et al., 2013). 
 \item Composite Linkage Disequilibrium (CLD) \code{\link{CLD.test}} - CLD is  based on the 
 difference of the covariance matrices between the two genes computed for cases and controls. 
@@ -101,7 +99,7 @@ interactions are first tested using a logistic regression model, thus generated 
 a different p-values transformation (see Zaykin, 2002)
 }
 
-Missing values are rejected and trying to parse an incomplete \code{SnpMatrix} object as an 
+Missing values are not allowed and trying to parse an incomplete \code{SnpMatrix} object as an 
 argument will result in an error. Imputation can be performed prior to the analysis with the
  \code{\link{imputeSnpMatrix}} function.
 }

@@ -6,7 +6,7 @@ imputeSnpMatrix(snpX, genes.info, on.rem = c("SNP", "ind", "none"),
   quiet = FALSE)
 }
 \arguments{
-\item{snpX}{\code{snpMatrix} object of which SNP are to be removed}
+\item{snpX}{\code{snpMatrix} object of which SNPs are to be removed}
 
 \item{genes.info}{A \code{\link[base]{data.frame}} with four columns named \code{Genenames},
 \code{SNPnames}, \code{Position} and \code{Chromosome}. Each row describes a
@@ -30,14 +30,14 @@ a list object with two named elements:
 \description{
 \code{imputeSnpMatrix} is a generic wrapper of
  \code{snp.imputation} and \code{impute.snps} functions from \code{snpStats}
- package. This function mimics a Leave-One-Out process where missing SNP are
+ package. This function mimics a Leave-One-Out process where missing SNPs are
  imputed for an individual based on a model trained on all other individuals.
 }
 \details{
 For the ith row in the \code{snpX} argument (i.e. the ith individual in the dataset), the following steps are performed:
 \itemize{
 \item missing SNPs are detected for individual i
-\item rules are imputed for every missing SNP using the whole dataset where individual i is removed
+\item rules are imputed for every missing SNPs using the whole dataset where individual i is removed
 \item SNPs are imputed for individual i
 }
 Although, such a process allows the imputation of a large number of missing SNPs, some missing values may remains. In that case, the user can specify the action to be done thanks to the \code{om.rem} arguments: 
@@ -46,7 +46,7 @@ Although, such a process allows the imputation of a large number of missing SNPs
 \item \code{om.rem="SNP"}: remove all SNPs with remaining missing values,
 \item \code{om.rem="ind"}: remove all individuals with remaining missing values.
 }
-Removing all SNP is often more parsimonious than removing individuals and allows to get a dataset without any missing values with minimum information-loss.
+Removing all SNPs is often more parsimonious than removing individuals and allows to get a dataset without any missing values with minimum information-loss.
 }
 \examples{
 \dontrun{

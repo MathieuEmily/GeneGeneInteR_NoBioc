@@ -5,18 +5,17 @@
 GBIGM.test(Y, G1, G2, n.perm = 1000)
 }
 \arguments{
-\item{Y}{numeric or factor vector with two values (most often 0, 1). This is
-the response variable and should be of length equal to the number of row of
-G1 and G2 arguments (number of individuals).}
+\item{Y}{numeric or factor vector with exactly two different values. \code{Y} is
+the response variable and should be of length equal to the number of rows of
+\code{G1} and \code{G2} arguments (number of individuals).}
 
 \item{G1}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
-Must have a number of row equal to Y argument's length.}
+Must have a number of rows equal to the length of \code{Y}.}
 
 \item{G2}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
-Must have a number of row equal to Y argument's length.}
+Must have a number of rows equal to the length of \code{Y}.}
 
-\item{n.perm}{positive integer. This is how much permutations
-of Y are performed to compute the pvalue. By default, this is fixed to 1000.}
+\item{n.perm}{positive integer. \code{n.perm} is the number of permutations performed to compute the pvalue. By default, this is fixed to 1000.}
 }
 \value{
 A list with class \code{"GGItest"} containing the following components:
@@ -31,7 +30,7 @@ A list with class \code{"GGItest"} containing the following components:
 \code{GBIGM.test} performs a Gene-Gene Interaction (GGI) analysis by contrasting the information entropy between cases and controls.
 }
 \details{
-First, the conditional entropy and information gain rate are computed for each gene G1 and G2. In a second step, information gain rate for the gene pair (G1,G2) is computed. A p-value is estimated using permutations of Y. More details can be found in Li et al. (2015).
+First, the conditional entropy and information gain rate are computed for each gene \code{G1} and \code{G2}. In a second step, information gain rate for the gene pair (\code{G1},\code{G2}) is computed. A p-value is estimated using permutations of \code{Y}. More details can be found in Li et al. (2015).
 }
 \examples{
 data(gene.pair)

@@ -5,17 +5,17 @@
 PCA.test(Y, G1, G2, threshold = 0.8,method="GenFreq")
 }
 \arguments{
-\item{Y}{numeric or factor vector with two values (most often 0, 1). This is
-the response variable and should be of length equal to the number of row of
-\code{G1} and \code{G2} (number of individuals).}
+\item{Y}{numeric or factor vector with exactly two different values. \code{Y} is
+the response variable and should be of length equal to the number of rows of
+\code{G1} and \code{G2} arguments (number of individuals).}
 
 \item{G1}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
-Must have a number of row equal to Y argument's length.}
+Must have a number of rows equal to the length of \code{Y}.}
 
 \item{G2}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
-Must have a number of row equal to Y argument's length.}
+Must have a number of rows equal to the length of \code{Y}.}
 
-\item{threshold}{(optional) numeric comprised in \eqn{[0, 1]} interval. This is how much inertia should be kept for each PCA and has a direct impact on how many PCA dimensions are kept.}
+\item{threshold}{(optional) numeric comprised in \eqn{[0, 1]} interval. \code{threshold} is the minimum percentage of inertia kept for each PCA.}
 
 \item{method}{(optional) character string for PCA method. Must be one of the following: "GenFreq", "Std" (See details).}
 }

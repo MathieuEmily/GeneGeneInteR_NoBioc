@@ -5,18 +5,17 @@
 PLSPM.test(Y, G1, G2,n.perm=500)
 }
 \arguments{
-\item{Y}{numeric or factor vector with two values (most often 0, 1). This is
-the response variable and should be of length equal to the number of row of
-G1 and G2 arguments (number of individuals).}
+\item{Y}{numeric or factor vector with exactly two different values. \code{Y} is
+the response variable and should be of length equal to the number of rows of
+\code{G1} and \code{G2} arguments (number of individuals).}
 
 \item{G1}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
-Must have a number of row equal to Y argument's length.}
+Must have a number of rows equal to the length of \code{Y}.}
 
 \item{G2}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
-Must have a number of row equal to Y argument's length.}
+Must have a number of rows equal to the length of \code{Y}.}
 
-\item{n.perm}{integer strictly superior to 0. This is how much permutations of
-Y are performed to compute the pvalue. By default, this is fixed to 500.}
+\item{n.perm}{positive integer. \code{n.perm} is the number of permutations performed to compute the pvalue. By default, this is fixed to 500.}
 }
 \value{
 A list with class \code{"GGItest"} containing the following components:

@@ -5,19 +5,19 @@
 tProd.test(Y, G1, G2, tau = 0.05, n.sim = 1000)
 }
 \arguments{
-\item{Y}{numeric or factor vector with two values (most often 0, 1). This is
-the response variable and should be of length equal to the number of row of
-G1 and G2 arguments (number of individuals).}
+\item{Y}{numeric or factor vector with exactly two different values. \code{Y} is
+the response variable and should be of length equal to the number of rows of
+\code{G1} and \code{G2} arguments (number of individuals).}
 
-\item{G1, G2}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix}
-objects. Must have a number of row equal to Y argument's length.}
+\item{G1}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
+Must have a number of rows equal to the length of \code{Y}.}
 
-\item{tau}{\emph{(optional, specific to \code{tTS.test} and
-\code{tProd.test})} numeric in [0, 1]. See details section for its use.}
+\item{G2}{\href{http://bioconductor.org/packages/snpStats/}{SnpMatrix} object.
+Must have a number of rows equal to the length of \code{Y}.}
 
-\item{n.sim}{\emph{(optional, specific to \code{tTS.test} and
-\code{tProd.test})} numeric positive value. \code{n.sim} is the number of multivariate normal distribution simulations used to compute the significant level for tTS and
-tProd methods.}
+\item{tau}{numeric in [0, 1]. See details section for its use.}
+
+\item{n.sim}{positive integer. \code{n.sim} is the number of multivariate normal distribution simulations used to compute the significant level for tTS and tProd methods.}
 }
 \value{
 A list with class \code{"GGItest"} containing the following components:
@@ -43,9 +43,8 @@ A list with class \code{"GGItest"} containing the following components:
 
  \itemize{ 
  	\item minP test - minP test considered the significant of the observed minimum p-value. Significance is computed by integrating the multivariate normal distribution with covariance \eqn{\Sigma} as proposed in Conneelly and Boehnke (2008).
- 	\item GATES test - The p-value for GATES is the minimum p-value obtained after a multiple testing correction of the SNP-SNP interaction p-value. Correction for multiple testing is defined as \deqn{me * p[i]/me[i]} where me is the effective number of independant tests, p[i] is the i-th top p-values and me[i] is the effective number of
- independant test among the top i p-values. Many methods
- exist to estimate \eqn{me} and \eqn{me[i]} terms: 
+ 	\item GATES test - The p-value for GATES is the minimum p-value obtained after a multiple testing correction of the SNP-SNP interaction p-values. Correction for multiple testing is defined as \deqn{me * p[i]/me[i]} where \eqn{me} is the effective number of independant tests, \eqn{p[i]} is the i-th top p-values and \eqn{me[i]} is the effective number of
+ independant test among the top i p-values. Many methods exist to estimate \eqn{me} and \eqn{me[i]} terms: 
  \itemize{
  	\item Cheverud-Nyholt method (Cheverud, 2001 and Nyholt, 2004)
  	\item Keff method (Moskovina and Schmidt, 2008)
@@ -55,8 +54,8 @@ A list with class \code{"GGItest"} containing the following components:
  	\item tTS test - tTS test does not consider only the strongest signal but all signals that are inferior to a given threshold \eqn{\tau}. For these
  p-values, the weighted sum of \deqn{tTS=\sum (1-p[i]*(m1*m2+1)/i)} is computed and
  represents the test statistic. The p-value is calculated using an empirical distribution of \eqn{tTS} obtained by simulating multivariate normal statistics with a covariance \eqn{\Sigma} as proposed by Jiang et al. (2011). 
- \item TProd test - The procedure is similar to \eqn{tTS} with \eqn{tProd} defined as \deqn{tProd=\prod p[i]}
-. See Zaykin et al. (2002) for details.}
+ \item TProd test - The procedure is similar to \eqn{tTS} with \eqn{tProd} defined as \deqn{tProd=\prod p[i].}
+See Zaykin et al. (2002) for details.}
 }
 \examples{
 data(gene.pair)

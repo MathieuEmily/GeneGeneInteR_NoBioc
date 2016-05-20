@@ -29,7 +29,7 @@ with the method chosen. See more in elementary methods help.}
 A list with class \code{"GGInetwork"} containing the following components:
 
 \item{statistic}{a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the statistic of the interaction between the two genes.}
-\item{p.value}{a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the statistic of the interaction between the two genes.}
+\item{p.value}{a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the p-value of the interaction between the two genes.}
 \item{df}{\emph{(Only for \code{method="PCA"}).} a symmetric \code{\link{matrix}} of size \eqn{G*G} where \eqn{G} is the number of genes studied. The general term of the matrix is the degrees of freedom of the interaction test.}
 \item{method}{The method used to perform the Gene-Gene interaction test.}
 \item{parameter}{A list of the parameters used to perform the Gene-Gene Interaction test.}

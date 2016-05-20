@@ -40,7 +40,7 @@ importFile <- function (file, pos, pos.sep="\t", ...) {
 
     if(length(pos)==1){
       if(class(pos)=="character"){
-        infos <- read.csv(pos, sep=pos.sep, header=T)
+        infos <- read.csv(pos, sep=pos.sep, header=TRUE)
 
         chr <- infos[,names(infos)%in%c("Chromosome","Chr","chromosome","chr")]
         gene <- infos[,names(infos)%in%c("Gene","gene","genenames","Genenames","Gene.names","gene.names")]

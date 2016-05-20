@@ -117,14 +117,14 @@ estim.var.kz <- function(X1,X2,kernel,n.boot=500){
   z.vec <- rep(NA,times=n.boot)
 
   for (i in 1:n.boot){
-    restart<-T
+    restart<-TRUE
 
     while(restart){
       ind.boot <- sample(1:nrow(X1),nrow(X1),replace=TRUE)
       X1.boot <- as.matrix(X1[ind.boot,])
       X2.boot <- as.matrix(X2[ind.boot,])
       z.vec[i] <- get.kz(X1.boot,X2.boot,kernel=kernel)
-      if(!is.na(z.vec[i])){restart<-F}
+      if(!is.na(z.vec[i])){restart<-FALSE}
     }
 
   }

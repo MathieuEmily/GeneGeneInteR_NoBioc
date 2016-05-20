@@ -47,10 +47,10 @@ PLSPM.test <- function(Y, G1, G2, n.perm=500){
   mod1<-NULL;
   mod0<-NULL;
 
-  try(mod1 <- plspm::plspm(XCases,my.path,my.blocks, modes = my.modes), silent=T)
+  try(mod1 <- plspm::plspm(XCases,my.path,my.blocks, modes = my.modes), silent=TRUE)
   if(is.null(mod1)){warning("P-value could not be computed. NA returned");return(NA)}
 
-  try(mod0 <- plspm::plspm(XControls,my.path,my.blocks, modes = my.modes),silent=T)
+  try(mod0 <- plspm::plspm(XControls,my.path,my.blocks, modes = my.modes),silent=TRUE)
   if(is.null(mod0)){warning("P-value could not be computed. NA returned");return(NA)}
 
   beta1 <- mod1$inner_model[[1]][2,1]
@@ -62,7 +62,7 @@ PLSPM.test <- function(Y, G1, G2, n.perm=500){
   
   U.perm <- rep(NA,times=n.perm)
   for (i in 1:n.perm){
-    restart<-T
+    restart<-TRUE
     while(restart){
 	  	Y.perm <- sample(Y)
   		w1 <- which(Y.perm==1)
@@ -71,11 +71,11 @@ PLSPM.test <- function(Y, G1, G2, n.perm=500){
 	  	XControls <- X[w0,]
   		mod1<-NULL;
 		mod0<-NULL;
-		try(mod1 <- plspm::plspm(XCases,my.path,my.blocks, modes = my.modes), silent=T)
+		try(mod1 <- plspm::plspm(XCases,my.path,my.blocks, modes = my.modes), silent=TRUE)
 #		if(is.null(mod1)){warning("P-value could not be computed. NA returned");return(NA)}
-		try(mod0 <- plspm::plspm(XControls,my.path,my.blocks, modes = my.modes),silent=T)
+		try(mod0 <- plspm::plspm(XControls,my.path,my.blocks, modes = my.modes),silent=TRUE)
 #		if(is.null(mod0)){warning("P-value could not be computed. NA returned");return(NA)}
-		if (!is.null(mod1) & !is.null(mod0)){restart <- F}
+		if (!is.null(mod1) & !is.null(mod0)){restart <- FALSE}
 	}
 	beta1 <- mod1$inner_model[[1]][2,1]
 	vbeta1 <- mod1$inner_model[[1]][2,2]^2

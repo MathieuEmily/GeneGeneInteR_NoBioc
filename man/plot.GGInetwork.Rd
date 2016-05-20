@@ -73,6 +73,9 @@ is generated.}
  
  If \code{method=network}, this function plots a graph representing the significative interactions between genes of a Gene-Gene Interaction study.
 }
+\value{
+The form of the value returned by \code{plot} depends on the class of its argument. See Details.
+}
 \examples{
 \dontrun{
 ## Dataset is included in the package

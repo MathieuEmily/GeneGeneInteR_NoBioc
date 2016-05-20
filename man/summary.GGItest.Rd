@@ -14,6 +14,9 @@
 \details{
 \code{summary.GGItest} provides a customized summary of a \code{GGItest} object.
 }
+\value{
+The form of the value returned by \code{summary} depends on the class of its argument. 
+}
 \examples{
 
 data(gene.pair)

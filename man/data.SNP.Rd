@@ -20,5 +20,8 @@ data(data.SNP)
 \description{
 A case-control dataset containing the genotypes of 312 SNPs from 17 genes in a total of 429 patients (266 individuals affected by Rheumatoid Arthritis and 163 Health controls)
 }
+\value{
+A dataset containing the genotypes of 312 SNPs from 17 genes in a total of 429 patients.
+}
 \keyword{datasets}
 

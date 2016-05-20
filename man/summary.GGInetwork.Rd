@@ -14,6 +14,9 @@
 \details{
 \code{summary.GGItest} provides a customized summary of a \code{GGInetwork} object.
 }
+\value{
+The form of the value returned by \code{summary} depends on the class of its argument. 
+}
 \examples{
 \dontrun{
 ## Dataset is included in the package

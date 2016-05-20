@@ -19,5 +19,8 @@ data(gene.pair)
 \description{
 A case-control dataset containing the genotypes of 8 SNPs within \emph{GC} gene (object \code{G1}) and 4 SNPs within \emph{PADI2} gene (object \code{G2}). The dataset includes 247 individuals affected by Rheumatoid Arthritis (RA) and 202 individuals not affected by RA.
 }
+\value{
+A dataset containing the genotypes of 8 SNPs within \emph{GC} gene (object \code{G1}) and 4 SNPs within \emph{PADI2} gene (object \code{G2}).
+}
 \keyword{datasets}
 

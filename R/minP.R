@@ -117,7 +117,7 @@ minP.test.2pairs <- function(Y, G1, G2){
 	diag(sigma.matrix) <- 1
 
   # minP test is computed past this point
-  SSI.min <- min(SSI.res, na.rm=T)
+  SSI.min <- min(SSI.res, na.rm=TRUE)
 
   # Case in which 1 - SSI.min/2 == 1 (qnorm(1) = -Inf)
   if (SSI.min == 0) {

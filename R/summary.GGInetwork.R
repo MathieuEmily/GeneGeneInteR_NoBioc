@@ -32,7 +32,7 @@ summary.GGInetwork <- function(object, ...){
 		tmp.df <- tmp.df[order(tmp.df[,3]),]
 		row.names(tmp.df) <- NULL
 		names(tmp.df) <- c("Gene1","Gene2","bonferroni p-value")
-		cat("\nSignificant interaction with a bonferroni correction at the level of 0.05 \n\n")
+		cat("\nSignificant interaction with a bonferroni correction at the level of 0.05 \n-------\n")
 		print(tmp.df)
 	} else {
 		cat("\nNo significant interaction (at the level of 0.05) with a bonferroni correction\n")
@@ -43,7 +43,7 @@ summary.GGInetwork <- function(object, ...){
 		tmp.df <- tmp.df[order(tmp.df[,3]),]
 		row.names(tmp.df) <- NULL
 		names(tmp.df) <- c("Gene1","Gene2","BH p-value")
-		cat("\nSignificant interaction with a Benjamini & Hochberg correction at the level of 0.05 \n\n")
+		cat("\nSignificant interaction with a Benjamini & Hochberg correction at the level of 0.05 \n-------\n")
 		print(tmp.df)
 	} else {
 		cat("\nNo significant interaction (at the level of 0.05) with a Benjamini & Hochberg correction\n")

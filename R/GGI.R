@@ -118,7 +118,7 @@ GGI <- function(Y, snpX, genes.length = NULL, genes.info = NULL,
     G1 <- snpX[, gene.start[interactions[1, i]]:gene.end[interactions[1, i]]]
     G2 <- snpX[, gene.start[interactions[2, i]]:gene.end[interactions[2, i]]]
 
-    if(!method %in% c("minP","GATES","tTS","tProd") || ncol(G1)*ncol(G2)<1000){
+#    if(!method %in% c("minP","GATES","tTS","tProd") || ncol(G1)*ncol(G2)<1000){
     	tmp <- switch(method,
                                                                          CCA = CCA.test(Y, G1, G2, ...),
                                                                          KCCA = KCCA.test(Y, G1, G2, ...),
@@ -138,11 +138,12 @@ GGI <- function(Y, snpX, genes.length = NULL, genes.info = NULL,
     if (is.null(res.method)){res.method <- tmp$method}
     if (is.null(res.parameter)){res.parameter <- tmp$parameter}
 
-} else {
-      warning("Too much interactions to test for SSI method (>1000). NA returned")
-      pval.matrix[interactions[1, i], interactions[2, i]] <- NA
-      stat.matrix[interactions[1, i], interactions[2, i]] <- NA
-    }
+#} 
+#else {
+#      warning("Too much interactions to test for SSI method (>1000). NA returned")
+#      pval.matrix[interactions[1, i], interactions[2, i]] <- NA
+#      stat.matrix[interactions[1, i], interactions[2, i]] <- NA
+#    }
   }
 
 #  genes.interactions[lower.tri(genes.interactions)] <- t(genes.interactions)[lower.tri(genes.interactions)]

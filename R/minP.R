@@ -132,11 +132,12 @@ minP.test.2pairs <- function(Y, G1, G2){
   # minP test is computed past this point
   SSI.min <- min(SSI.res, na.rm=TRUE)
 
+	print(SSI.min)
   # Case in which 1 - SSI.min/2 == 1 (qnorm(1) = -Inf)
   if (SSI.min == 0) {
     GG.Pmin <- 0
     # Case in which 1 - SSI.min/2 == 1 (qnorm(1) = Inf)
-  } else if (SSI.min > 0 & SSI.min < 0.5) {
+  } else {
     lower <- rep(qnorm(SSI.min / 2), ncol(sigma.matrix))
     upper <- rep(qnorm(1 - SSI.min / 2), ncol(sigma.matrix))
 

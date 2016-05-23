@@ -55,10 +55,10 @@ CCA.test <- function(Y, G1, G2, n.boot = 500){
 get.U <- function(Y,X1,X2,n.boot=500){
   w0 <- which(Y==0)
   w1 <- which(Y==1)
-  X1.0 <- X1[w0,]
-  X2.0 <- X2[w0,]
-  X1.1 <- X1[w1,]
-  X2.1 <- X2[w1,]
+  X1.0 <- as.matrix(X1[w0,])
+  X2.0 <- as.matrix(X2[w0,])
+  X1.1 <- as.matrix(X1[w1,])
+  X2.1 <- as.matrix(X2[w1,])
   z0 <- get.z(X1.0,X2.0)
   z1 <- get.z(X1.1,X2.1)
   if(is.na(z0)&&is.na(z1)){
@@ -99,13 +99,13 @@ get.z <- function(X1,X2){
 estim.var.z <- function(X1,X2,n.boot=500){
   z.vec <- rep(NA,times=n.boot)
   for (i in 1:n.boot){
-    restart<-TRUE
+    restart<-T
     while(restart){
       ind.boot <- sample(1:nrow(X1),nrow(X1),replace=TRUE)
       X1.boot <- as.matrix(X1[ind.boot,])
       X2.boot <- as.matrix(X2[ind.boot,])
       z.vec[i] <- get.z(X1.boot,X2.boot)
-      if(!is.na(z.vec[i])){restart<-FALSE}
+      if(!is.na(z.vec[i])){restart<-F}
     }
   }
   return(var(z.vec))

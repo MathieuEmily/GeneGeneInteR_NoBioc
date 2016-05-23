@@ -71,10 +71,10 @@ KCCA.test <- function(Y, G1, G2, kernel=c("rbfdot","polydot","tanhdot","vanillad
 get.kU <- function(Y,X1,X2,kernel=kernel,n.boot=500){
   w0 <- which(Y==0)
   w1 <- which(Y==1)
-  X1.0 <- X1[w0,]
-  X2.0 <- X2[w0,]
-  X1.1 <- X1[w1,]
-  X2.1 <- X2[w1,]
+  X1.0 <- as.matrix(X1[w0,])
+  X2.0 <- as.matrix(X2[w0,])
+  X1.1 <- as.matrix(X1[w1,])
+  X2.1 <- as.matrix(X2[w1,])
   z0 <- get.kz(X1.0,X2.0,kernel=kernel)
   z1 <- get.kz(X1.1,X2.1,kernel=kernel)
   if(is.na(z0)&&is.na(z1)){

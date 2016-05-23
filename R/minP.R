@@ -2,22 +2,35 @@ minP.test <- function(Y, G1, G2){
 
   # Checking if gene splitting is needed
   if (ncol(G1) * ncol(G2) > 1000){
-  	## Searching for clusters in G1
-  	distance.G1 <- snpStats::ld(G1, G1, stats='R.squared')
-  	distance.G1 <- as.dist(1 - distance.G1)
-  	clust.tree.G1 <- rioja::chclust(distance.G1)
-  	k1 <- cutree(clust.tree.G1, k=1:(ncol(G1)-30))
-  	max.G1 <- sapply(1:(ncol(G1)-30),FUN=function(i){return(max(table(as.factor(k1[,i]))))})
-  	max.G1 <- max.G1[c(which(max.G1 > 20),which(max.G1 < 30)[1])]
+  	if (ncol(G1) > 30){
+	  	## Searching for clusters in G1
+  		distance.G1 <- snpStats::ld(G1, G1, stats='R.squared')
+	  	distance.G1 <- as.dist(1 - distance.G1)
+	  	clust.tree.G1 <- rioja::chclust(distance.G1)
+	  	k1 <- cutree(clust.tree.G1, k=1:(ncol(G1)-30))
+	  	max.G1 <- sapply(1:(ncol(G1)-30),FUN=function(i){return(max(table(as.factor(k1[,i]))))})
+	  	max.G1 <- max.G1[c(which(max.G1 > 20),which(max.G1 < 30)[1])]
+  	} else{
+  		k1  <- matrix(rep(1,ncol(G1)),ncol=1)
+  		row.names(k1) <- colnames(G1)
+  		max.G1 <- ncol(G1)
+  		}
+  	
   	
   	## Searching for clusters in G1
-  	distance.G2 <- snpStats::ld(G2, G2, stats='R.squared')
-  	distance.G2 <- as.dist(1 - distance.G2)
-  	clust.tree.G2 <- rioja::chclust(distance.G2)
-  	k2 <- cutree(clust.tree.G2, k=1:(ncol(G2)-30))
-  	max.G2 <- sapply(1:(ncol(G2)-30),FUN=function(i){return(max(table(as.factor(k2[,i]))))})
-  	max.G2 <- max.G2[c(which(max.G2 > 20),which(max.G2 < 30)[1])]
-
+  	if (ncol(G2) >30){
+  		distance.G2 <- snpStats::ld(G2, G2, stats='R.squared')
+  		distance.G2 <- as.dist(1 - distance.G2)
+  		clust.tree.G2 <- rioja::chclust(distance.G2)
+  		k2 <- cutree(clust.tree.G2, k=1:(ncol(G2)-30))
+  		max.G2 <- sapply(1:(ncol(G2)-30),FUN=function(i){return(max(table(as.factor(k2[,i]))))})
+  		max.G2 <- max.G2[c(which(max.G2 > 20),which(max.G2 < 30)[1])]
+	} else {
+		k2  <- matrix(rep(1,ncol(G2)),ncol=1)
+  		row.names(k2) <- colnames(G2)
+  		max.G2 <- ncol(G2)
+	}
+	
 	## Detection of the subset of SNPs that cut each gene in sufficiently small pieces 
 	mult <- outer(max.G1,max.G2,"*")
 	division <- which(mult < 900,arr.ind=TRUE)[1,]

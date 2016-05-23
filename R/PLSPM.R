@@ -48,10 +48,20 @@ PLSPM.test <- function(Y, G1, G2, n.perm=500){
   mod0<-NULL;
 
   try(mod1 <- plspm::plspm(XCases,my.path,my.blocks, modes = my.modes), silent=TRUE)
-  if(is.null(mod1)){warning("P-value could not be computed. NA returned");return(NA)}
+  if(is.null(mod1)){
+  	warning("P-value could not be computed. NA returned")
+  	res <- list(statistic=NA,p.value=NA,method="Partial Least Squares Path Modeling",parameter=list.param)
+	class(res) <- "GGItest"
+	return(res)
+	}
 
   try(mod0 <- plspm::plspm(XControls,my.path,my.blocks, modes = my.modes),silent=TRUE)
-  if(is.null(mod0)){warning("P-value could not be computed. NA returned");return(NA)}
+  if(is.null(mod0)){
+  	warning("P-value could not be computed. NA returned")
+  	res <- list(statistic=NA,p.value=NA,method="Partial Least Squares Path Modeling",parameter=list.param)
+	class(res) <- "GGItest"
+	return(res)
+	}
 
   beta1 <- mod1$inner_model[[1]][2,1]
   vbeta1 <- mod1$inner_model[[1]][2,2]^2

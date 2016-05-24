@@ -1,0 +1,134 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{ZZWW02}
+
+\bibitem[CB07]{Conneely:07}
+Karen~N. Conneely and Michael Boehnke.
+\newblock So many correlated tests, so little time! rapid adjustment of p
+  values for multiple correlated tests.
+\newblock {\em The American Journal of Human Genetics}, 81(6):1158--1168, 2007.
+
+\bibitem[Che01]{Cheverud:01}
+James~M Cheverud.
+\newblock A simple correction for multiple comparisons in interval mapping
+  genome scans.
+\newblock {\em Heredity}, 87(1):52--58, 07 2001.
+
+\bibitem[Emi16]{Emily:16}
+Mathieu Emily.
+\newblock Aggregator: A gene-based gene-gene interacttion test for case-control
+  association studies.
+\newblock {\em Statistical Applications in Genetics and Molecular Biology},
+  15(2):151--171, 2016.
+
+\bibitem[Gal09]{Galwey:09}
+Nicholas~W. Galwey.
+\newblock A new measure of the effective number of tests, a practical tool for
+  comparing families of non-independent significance tests.
+\newblock {\em Genetic Epidemiology}, 33(7):559--568, 2009.
+
+\bibitem[GB09]{Genz:09}
+Alan Genz and Frank Bretz.
+\newblock {\em Computation of Multivariate Normal and T Probabilities}.
+\newblock Springer Publishing Company, Incorporated, 1st edition, 2009.
+
+\bibitem[HR68]{Hill:68}
+W.~G. Hill and A.~Robertson.
+\newblock Linkage diseqilibrium in finite populations.
+\newblock {\em Theoretical and Applied Genetics}, 38:226--231, 1968.
+
+\bibitem[JZZK11]{Jiang:11}
+Bo~Jiang, Xiao Zhang, Yijun Zuo, and Guolian Kang.
+\newblock A powerful truncated tail strength method for testing multiple null
+  hypotheses in one dataset.
+\newblock {\em Journal of Theoretical Biology}, 277(1):67 -- 73, 2011.
+
+\bibitem[KSHZ04]{Karatzoglou:04}
+Alexandros Karatzoglou, Alex Smola, Kurt Hornik, and Achim Zeileis.
+\newblock kernlab -- an {S4} package for kernel methods in {R}.
+\newblock {\em Journal of Statistical Software}, 11(9):1--20, 2004.
+
+\bibitem[LGKS11]{Li:11}
+Miao-Xin Li, Hong-Sheng Gui, Johnny S.H. Kwan, and Pak C. Sham.
+\newblock Gates: A rapid and powerful gene-based association test using
+  extended simes procedure.
+\newblock {\em The American Journal of Human Genetics}, 88(3):283--293, 2011.
+
+\bibitem[LHG{\etalchar{+}}15]{Li:15}
+J.~Li, D.~Huang, M.~Guo, X.~Liu, C.~Wang, Z.~Teng, R.~Zhang, Y.~Jiang, H.~Lv,
+  and L.~Wang.
+\newblock A gene-based information gain method for detecting gene-gene
+  interactions in case-control studies.
+\newblock {\em European Journal of Human Genetics}, Online:Online, 03 2015.
+
+\bibitem[LJ05]{Li:05}
+J.~Li and L.~Ji.
+\newblock Adjusting multiple testing in multilocus analyses using the
+  eigenvalues of a correlation matrix.
+\newblock {\em Heredity}, 95:221--227, 2005.
+
+\bibitem[LS13]{Larson:13}
+Nicholas~B. Larson and Daniel~J. Schaid.
+\newblock A kernel regression approach to gene-gene interaction detection for
+  case-control studies.
+\newblock {\em Genetic Epidemiology}, 37(7):695--703, 2013.
+
+\bibitem[MCK13]{Ma:13}
+Li~Ma, Andrew~G. Clark, and Alon Keinan.
+\newblock Gene-based testing of interactions in association studies of
+  quantitative traits.
+\newblock {\em PLoS Genet}, 9(2):e1003321, 02 2013.
+
+\bibitem[MS08]{Moskvina:08}
+Valentina Moskvina and Karl~Michael Schmidt.
+\newblock On multiple-testing correction in genome-wide association studies.
+\newblock {\em Genetic Epidemiology}, 32(6):567--573, 2008.
+
+\bibitem[Nyh04]{Nyholt:04}
+Dale~R. Nyholt.
+\newblock A simple correction for multiple testing for single-nucleotide
+  polymorphisms in linkage disequilibrium with each other.
+\newblock {\em The American Journal of Human Genetics}, 74(4):765 -- 769, 2004.
+
+\bibitem[PZX10]{Peng:10}
+Qianqian Peng, Jinghua Zhao, and Fuzhong Xue.
+\newblock A gene-based method for detecting gene-gene co-association in a
+  case-control association study.
+\newblock {\em European Journal of Human Genetics}, 18(5):582--587, 05 2010.
+
+\bibitem[{R C}16]{R:16}
+{R Core Team}.
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria, 2016.
+
+\bibitem[RPM{\etalchar{+}}12]{Rajapakse:12}
+Indika Rajapakse, Michael~D. Perlman, Paul~J Martin, John~A. Hansen, and
+  Charles Kooperberg.
+\newblock Multivariate detection of gene-gene interactions.
+\newblock {\em Genetic Epidemiology}, 36(6):622--630, 2012.
+
+\bibitem[STR15]{Sanchez:15}
+Gaston Sanchez, Laura Trinchera, and Giorgio Russolillo.
+\newblock {\em plspm: Tools for Partial Least Squares Path Modeling (PLS-PM)},
+  2015.
+\newblock R package version 0.4.7.
+
+\bibitem[YGH{\etalchar{+}}12]{Yuan:12}
+Zhongshang Yuan, Qingsong Gao, Yungang He, Xiaoshuai Zhang, Fangyu Li, Jinghua
+  Zhao, and Fuzhong Xue.
+\newblock Detection for gene-gene co-association via kernel canonical
+  correlation analysis.
+\newblock {\em BMC Genetics}, 13(1):83, 2012.
+
+\bibitem[ZYY{\etalchar{+}}13]{Zhang:13}
+Xiaoshuai Zhang, Xiaowei Yang, Zhongshang Yuan, Yanxun Liu, Fangyu Li, Bin
+  Peng, Dianwen Zhu, Jinghua Zhao, and Fuzhong Xue.
+\newblock A plspm-based test statistic for detecting gene-gene co-association
+  in genome-wide association study with case-control design.
+\newblock {\em PLoS ONE}, 8(4):e62129, 04 2013.
+
+\bibitem[ZZWW02]{Zaykin:02}
+D.V. Zaykin, Lev~A. Zhivotovsky, P.H. Westfall, and B.S. Weir.
+\newblock Truncated product method for combining p-values.
+\newblock {\em Genetic Epidemiology}, 22(2):170--185, 2002.
+
+\end{thebibliography}

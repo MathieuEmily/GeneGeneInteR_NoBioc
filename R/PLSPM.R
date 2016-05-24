@@ -50,6 +50,7 @@ PLSPM.test <- function(Y, G1, G2, n.perm=500){
   try(mod1 <- plspm::plspm(XCases,my.path,my.blocks, modes = my.modes), silent=TRUE)
   if(is.null(mod1)){
   	warning("P-value could not be computed. NA returned")
+	list.param <- list(n.perm=n.perm)
   	res <- list(statistic=NA,p.value=NA,method="Partial Least Squares Path Modeling",parameter=list.param)
 	class(res) <- "GGItest"
 	return(res)
@@ -58,6 +59,7 @@ PLSPM.test <- function(Y, G1, G2, n.perm=500){
   try(mod0 <- plspm::plspm(XControls,my.path,my.blocks, modes = my.modes),silent=TRUE)
   if(is.null(mod0)){
   	warning("P-value could not be computed. NA returned")
+	list.param <- list(n.perm=n.perm)
   	res <- list(statistic=NA,p.value=NA,method="Partial Least Squares Path Modeling",parameter=list.param)
 	class(res) <- "GGItest"
 	return(res)

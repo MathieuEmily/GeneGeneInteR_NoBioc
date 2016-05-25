@@ -32,12 +32,12 @@ pdftitle={GeneGeneInteR}]
 \begin{document}
 \setkeys{Gin}{width=1.0\textwidth}
 
-%\VignetteIndexEntry{Vignette GeneGeneInteRPair} 
+\VignetteIndexEntry{Pairwise interaction tests} 
 
 \title{GeneGeneInteR vignette \\
 Statistical analysis of the interaction between a pair of genes.}
 
-\author{Mathieu Emily}
+\author{Mathieu Emily and Magalie Hou\'ee-Bigot}
 
 %\date{}
 
@@ -53,6 +53,8 @@ Statistical analysis of the interaction between a pair of genes.}
 %\label{Sec:GenePair}
 %%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%
+
+\section{Introduction}
 
 \noindent
 In this vignette we consider statistical procedures to test for the interaction between two genes in susceptibility with a binary phenotype, typically a case/control disease status. Let $Y \in \{0,1\}$ be the phenotype, where $Y=0$ stands for a control and $Y=1$ a case, and $X_1$ and $X_2$ be the two genes for which the interaction is tested. 
@@ -117,8 +119,9 @@ $$
 In our package we proposed 10 methods for testing interaction at the gene level. These 10 methods are all based on three main parameters: \code{Y}, a \code{numeric} or \code{factor} vector with exactly two distinct values, \code{G1} and \code{G2} two \code{SnpMatrix} objects as proposed by the \proglang{R} \pkg{Bioconductor} package \pkg{snpStats}. Our implementation is illustrated by the dataset \code{gene.pair} provided with the \pkg{GeneGeneInteR} package and summarized in the following command lines:
 
 \vskip0.5em
-\code{R> library(GeneGeneInteR)}
+%\code{R> library(GeneGeneInteR)}
 <<>>=
+library(GeneGeneInteR)
 data(gene.pair)
 head(gene.pair$Y)
 @
@@ -127,9 +130,9 @@ head(gene.pair$Y)
 
 \code{Levels: HealthControl RheumatoidArthritis}
 
-\vskip0.5em
-\code{R> gene.pair\$G1}
-
+<<>>==
+gene.pair$G1
+@
 
 \code{A SnpMatrix with  453 rows and  8 columns}
 
@@ -137,8 +140,10 @@ head(gene.pair$Y)
 
 \code{Col names:  rs1491710 ... rs2298849}
 
-\vskip0.5em
-\code{R> gene.pair\$G2}
+\newpage
+<<>>==
+gene.pair$G2
+@
 
 \code{A SnpMatrix with  453 rows and  4 columns}
 
@@ -146,7 +151,8 @@ head(gene.pair$Y)
 
 \code{Col names:  rs2057094 ... rs1005753}
 
-
+\vskip1em
+\noindent
 The 10 methods implemented in our package can be divided into two main families: 6 methods based on a multidimensional modeling of the interaction at the gene level and 4 methods that combine interaction tests at the SNP level into a single test at the gene level.
 
 %%%%%%%%%%%%%%%
@@ -193,14 +199,17 @@ In our package, two distinct Principal Component decomposition are provided by t
 
 \vskip1em
 \noindent
-If model fitting fails then a PC is removed from the pool and a new attempt to fitting is made. The process loops until either the model is fitted or there are only two PC for each genes remaining. Principal components are removed according to lowest inertia percentage.
+When the percentage of inertia asked by the user is high, the number of PCs can be important and fitting logistic models $\mathcal{M}_{Inter}$ and $\mathcal{M}_{No}$ is likely to fail. In that case, the number of PCs in each gene is iteratively reduced until convergence of the \code{glm} function for fitting models $\mathcal{M}_{Inter}$ and $\mathcal{M}_{No}$.
 
-\vskip1em
+\newpage
+%\vskip1em
 \noindent
 The following lines provide an example of the \code{PCA.test} function:
 
-\vskip0.5em
-\code{R> PCA.test(Y=gene.pair\$Y, G1=gene.pair\$G1, G2=gene.pair\$G2,threshold=0.7,\\ \null \hskip2cm method="GenFreq")}
+<<>>==
+PCA.test(Y=gene.pair$Y, G1=gene.pair$G1, G2=gene.pair$G2,threshold=0.7,
+method="GenFreq")
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -208,8 +217,10 @@ The following lines provide an example of the \code{PCA.test} function:
 
 \code{Deviance = 8.215662, df = 6, p-value = 0.2227253}
 
-\vskip0.5em
-\code{R> PCA.test(Y=gene.pair\$Y, G1=gene.pair\$G1, G2=gene.pair\$G2,threshold=0.7, \\ \null \hskip2cm method="Std)}
+<<>>==
+PCA.test(Y=gene.pair$Y, G1=gene.pair$G1, G2=gene.pair$G2,threshold=0.7, 
+method="Std")
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -221,14 +232,14 @@ The following lines provide an example of the \code{PCA.test} function:
 \subsection{Canonical Correlation Analysis (CCA)}
 %%%%%%%%%%%%%%%
 
-The CCA based test is based on a Wald-type statistic defined as follows (see \cite{Peng:10} for details):
+The CCA test is based on a Wald-type statistic defined as follows (see \cite{Peng:10} for details):
 
 $$
 U_{CCA}=\frac{z_d-z_c}{\sqrt{\mathbb{V}(z_d)+\mathbb{V}(z_c)}}
 $$
 
 \noindent
-where $z_d=\frac{1}{2}\left(\log(1+r_d)-\log(1-r_d) \right)$ and $z_c=\frac{1}{2}\left(\log(1+r_c)-\log(1-r_c) \right)$ with $r_d$ the maximum canonical correlation coefficient between $\mathbf{X_1^d}$ and $\mathbf{X_2^d}$ and $r_c$ the maximum canonical correlation coefficient between $\mathbf{X_1^c}$ and $\mathbf{X_2^c}$ computed for controls ($Y=0$). As suggested by \cite{Peng:10}, the sampled variances $\mathbb{V}(z_d)$ and $\mathbb{V}(z_d)$ were evaluated by applying a bootstrapping method. The number of bootstrap sample used to estimate $\mathbb{V}(z_d)$ and $\mathbb{V}(z_d)$ is determined by the \code{n.boot} argument.
+where $z_d=\frac{1}{2}\left(\log(1+r_d)-\log(1-r_d) \right)$ and $z_c=\frac{1}{2}\left(\log(1+r_c)-\log(1-r_c) \right)$ with $r_d$ the maximum canonical correlation coefficient between $\mathbf{X_1^d}$ and $\mathbf{X_2^d}$ and $r_c$ the maximum canonical correlation coefficient between $\mathbf{X_1^c}$ and $\mathbf{X_2^c}$ computed for controls ($Y=0$). As suggested by \cite{Peng:10}, the sampled variances $\mathbb{V}(z_d)$ and $\mathbb{V}(z_c)$ were evaluated by applying a bootstrapping method. The number of bootstrap sample used to estimate $\mathbb{V}(z_d)$ and $\mathbb{V}(z_c)$ is determined by the \code{n.boot} argument.
 P-value is then obtained by noting that under the null hypothesis $U_{CCA} \sim \mathcal{N}(0,1)$. 
 
 \vskip1em
@@ -238,8 +249,9 @@ CCA based gene-gene interaction is implemented in the \code{CCA.test} function a
 \vskip0.5em
 \code{R> set.seed(1234)}
 
-\vskip0.5em
-\code{R> CCA.test(Y=gene.pair\$Y, G1=gene.pair\$G1, G2=gene.pair\$G2,n.boot=500)}
+<<>>==
+CCA.test(Y=gene.pair$Y, G1=gene.pair$G1, G2=gene.pair$G2,n.boot=500)
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -262,19 +274,17 @@ where $kz_d=\frac{1}{2}\left(\log(1+kr_d)-\log(1-kr_d) \right)$ and $kz_c=\frac{
 
 \vskip1em
 \noindent
-Similar to the CCA test, $\mathbb{V}(kz_d)$ and $\mathbb{V}(kz_c)$ are estimated using bootstrap techniques \cite{Yuan:12,Larson:13} and the p-value is obtained using the standard gaussian distribution of $U_{KCCA}$ under the null hypothesis. Since the performance of kernel methods strongly relates to the choice of kernel functions, the default is the Radial Basis kernel Function (RBF) owing to its flexibility in parameter specification. However, other kernel functions, such as linear, polynomial or spline kernels, can be used. Thus, in addition to the three arguments \code{Y}, \code{G1} and \code{G2}, our implementation of the KCCA test proposes two optional arguments: \code{n.boot} that determines the number of bootstrap samples and \code{kernel} that provides the kernel function to be used. This \code{kernel} parameter can be set to any function, of class \code{kernel} as provided by the \pkg{kernlab} package \cite{Karatzoglou:04}, which computes an inner product in feature space between two vector arguments. 
+Similar to the CCA test, $\mathbb{V}(kz_d)$ and $\mathbb{V}(kz_c)$ are estimated using bootstrap techniques \cite{Yuan:12,Larson:13} and the p-value is obtained using the standard gaussian distribution of $U_{KCCA}$ under the null hypothesis. Since the performance of kernel methods strongly relates to the choice of kernel functions, the default is the Radial Basis kernel Function (RBF) owing to its flexibility in parameter specification. However, other kernel functions, such as linear, polynomial or spline kernels, can be used. Thus, in addition to the three arguments \code{Y}, \code{G1} and \code{G2}, our implementation of the KCCA test proposes two optional arguments: \code{n.boot} that determines the number of bootstrap samples and \code{kernel} that provides the kernel function to be used. This \code{kernel} parameter is character string matching one of the kernel name provided by the \pkg{kernlab} package \cite{Karatzoglou:04} such as "rbfdot", "polydot", "tanhdot", "vanilladot", "laplacedot", "besseldot", "anovadot", "splinedot". Specific arguments, \code{sigma}, \code{degree}, \code{scale}, \code{offset}and \code{order}, can also be passed to the \code{kcca.test} function in order to parameterized the kernel used in the analysis.
 
 \vskip1em
 \noindent
 KCCA based gene-gene interaction test is implemented in the \code{KCCA.test} function and mainly depends on the \code{kcca} function from the \pkg{kernlab} package \cite{Karatzoglou:04}.
 
-\vskip0.5em
-\code{R> set.seed(1234)}
-
-\vskip0.5em
-\code{R> KCCA.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2,}
-
-\code{\null \hskip2cm kernel=rbfdot(sigma = 0.05),n.boot=500)}
+<<>>==
+set.seed(1234)
+KCCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,
+kernel="rbfdot",sigma = 0.05,n.boot=500)
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -283,14 +293,11 @@ KCCA based gene-gene interaction test is implemented in the \code{KCCA.test} fun
 \code{KCCU = 1.407369, p-value = 0.1593179
 }
 
-\vskip0.5em
-\code{R> set.seed(1234)}
-
-\vskip0.5em
-\code{R> KCCA.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2,}
-
-\code{\null \hskip2cm kernel=polydot(degree = 1, scale = 1, offset = 1))
-}
+<<>>==
+set.seed(1234)
+KCCA.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,
+kernel="polydot",degree = 1, scale = 1, offset = 1)
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -314,11 +321,10 @@ where $\beta_d$ (resp. $\beta_c$) is the path coefficient between $\mathbf{X_1^d
 \noindent
 PLSPM based gene-gene interaction test is implemented in the \code{PLSPM.test} function and mainly depends on the \code{plspm} function from the \pkg{plspm} package \cite{Sanchez:15}.
 
-\vskip0.5em
-\code{R> set.seed(1234)}
-
-\vskip0.5em
-\code{R> PLSPM.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2,n.perm=1000)}
+<<>>==
+set.seed(1234)
+PLSPM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=1000)
+@
 
 \vskip0.5em
 \code{Gene-Gene Interaction method performed with:}
@@ -380,13 +386,12 @@ W_{21} & W_{22} \\
 $$
 
 \noindent
-Since the distribution of $\delta^2$ is not known under the null hypothesis, the significance levels of this statistics is established using permutation tests, as proposed by \cite{Rajapakse:12}. Such a test has been implemented in our package in the \code{CLD.test} function where the number of permutations is determined by the argument \code{n.perm}.
+Since the distribution of $\delta^2$ is not known under the null hypothesis, significance testing is performed using permutation tests, as proposed by \cite{Rajapakse:12}. Such a test has been implemented in our package in the \code{CLD.test} function where the number of permutations is determined by the argument \code{n.perm}.
 
-\vskip0.5em
-\code{R> set.seed(1234)}
-
-\vskip0.5em
-\code{R> CLD.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2,n.perm=2000)}
+<<>>==
+set.seed(1234)
+CLD.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=2000)
+@
 
 \vskip0.5em
 \code{Gene-Gene Interaction method performed with:}
@@ -414,11 +419,10 @@ H_{1,2}&=&H(\mathbf{Y},\mathbf{X_1},\mathbf{X_2})-H(\mathbf{X_1},\mathbf{X_2})\\
 \noindent
 Since the distribution of $\Delta R_{1,2}$ is unknown, the significance testing is performed by permutations as suggested by \cite{Li:15}. The GBIGM method has been implemented in the \code{GBIGM.test} function and the number of permutations is defined by the argument \code{n.perm}.
 
-\vskip0.5em
-\code{R> set.seed(1234)}
-
-\vskip0.5em
-\code{R> GBIGM.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2,n.perm=2000)}
+<<>>==
+set.seed(1234)
+GBIGM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=2000)
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -466,7 +470,7 @@ In the remainder of this section, the four methods: minP (function \code{minP.te
 %%%%%%%%%%%%%%%
 
 \noindent
-The minP test is based on the minimum p-value that is often used to combine p-values of association \cite{Conneely:07}. Let $W_{\max}=\max{|W_{11}|,\dots,|W_{m_1,m_2}|}$ be the maximum of the absolute observed statistics. The minP is then defined by:
+The minP test is based on the minimum p-value that is often used to combine p-values of association (see \cite{Conneely:07}). Let $W_{\max}=\max{|W_{11}|,\dots,|W_{m_1,m_2}|}$ be the maximum of the absolute observed statistics. The minP is then defined by:
 \begin{equation}
 \textmd{minP}=1-\mathbb{P}\Big[\max(|Z_1|,|Z_2|,\dots,|Z_{m_1m_2}|) < W_{\max}\Big].
 \label{Eq:pval}
@@ -477,12 +481,10 @@ where $\mathbb{Z}=(Z_1,Z_2,\dots,Z_{m_1m_2})$ is a random vector that follows a 
 \noindent
 The computation of Equation~\eqref{Eq:pval} requires the calculation of the probability distribution of a multivariate normal random variable. For that purpose, we used the {\tt pmvnorm} function from the R package {\tt mvtnorm} \cite{Genz:09}. 
 
-%However, the function {\tt pmvnorm} is applicable to arbitrary covariance structures and dimensions up to 1000. Thus, if we consider a first gene having $m_1$ SNPs and a second gene with $m_2$ SNPs, the minP test can be performed only if $m_1 \times m_2 \leq 1000$. To overcome such limitation IL FAUT DECRIRE LA PROCEDURE DE DECOUPE ICI!
-\vskip0.5em
-\code{R> set.seed(1234)}
-
-\vskip0.5em
-\code{R> minP.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2)}
+<<>>==
+set.seed(1234)
+minP.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2)
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -500,17 +502,16 @@ The GATES procedure, proposed by \cite{Li:11}, is an extension of the Simes proc
 $$
 \textmd{p}_{GATES}=\min\left( \frac{me p_{(1)}}{me_{(1)}},\frac{me p_{(2)}}{me_{(2)}},\dots,\frac{me p_{(m_1m_2)}}{me_{(m_1m_2)}} \right)
 $$
-where $m_e$ is the number of effective tests among the $m_1 \times m_2$ tests and $me_(i)$ the number of effective tests among the $i$ most significative tests associated with the lowest order p-values $p_{(1)}, \dots, p_{(i)}$. The number of effective ought to characterize the number of independent tests equivalent to the correlated tests that really performed and is often used to account for dependence in a multiple testing correction.
+where $m_e$ is the number of effective tests among the $m_1 \times m_2$ tests and $me_(i)$ the number of effective tests among the $i$ most significative tests associated with the lowest order p-values $p_{(1)}, \dots, p_{(i)}$. The number of effective tests ought to characterize the number of independent tests equivalent to the correlated tests that are really performed and is often used to account for dependence in a multiple testing correction.
 
 \vskip1em
 \noindent
 Although no formal definition of the number of effective tests has been formulated in the literature, several procedures have been proposed to estimate such number. All methods are based on a transformation of the set of eigenvalues of the SNP covariance matrix assuming that (1) if the SNPs are independent, the number of effective tests is the number of performed, (2) if the absolute value of the correlation between any pair of SNPs is equal to $1$, the number of effective tests is $1$. In the \pkg{GeneGeneInteR} package, four main methods have been implemented and can be chosen by the user with the argument \code{merest}: Cheverud-Nyholt method - \code{me.est="ChevNy"} \cite{Cheverud:01,Nyholt:04}, Keff method -\code{me.est="Keff"} \cite{Moskvina:08}, Li and Ji method - \code{me.est="LiJi"} \cite{Li:05} and Galwey - \code{me.est="Galwey"} \cite{Galwey:09}.
 
-\vskip0.5em
-\code{R> set.seed(1234)}
-
-\vskip0.5em
-\code{R> gates.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2,me.est="ChevNy")}
+<<>>==
+set.seed(1234)
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,me.est="ChevNy")
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -519,11 +520,10 @@ Although no formal definition of the number of effective tests has been formulat
 \code{GATES = 0.009924148, p-value = 0.293932
 }
 
-\vskip1em
-\code{R> set.seed(1234)}
-
-\vskip0.5em
-\code{R> gates.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2,alpha=0.05,me.est="Keff")}
+<<>>==
+set.seed(1234)
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,alpha=0.05,me.est="Keff")
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -532,11 +532,10 @@ Although no formal definition of the number of effective tests has been formulat
 \code{GATES = 0.01394543, p-value = 0.1899414
 }
 
-\vskip1em
-\code{R> set.seed(1234)}
-
-\vskip0.5em
-\code{R> gates.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2,me.est="LiJi")}
+<<>>==
+set.seed(1234)
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,me.est="LiJi")
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -545,11 +544,10 @@ Although no formal definition of the number of effective tests has been formulat
 \code{GATES = 0.01394543, p-value = 0.1255088
 }
 
-\vskip1em
-\code{R> set.seed(1234)}
-
-\vskip0.5em
-\code{R> gates.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2,me.est="Galwey")}
+<<>>==
+set.seed(1234)
+gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,me.est="Galwey")
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -558,6 +556,7 @@ Although no formal definition of the number of effective tests has been formulat
 \code{GATES = 0.01394543, p-value = 0.1596024
 }
 
+\newpage
 \subsection{tTS and tProd}\
 
 \noindent
@@ -577,11 +576,10 @@ When p-values are correlated, the null distribution of $tTS$ and $tProd$ are unk
 \noindent
 tTS and tProd methods have been implemented in the functions \code{tTS.test} and \code{tProd.test} of the \pkg{GeneGeneInteR} package. Additional to the mandatory \code{Y}, \code{$G_1$} and \code{$G_2$} arguments, these two functions have two optional arguments: \code{tau} and \code{n.sim} that control the cutoff value and the number of simulations used to estimate the empirical value respectively. The following coding lines give an example of the \code{tTS.test} and \code{tProd.test}:
 
-\vskip0.5em
-\code{R> set.seed=1234}
-
-\vskip0.5em
-\code{R> tTS.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2,tau=0.5,n.sim=10000)}
+<<>>==
+set.seed(1234)
+tTS.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,tau=0.5,n.sim=10000)
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -590,11 +588,10 @@ tTS and tProd methods have been implemented in the functions \code{tTS.test} and
 \code{tTS = -0.009912706, p-value = 0.5104
 }
 
-\vskip1em
-\code{R> set.seed(1234)}
-
-\vskip0.5em
-\code{R> tProd.test(Y=gene.pair\$Y, G1=gene.pair\$G1,G2=gene.pair\$G2,tau=0.05,n.sim=1000)}
+<<>>==
+set.seed(1234)
+tProd.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,tau=0.05,n.sim=1000)
+@
 
 \code{Gene-Gene Interaction method performed with:}
 
@@ -603,8 +600,7 @@ tTS and tProd methods have been implemented in the functions \code{tTS.test} and
 \code{tProd = 3.69877e-12, p-value = 0.485}
 
 
-\newpage
-\bibliographystyle{alpha}
+\bibliographystyle{apalike}
 \bibliography{Biblio}
 
 \end{document}

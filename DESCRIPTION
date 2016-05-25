@@ -14,5 +14,3 @@ Depends: R (>= 3.3)
 biocViews: GenomeWideAssociation, SNP, Genetics, GeneticVariability
 Imports: snpStats, mvtnorm, GGtools, Rsamtools, igraph, kernlab, FactoMineR, plspm, IRanges, GenomicRanges,
     data.table,rioja,grDevices, graphics,stats,utils
-Suggests: knitr
-VignetteBuilder: knitr

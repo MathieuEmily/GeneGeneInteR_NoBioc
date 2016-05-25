@@ -36,7 +36,7 @@ connections between the latent and the manifest variables.
 }
 \examples{
 data(gene.pair)
-PLSPM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=100)
+PLSPM.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,n.perm=50)
 }
 \references{
 X. Zhang et al. (2013) A PLSPM-based test statistic for detecting gene-gene co-association in genome-wide association study with case-control design. PLoS ONE, 8(4) :e62129.\cr

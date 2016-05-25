@@ -22,7 +22,8 @@ pdftitle={GeneGeneInteR}]
 \begin{document}
 \setkeys{Gin}{width=1.0\textwidth}
 
-\VignetteIndexEntry{GeneGeneInteR Introduction} 
+%\VignetteIndexEntry{GeneGeneInteR Introduction} 
+%\VignettePackage{GeneGeneInteR}
 
 \title{GeneGeneInteR vignette \\
 Gene-based gene-gene interaction analysis in case-controls association studies}

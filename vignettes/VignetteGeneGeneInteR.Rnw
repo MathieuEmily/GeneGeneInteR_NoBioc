@@ -5,7 +5,7 @@
 bookmarks,
 bookmarksopen,
 pdfauthor={Mathieu Emily},
-pdftitle={GeneGeneInteR}]
+pdftitle={GeneGeneInteR_Intro}]
 {hyperref}
 
 \oddsidemargin -2 mm
@@ -26,7 +26,7 @@ pdftitle={GeneGeneInteR}]
 %\VignettePackage{GeneGeneInteR}
 
 \title{GeneGeneInteR vignette \\
-Gene-based gene-gene interaction analysis in case-controls association studies}
+	Introduction}
 \author{Mathieu Emily and Magalie Hou\'ee-Bigot}
 \date{\today}
 \maketitle

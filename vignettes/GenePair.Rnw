@@ -55,6 +55,9 @@ Statistical analysis of the interaction between a pair of genes.}
 %%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%
 
+\noindent
+This vignette presents the technical details of the the statistical procedure implemented in the package. an overview of the main functions and tools proposed in the package \pkg{GeneGeneInteR}. Readers that would have a global overview of the main functions and tools proposed in the package are encouraged to read the vignette {\bf VignetteGeneGeneInteR\_Introduction}. 
+
 \section{Introduction}
 
 \noindent

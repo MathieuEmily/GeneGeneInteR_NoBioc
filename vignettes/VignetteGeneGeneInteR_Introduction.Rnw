@@ -30,6 +30,10 @@ pdftitle={GeneGeneInteR_Intro}]
 \author{Mathieu Emily and Magalie Hou\'ee-Bigot}
 \date{\today}
 \maketitle
+
+\noindent
+This vignette gives an overview of the main functions and tools proposed in the package \pkg{GeneGeneInteR}. Readers that would have more technical details about the statistical methods implemented in the package are encouraged to read the vignette {\bf GenePair}. 
+
 \section{Introduction}
 The package \pkg{GeneGeneInteR} aims at providing a collection of statistical methods to search for interaction between genes in case-control association studies. These methods are dedicated to the analysis of biallelic SNPs (Single Nucleotide Polymorphism) genotype data. This vignette describes the complete analysis pipeline of a set of $k> 2$ genes, going from data importation to results visualization via data manipulation and statistical analysis.
 

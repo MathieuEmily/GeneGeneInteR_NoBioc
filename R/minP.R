@@ -9,11 +9,14 @@ minP.test <- function(Y, G1, G2){
 	  	clust.tree.G1 <- rioja::chclust(distance.G1)
 	  	k1 <- cutree(clust.tree.G1, k=1:(ncol(G1)-30))
 	  	max.G1 <- sapply(1:(ncol(G1)-30),FUN=function(i){return(max(table(as.factor(k1[,i]))))})
-	  	max.G1 <- max.G1[c(which(max.G1 > 20),which(max.G1 < 30)[1])]
+#	  	max.G1 <- max.G1[c(which(max.G1 > 20),which(max.G1 < 30)[1])]
+	  	id.max.G1 <- which(max.G1 <= 30)[1]
+ 
   	} else{
   		k1  <- matrix(rep(1,ncol(G1)),ncol=1)
   		row.names(k1) <- colnames(G1)
   		max.G1 <- ncol(G1)
+  		id.max.G1 <- 1
   		}
   	
   	
@@ -24,16 +27,23 @@ minP.test <- function(Y, G1, G2){
   		clust.tree.G2 <- rioja::chclust(distance.G2)
   		k2 <- cutree(clust.tree.G2, k=1:(ncol(G2)-30))
   		max.G2 <- sapply(1:(ncol(G2)-30),FUN=function(i){return(max(table(as.factor(k2[,i]))))})
-  		max.G2 <- max.G2[c(which(max.G2 > 20),which(max.G2 < 30)[1])]
+#  		max.G2 <- max.G2[c(which(max.G2 > 20),which(max.G2 < 30)[1])]
+  		id.max.G2 <- which(max.G2 <= 30)[1]
 	} else {
 		k2  <- matrix(rep(1,ncol(G2)),ncol=1)
   		row.names(k2) <- colnames(G2)
   		max.G2 <- ncol(G2)
+  		id.max.G2 <- 1
 	}
 	
 	## Detection of the subset of SNPs that cut each gene in sufficiently small pieces 
-	mult <- outer(max.G1,max.G2,"*")
-	division <- which(mult < 900,arr.ind=TRUE)[1,]
+	#mult <- outer(max.G1[ind.max.G1],max.G2[ind.max.G2],"*")
+	#tmp.mult <- (mult < 900)*mult
+	division <- c(id.max.G1,id.max.G2)
+#	division <- which(tmp.mult==max(tmp.mult),arr.ind=TRUE)[1,]
+#	division <- which(mult < 900,arr.ind=TRUE)[1,]
+
+
 
 	boundaries.start.G1 <- c(1,1+as.numeric(which(sapply(1:(length(k1[,division[1]])-1),FUN=function(i){return(k1[,division[1]][i]!=k1[,division[1]][i+1])}))))
 	boundaries.end.G1 <- c(as.numeric(which(sapply(1:(length(k1[,division[1]])-1),FUN=function(i){return(k1[,division[1]][i]!=k1[,division[1]][i+1])}))),ncol(G1))
@@ -79,7 +89,6 @@ minP.test <- function(Y, G1, G2){
   return(res)
 
 }
-
 
 minP.test.2pairs <- function(Y, G1, G2){
 

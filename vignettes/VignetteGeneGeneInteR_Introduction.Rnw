@@ -339,11 +339,11 @@ The \code{plot} method can be simply used with the \code{GGInetwork} object as t
 \includegraphics[width=5cm]{GGIPlot1} & \includegraphics[width=5cm]{GGIPlot2}
 \end{tabular}
 \end{center}
-\caption{\label{Fig:GGIPlotD} Default output of the function \code{GGI.plot} considering (a) the whole set of genes or (b) a restricted set of 3 genes.}
+\caption{\label{Fig:GGIPlotD} Default output of the function \code{plot} considering (a) the whole set of genes or (b) a restricted set of 3 genes.}
 \end{figure}
 
 \noindent
-When the number of genes is below 15, p-values and names are drawn to make matrix reading easier (see Figure~\ref{Fig:GGIPlotD}(b)). However, when the number of genes is larger than 15, p-values are not drawn and gene names are kept while if the number of genes is larger than 25, none of the lvalues or the gene names are displayed  (see Figure~\ref{Fig:GGIPlotD}(a)). In that case, the default behavior of the function is to start an interactive process where user can click on a cell of interest to open a tooltip displaying which genes are involved in the selected interaction and the p-value of the interaction test. Tooltips can be closed if user clicks anywhere else than on a cell. This process stops when the user presses the escape button (or terminates the locator procedure in general) or when the user clicks on any place other than a cell when no tooltip window is open. 
+When the number of genes is below 15, p-values and names are drawn to make matrix reading easier (see Figure~\ref{Fig:GGIPlotD}(b)). However, when the number of genes is larger than 15, p-values are not drawn and gene names are kept while if the number of genes is larger than 25, none of the pvalues or the gene names are displayed  (see Figure~\ref{Fig:GGIPlotD}(a)). In that case, the default behavior of the function is to start an interactive process where user can click on a cell of interest to open a tooltip displaying which genes are involved in the selected interaction and the p-value of the interaction test. Tooltips can be closed if user clicks anywhere else than on a cell. This process stops when the user presses the escape button (or terminates the locator procedure in general) or when the user clicks on any place other than a cell when no tooltip window is open. 
 
 \vskip1em
 \noindent
@@ -394,7 +394,7 @@ Figure~\ref{Fig:NetworkD} displays the default network obtained with all genes. 
 \begin{center}
 \includegraphics[width=15cm]{network}
 \end{center}
-\caption{\label{Fig:NetworkD} Default output of \code{draw.network}}
+\caption{\label{Fig:NetworkD} Output of \code{plot} function used with the argument \code{method="network"}.}
 \end{figure}
 
 \newpage
@@ -407,7 +407,7 @@ Figure~\ref{Fig:NetworkD} displays the default network obtained with all genes. 
 \begin{center}
 \includegraphics[width=15cm]{networkCust}
 \end{center}
-\caption{\label{Fig:NetworkC} Output of \code{draw.network} with a customized set of arguments.}
+\caption{\label{Fig:NetworkC} Output of \code{plot} used with the argument \code{method="network"}  a other customized arguments.}
 \end{figure}
 
 \newpage

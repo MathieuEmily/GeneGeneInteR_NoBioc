@@ -1,7 +1,6 @@
 # GeneGeneInteR
 
 
-Hello
 To install and load the package in R
 
 ```ruby

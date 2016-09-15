@@ -1,7 +1,7 @@
 Package: GeneGeneInteR
 Type: Package
 Title: Tools for Testing Gene-Gene Interaction at the Gene Level
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: c(
     person("Emily", "Mathieu", email = "mathieu.emily@agrocampus-ouest.fr", role = c("aut","cre")),
     person("Hou\'ee-Bigot", "Magalie", email = "magalie.houee@agrocampus-ouest.fr", role = "aut"),

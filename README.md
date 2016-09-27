@@ -1,6 +1,7 @@
 # GeneGeneInteR
+The aim of this package is to propose several methods for testing gene-gene interaction in case-control association studies. Such a test can be done by aggregating SNP-SNP interaction tests performed at the SNP level (SSI) or by using gene-gene multidimensionnal methods (GGI) methods. The package also proposes tools for a graphic display of the results.
 
-
+## Installation
 To install and load the package in R
 
 ```ruby
@@ -9,6 +10,7 @@ install_github("MathieuEmily/GeneGeneInteR")
 library(GeneGeneInteR)
 ```
 
+## A detailed example
  
 Importation of genotypes with ImportFile function
 Supported format are pedfile, PLINK, VCF (4.0) file, or genotypes imputed by IMPUTE2.

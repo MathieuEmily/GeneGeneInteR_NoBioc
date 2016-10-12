@@ -4,7 +4,7 @@ plot.GGInetwork <- function(x,method=c("heatmap","network"), threshold=NULL, col
 	}
 	method <- match.arg(method)
 	switch(method,
-			heatmap=GGI.plot(GGI=x$p.value, genes=genes, col=col, colbar.width=colbar.width, title=title, hclust.order=hclust.order, use.log=use.log, threshold=threshold, NA.col=NA.col, draw.pvals=draw.pvals, interact=interact, method.adjust=method.adjust),
+			heatmap=GGI.plot(GGI=x$p.value, genes=genes, col=col, colbar.width=colbar.width, title=title, hclust.order=hclust.order, use.log=use.log, threshold=threshold, NA.col=NA.col, draw.pvals=draw.pvals, draw.names=draw.names, interact=interact, method.adjust=method.adjust),
 			network=draw.network(GGI=x$p.value, genes=genes, threshold=threshold, plot.nointer=plot.nointer))
 }
 

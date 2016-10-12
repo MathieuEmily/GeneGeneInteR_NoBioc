@@ -1,4 +1,4 @@
-plot.GGInetwork <- function(x,method=c("heatmap","network"), threshold=NULL, col=c("#D6604D", "#104E8B"), colbar.width=0.15, title=NULL,  hclust.order=FALSE, use.log=FALSE, NA.col="#D3D3D3", draw.pvals=(ncol(x$p.value) <= 15), draw.names=(ncol(x$p.value) <= 25), interact=FALSE, method.adjust=c("none","holm","hochberg","hommel","bonferroni","BH","BY","fdr"), genes=1:ncol(x$p.value), plot.nointer=TRUE, ...){
+plot.GGInetwork <- function(x,method=c("heatmap","network"), threshold=NULL, col=c("#D6604D", "#104E8B"), colbar.width=0.15, title=NULL,  hclust.order=FALSE, use.log=FALSE, NA.col="#D3D3D3", draw.pvals=NULL, draw.names=NULL, interact=FALSE, method.adjust=c("none","holm","hochberg","hommel","bonferroni","BH","BY","fdr"), genes=1:ncol(x$p.value), plot.nointer=TRUE, ...){
 	if(class(x)!="GGInetwork") {
 	    stop("x should be an object of class GGInetwork.")
 	}
@@ -12,7 +12,7 @@ plot.GGInetwork <- function(x,method=c("heatmap","network"), threshold=NULL, col
 GGI.plot <- function(GGI,genes=1:ncol(GGI),col=c("#D6604D", "#104E8B"), colbar.width=0.15,
                      title=NULL, hclust.order=FALSE, use.log=FALSE,
                      threshold=NULL, NA.col="#D3D3D3",
-                     draw.pvals=(ncol(GGI) <= 15), draw.names=(ncol(GGI) <= 25),
+                     draw.pvals=NULL, draw.names=NULL,
                      interact=!(draw.pvals && draw.names),method.adjust=c("none","holm","hochberg","hommel","bonferroni","BH","BY","fdr")) {
 
   if(!is.matrix(GGI) && !is.numeric(GGI[1, 1])) {
@@ -48,6 +48,13 @@ GGI.plot <- function(GGI,genes=1:ncol(GGI),col=c("#D6604D", "#104E8B"), colbar.w
   }
 
   GGI <- GGI[genes,genes]
+
+	if (is.null(draw.pvals)){
+		draw.pvals=(ncol(GGI) <= 15)		
+	}
+	if (is.null(draw.names)){
+		draw.names=(ncol(GGI) <= 25)
+	}
 
 	method.adjust <- match.arg(method.adjust)
 	

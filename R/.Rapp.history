@@ -141,12 +141,8 @@ set.seed(1234)#
 gates.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,me.est="Galwey")
 library(devtools)
 install_github("MathieuEmily/GeneGeneInteR")
-install_github("MathieuEmily/GeneGeneInteR")
-install_github("MathieuEmily/GeneGeneInteR")
 set.seed(1234)#
 tTS.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,tau=0.5,n.sim=500)
-set.seed(1234)#
-tTS.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,tau=0.5,n.sim=2000)
 set.seed(1234)#
 tTS.test(Y=gene.pair$Y, G1=gene.pair$G1,G2=gene.pair$G2,tau=0.5,n.sim=2000)
 set.seed(1234)#

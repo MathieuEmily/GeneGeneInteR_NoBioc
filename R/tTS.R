@@ -65,10 +65,29 @@ tTS.test <- function(Y, G1, G2, tau = 0.05, n.sim = 1000){
 	
 	stat <- T0
 	names(stat)="tTS"
-	res <- list(statistic=stat,p.value=pval,method="Truncated Tail Strength")
-	class(res) <- "GGItest"
-  return(res)
+	#res <- list(statistic=stat,p.value=pval,method="Truncated Tail Strength")
+	#class(res) <- "GGItest"
+#  return(res)
 	
+	null.value <- NULL
+#	names(null.value) <- "tTS"
+	estimate <- c(stat)
+	names(estimate) <- c("tTS")
+	parameters <- tau
+	names(parameters) <- "tau"
+	res <- list(
+		null.value=null.value,
+		alternative="less",
+		method="Gene-based interaction based on the Truncated Tail Strength method",
+		estimate= estimate,
+		data.name=paste("Interaction between",G1.arg,"and",G2.arg,"in association with",Y.arg),
+		statistic=stat,
+		p.value=pval,
+		parameters=parameters)
+	class(res) <- "htest"
+  return(res)
+
+
 }
 
 # Computes the test statistic for tTS method.

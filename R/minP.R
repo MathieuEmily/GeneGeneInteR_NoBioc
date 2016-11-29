@@ -1,4 +1,7 @@
 minP.test <- function(Y, G1, G2){
+	Y.arg <- deparse(substitute(Y))
+	G1.arg <- deparse(substitute(G1))
+	G2.arg <- deparse(substitute(G2))
 
   # Checking if gene splitting is needed
   if (ncol(G1) * ncol(G2) > 1000){
@@ -80,17 +83,40 @@ minP.test <- function(Y, G1, G2){
     
   }
 
+
 	tmp <- p.adjust(pairs.p.val, "BH")
 	pval <- min(tmp)[1]
 	stat <- pairs.stat[which.min(tmp)]
-	names(stat)="minP"
-	res <- list(statistic=stat,p.value=pval,method="minP")
-	class(res) <- "GGItest"
+	names(stat)="Wmax"
+#	res <- list(statistic=stat,p.value=pval,method="minP")
+#	class(res) <- "GGItest"
+ # return(res)
+  
+  	null.value <- NULL
+#	names(null.value) <- "Wmax"
+	estimate <- c(stat)
+	names(estimate) <- c("Wmax")
+	parameters <- NULL
+#	names(parameters) <- ""
+	res <- list(
+		null.value=null.value,
+		alternative="greater",
+		method="Gene-based interaction based on minP method",
+		estimate= estimate,
+		data.name=paste("Interaction between",G1.arg,"and",G2.arg,"in association with",Y.arg),
+		statistic=stat,
+		p.value=pval,
+		parameters=parameters)
+	class(res) <- "htest"
   return(res)
+
 
 }
 
 minP.test.2pairs <- function(Y, G1, G2){
+	Y.arg <- deparse(substitute(Y))
+	G1.arg <- deparse(substitute(G1))
+	G2.arg <- deparse(substitute(G2))
 
   if (!is.null(dim(Y))) {
     Y <- Y[, 1]
@@ -158,9 +184,28 @@ minP.test.2pairs <- function(Y, G1, G2){
 	}
 	pval <- as.numeric(GG.Pmin)
 	stat <- SSI.min
-	names(stat)="minP"
-	res <- list(statistic=stat,p.value=pval,method="minP")
-	class(res) <- "GGItest"
+	names(stat)="Wmax"
+	#res <- list(statistic=stat,p.value=pval,method="minP")
+	#class(res) <- "GGItest"
+#  return(res)
+
+	null.value <- 0
+	names(null.value) <- "Wmax"
+	estimate <- c(stat)
+	names(estimate) <- c("Wmax")
+	parameters <- NULL
+#	names(parameters) <- ""
+	res <- list(
+		null.value=null.value,
+		alternative="greater",
+		method="Gene-based interaction based on minP method",
+		estimate= estimate,
+		data.name=paste("Interaction between",G1.arg,"and",G2.arg,"in association with",Y.arg),
+		statistic=stat,
+		p.value=pval,
+		parameters=parameters)
+	class(res) <- "htest"
   return(res)
+
 
 }

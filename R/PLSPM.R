@@ -1,5 +1,6 @@
 PLSPM.test <- function(Y, G1, G2, n.perm=500){
 
+	Y.arg <- deparse(substitute(Y))
   if (!is.null(dim(Y))) {
     Y <- Y[, 1]
   }
@@ -101,9 +102,29 @@ PLSPM.test <- function(Y, G1, G2, n.perm=500){
 	  pval <- mean(abs(U.perm) > abs(U))
 	  stat <- U
 	names(stat)="U"
-	list.param <- list(n.perm=n.perm)
-	res <- list(statistic=stat,p.value=pval,method="Partial Least Squares Path Modeling",parameter=list.param)
-	class(res) <- "GGItest"
+#	list.param <- list(n.perm=n.perm)
+#	res <- list(statistic=stat,p.value=pval,method="Partial Least Squares Path Modeling",parameter=list.param)
+#	class(res) <- "GGItest"
+ # return(res)
+  
+    null.value <- 0
+names(null.value) <- "U"
+estimate <- c(beta0, beta1)
+names(estimate) <- c("beta0","beta1")
+parameters <- n.perm
+names(parameters) <- "n.perm"
+	res <- list(
+		null.value=null.value,
+		alternative="two.sided",
+		method="Gene-based interaction based on Partial Least Squares Path Modeling",
+		estimate= estimate,
+		data.name=paste("Interaction between",deparse(substitute(G1)),"and",deparse(substitute(G2)),"in association with",Y.arg),
+		statistic=stat,
+		p.value=pval,
+		parameters=parameters)
+	class(res) <- "htest"
   return(res)
+
+
 #  return(pval)
 }

@@ -1,4 +1,7 @@
 tTS.test <- function(Y, G1, G2, tau = 0.05, n.sim = 1000){
+	Y.arg <- deparse(substitute(Y))
+	G1.arg <- deparse(substitute(G1))
+	G2.arg <- deparse(substitute(G2))
 
   if (!is.null(dim(Y))) {
     Y <- Y[, 1]

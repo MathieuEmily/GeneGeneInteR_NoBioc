@@ -51,11 +51,11 @@ KCCA.test <- function(Y, G1, G2, kernel=c("rbfdot","polydot","tanhdot","vanillad
   stat<-"empty"
   try(result <- get.kU(Y=Y,X1=X1,X2=X2,kernel=kernel,n.boot=n.boot))
 
-  if(is.na(result)){
+  if(is.na(result[1])){
     pval<-1
 
   } else {
-    if(result=="empty"){stop("P-value could not be computed, test statistic is missing")}
+    if(result[1]=="empty"){stop("P-value could not be computed, test statistic is missing")}
     stat <- result$stat
     pval <- 2*(1-pnorm(abs(stat)))
 	z0 <- result$z0

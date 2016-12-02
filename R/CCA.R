@@ -1,6 +1,8 @@
 CCA.test <- function(Y, G1, G2, n.boot = 500){
 
 	Y.arg <- deparse(substitute(Y))
+	G1.arg <- deparse(substitute(G1))
+	G2.arg <- deparse(substitute(G2))
   if (!is.null(dim(Y))) {
     Y <- Y[, 1]
   }
@@ -66,7 +68,7 @@ names(parameters) <- "n.boot"
 		alternative="two.sided",
 		method="Gene-based interaction based on Canonical Correspondance Analysis",
 		estimate= estimate,
-		data.name=paste("Interaction between",deparse(substitute(G1)),"and",deparse(substitute(G2)),"in association with",Y.arg),
+		data.name=paste(Y.arg," and  (",G1.arg," , ",G2.arg,")",sep=""),
 		statistic=stat,
 		p.value=pval,
 		parameters=parameters)

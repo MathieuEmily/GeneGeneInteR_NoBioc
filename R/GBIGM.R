@@ -84,7 +84,7 @@ names(parameters) <- "n.perm"
 		alternative="two.sided",
 		method="Gene-based interaction based on Gene-based Information Gain Method",
 		estimate= estimate,
-		data.name=paste("Interaction between",G1.arg,"and",G2.arg,"in association with",Y.arg),
+		data.name=paste(Y.arg," and  (",G1.arg," , ",G2.arg,")",sep=""),
 		statistic=stat,
 		p.value=pval,
 		parameters=parameters)

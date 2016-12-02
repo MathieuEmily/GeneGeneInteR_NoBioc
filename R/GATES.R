@@ -93,8 +93,7 @@ gates.test <- function(Y, G1, G2, alpha = 0.05, me.est = c("ChevNy", "Keff", "Li
 		alternative="less",
 		method="Gene-based interaction based on GATES method",
 		estimate= estimate,
-		data.name=paste("Interaction between",G1.arg,"and",G2.arg,"in association with",Y.arg),
-		statistic=stat,
+		data.name=paste(Y.arg," and  (",G1.arg," , ",G2.arg,")",sep=""),			statistic=stat,
 		p.value=pval,
 		parameters=parameters)
 	class(res) <- "htest"

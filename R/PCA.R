@@ -8,7 +8,7 @@ PCA.test <- function(Y,G1,G2,threshold=0.8,method="GenFreq"){
 		return(tmp)
 	} else if (method=="Std"){
 		tmp <- PCA.Std(Y=Y,G1=G1,G2=G2,threshold=threshold)
-		tmp$data.name <- paste("Interaction between",deparse(substitute(G1)),"and",deparse(substitute(G2)),"in association with",deparse(substitute(Y)))
+		tmp$data.name <- paste(deparse(substitute(Y))," and  (",deparse(substitute(G1))," , ",deparse(substitute(G2)),")",sep="")
 		tmp$method <- paste(tmp$method,"-",method)
 		tmp$parameters <- c(tmp$parameters,threshold)
 		names(tmp$parameters) <- c("df","threshold")

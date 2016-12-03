@@ -130,9 +130,14 @@ data(gene.pair)
 head(gene.pair$Y)
 @
 
-\code{[1] HealthControl HealthControl HealthControl HealthControl HealthControl HealthControl}
+\begin{Soutput}
+[1] HealthControl HealthControl HealthControl HealthControl HealthControl 
+Levels: HealthControl RheumatoidArthritis
+\end{Soutput}
 
-\code{Levels: HealthControl RheumatoidArthritis}
+%\code{[1] HealthControl HealthControl HealthControl HealthControl HealthControl HealthControl}
+
+%\code{Levels: HealthControl RheumatoidArthritis}
 
 <<>>==
 gene.pair$G1

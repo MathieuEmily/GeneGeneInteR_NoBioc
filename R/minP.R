@@ -153,17 +153,20 @@ minP.test.2pairs <- function(Y, G1, G2){
 	n2 <- ncol(MatCor2)
 	n.pairs <- n1*n2
 	sigma.matrix <- matrix(NA,ncol=n.pairs,nrow=n.pairs)
-	for (i in 1:(n.pairs-1)){
-		i1 <- floor((i-1)/n2)+1
-		j1 <- i-(i1-1)*n2
-		for (j in (i+1):n.pairs){
-			i2 <- floor((j-1)/n2)+1
-			j2 <- j-(i2-1)*n2
-			sigma.matrix[i,j] <- sigma.matrix[j,i] <- MatCor1[i1,i2]*MatCor2[j1,j2]
+	if (n.pairs==1){
+		sigma.matrix[1,1] <- 1	
+	} else {
+		for (i in 1:(n.pairs-1)){
+			i1 <- floor((i-1)/n2)+1
+			j1 <- i-(i1-1)*n2
+			for (j in (i+1):n.pairs){
+				i2 <- floor((j-1)/n2)+1
+				j2 <- j-(i2-1)*n2
+				sigma.matrix[i,j] <- sigma.matrix[j,i] <- MatCor1[i1,i2]*MatCor2[j1,j2]
+			}
 		}
+		diag(sigma.matrix) <- 1
 	}
-	diag(sigma.matrix) <- 1
-
   # minP test is computed past this point
   SSI.min <- min(SSI.res, na.rm=TRUE)
 

@@ -32,9 +32,9 @@ Prior to the statistical analysis, dataset can be modified by applying filters t
 
 ```ruby
 ## Filtering of the data: SNPs with MAF < 0.05 or p.value for HWE < 1e-3 are removed. No filtering is applied regarding missing data (call.rate=1).
-data <- snpMatrixScour(data$snpX,genes.info = data$genes.info, min.maf = 0.05, min.eq = 1e-3, call.rate = 1)
+dta <- snpMatrixScour(dta$snpX,genes.info = dta$genes.info, min.maf = 0.05, min.eq = 1e-3, call.rate = 1)
 ## Imputation of the missing genotypes
-dta <- imputeSnpMatrix(data$snpX,data$genes.info)
+dta <- imputeSnpMatrix(dta$snpX,dta$genes.info)
 ## Selection of a subset of 12 genes
 dta <- selectSnps(dta$snpX, dta$genes.info, c("bub3","CDSN","Gc","GLRX","PADI1","PADI2","PADI4","PADI6","PRKD3","PSORS1C1","SERPINA1","SORBS1"))
 ```
